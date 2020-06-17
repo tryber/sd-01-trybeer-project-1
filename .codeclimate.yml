@@ -7,7 +7,7 @@ exclude_patterns:
   - "**/libs/*.css"
   - "**/libs/*.js"
   - "cypress/**/*"
-  - "public/*"
+  - "public/**/*"
 checks:
   argument-count:
     config:
