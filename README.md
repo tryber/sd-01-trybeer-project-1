@@ -16,7 +16,7 @@ Para facilitar o entendimento, dá para dividirmos a aplicação em três partes
 
 - Front-end do **cliente**, onde nossos clientes vão comprar cerveja;
 
-- Front-end do **admin**, onde o estabelecimento controlará os pedidos feitos;
+- Front-end do **admin**, onde o estabelecimento controlará os pedidos feitos
 
 - API, que será compartilhada entre cliente e admin.
 
