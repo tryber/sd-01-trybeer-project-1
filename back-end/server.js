@@ -4,6 +4,6 @@ const path = require('path');
 
 const app = express();
 
-app.use(express.static(path.resolve(__dirname, 'public', 'images')));
+app.use(express.static(path.resolve(__dirname, 'public')));
 
 module.exports = app;
