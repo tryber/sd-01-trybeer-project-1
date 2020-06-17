@@ -75,8 +75,6 @@ INNER JOIN orders AS O
 ON O.id_order = OP.id_order
 WHERE O.id_order = 2;
 
--- PROCEDURE 
-
 DELIMITER $$
 CREATE PROCEDURE `createUser`(IN nameValue VARCHAR(80),IN emailValue VARCHAR(50),IN passwordValue VARCHAR(64),IN roleValue VARCHAR(20))
 BEGIN
