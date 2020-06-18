@@ -8,3 +8,12 @@ exports.getTitle = (path, idExist) => {
   };
   return titles[path];
 };
+
+exports.saveUser = (user) => {
+  const itemJson = JSON.stringify(user);
+  localStorage.setItem('user', itemJson);
+}
+
+exports.clearUser = () => {
+  localStorage.removeItem('user');
+}

@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
+import {clearUser} from '../service'
 
 const logout = (callback) => {
-  console.log('FUNCTION clearDATA')
+  clearUser()
   callback(true)
 }
 
