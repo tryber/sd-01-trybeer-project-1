@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS users (
   id_user INT NOT NULL AUTO_INCREMENT UNIQUE PRIMARY KEY,
   name VARCHAR(80) NOT NULL,
   password VARCHAR(64) NOT NULL,
-  email VARCHAR(50) NOT NULL,
+  email VARCHAR(50) NOT NULL UNIQUE,
   role VARCHAR(20) NOT NULL
 ) ENGINE = InnoDB;
 
@@ -21,6 +21,7 @@ CREATE TABLE IF NOT EXISTS orders (
   id_user INT NOT NULL,
   data TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
   address VARCHAR(255) NOT NULL,
+  address_number INT NOT NULL,
   status TINYINT DEFAULT 0,
   FOREIGN KEY (id_user) REFERENCES trybeer.users (id_user)
 ) ENGINE = InnoDB;
@@ -52,11 +53,11 @@ VALUES
 ('Henrique', 123456, 'henrique@gmail.com', 'admin'),
 ('Coruja', 123456, 'henrique@gmail.com', 'admin');
 
-INSERT INTO orders (id_user, address)
+INSERT INTO orders (id_user, address, address_number)
 VALUES
-(1, 'Belo Horizonte'),
-(1, 'São Paulo'),
-(2, 'São Paulo');
+(1, 'Belo Horizonte', 50),
+(1, 'São Paulo', 29),
+(2, 'São Paulo', 42);
 
 INSERT INTO orders_products (id_order, id_product, quantity)
 VALUES
@@ -85,11 +86,11 @@ END$$
 DELIMITER ;
 
 DELIMITER $$
-CREATE PROCEDURE `createOrder`(IN idUser INT, IN address VARCHAR(255))
+CREATE PROCEDURE `createOrder`(IN idUser INT, IN address VARCHAR(255), IN addressNumber INT)
 BEGIN
-INSERT INTO orders (id_user, address)
+INSERT INTO orders (id_user, address, address_number)
 VALUES
-(idUser, address);
+(idUser, address, addressNumber);
 SELECT id_order FROM orders order by id_order desc limit 1;
 END$$
 DELIMITER ;
@@ -109,7 +110,8 @@ DELIMITER ;
 DELIMITER $$
 CREATE PROCEDURE `getAllDataOrder`()
 BEGIN
-SELECT O.id_order, O.data, O.address, U.name AS client, O.status, priceOrderTotal(id_order) AS Total
+SELECT O.id_order, O.data, O.address, O.address_number, U.name AS client, 
+O.status, priceOrderTotal(id_order) AS Total
 FROM orders AS O
 INNER JOIN users AS U
 ON O.id_user = U.id_user;
@@ -119,7 +121,7 @@ DELIMITER ;
 DELIMITER $$
 CREATE PROCEDURE `getAllDataOrderUser`(IN idUser INT)
 BEGIN
-SELECT O.id_order, O.data, O.address, priceOrderTotal(id_order) AS Total
+SELECT O.id_order, O.data, priceOrderTotal(id_order) AS Total -- Não precisa do endereço
 FROM orders AS O
 WHERE O.id_user = idUser;
 END$$

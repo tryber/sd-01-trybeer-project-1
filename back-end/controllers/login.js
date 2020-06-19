@@ -5,6 +5,5 @@ exports.login = async (req, res) => {
 
   const login = await appBeer.loginUser(email, password);
 
-  if (!login) return res.status(400).json({ message: 'Email or password invalid' });
   res.status(200).send(login);
-}
+};

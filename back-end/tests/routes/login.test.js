@@ -2,7 +2,7 @@ const axiosist = require('axiosist');
 const app = require('../../api/server');
 const fixtures = require('../fixtures/login');
 
-// jest.setTimeout(10000);
+jest.setTimeout(20000);
 
 describe('POST /login', () => {
   const axios = axiosist(app);
@@ -19,7 +19,7 @@ describe('POST /login', () => {
     });
 
     it('returns a `missing fields` error message', () => {
-      expect(response.data.message).toBe('Email or password invalid');
+      expect(response.data.message).toBe('Invalid Fields');
     });
   });
 

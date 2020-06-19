@@ -1,22 +1,14 @@
-const conn = require('./connectionModel');
 const createTokenJWT = require('../services/JWT');
+const { connectionPromise } = require('../services/distributor');
 
-const loginUser = async (email, password) => {
-  const query = `call getUser("${email}", "${password}")`;
-  return new Promise((resolve, reject) => {
-    conn.query(query, (err, result) => {
-      if (err) return reject(err);
+async function loginUser(emailUser, passwordUser) {
+  const query = `call getUser("${emailUser}", "${passwordUser}")`;
+  const userData = await connectionPromise(query);
 
-      let userData = result[0];
-      if (!userData) return resolve(null);
-
-      const token = createTokenJWT(userData[0]);
-      const { email, name, role } = userData[0];
-
-      return resolve({ name, email, token, role });
-    });
-  });
-}
+  const token = createTokenJWT(userData[0]);
+  const { email, name, role } = userData[0];
+  return ({ name, email, token, role });
+};
 
 module.exports = {
   loginUser,
