@@ -23,37 +23,37 @@ describe('POST /login', () => {
     });
   });
 
-  // describe('when email is invalid', () => {
-  //   let response;
+  describe('when email is invalid', () => {
+    let response;
 
-  //   beforeAll(async () => {
-  //     response = await axios.post('/login', fixtures.invalidEmail);
-  //   });
+    beforeAll(async () => {
+      response = await axios.post('/login', fixtures.invalidEmail);
+    });
 
-  //   it('returns 400 a HTTP status code', () => {
-  //     expect(response.status).toBe(400);
-  //   });
+    it('returns 400 a HTTP status code', () => {
+      expect(response.status).toBe(400);
+    });
 
-  //   it('returns a `Email or password invalid`', () => {
-  //     expect(response.data.message).toBe('Email or password invalid');
-  //   });
-  // });
+    it('returns a `Invalid Fields`', () => {
+      expect(response.data.message).toBe('Invalid Fields');
+    });
+  });
 
-  // describe('when password is invalid', () => {
-  //   let response;
+  describe('when password is invalid', () => {
+    let response;
 
-  //   beforeAll(async () => {
-  //     response = await axios.post('/login', fixtures.invalidPassword);
-  //   });
+    beforeAll(async () => {
+      response = await axios.post('/login', fixtures.invalidPassword);
+    });
 
-  //   it('returns 400 a HTTP status code', () => {
-  //     expect(response.status).toBe(400);
-  //   });
+    it('returns 400 a HTTP status code', () => {
+      expect(response.status).toBe(400);
+    });
 
-  //   it('returns a `Email or password invalid`', () => {
-  //     expect(response.data.message).toBe('Email or password invalid');
-  //   });
-  // });
+    it('returns a `Invalid Fields`', () => {
+      expect(response.data.message).toBe('Invalid Fields');
+    });
+  });
 
   // describe('when everything is ok', () => {
   //   let response;

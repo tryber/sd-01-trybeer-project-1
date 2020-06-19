@@ -159,7 +159,7 @@ END$$
 DELIMITER ;
 
 DELIMITER $$
-CREATE PROCEDURE `getUser`(IN emailUser INT)
+CREATE PROCEDURE `getUser`(IN emailUser VARCHAR(50))
 BEGIN
 SELECT email, name, password, role FROM users
 WHERE email = emailUser;
