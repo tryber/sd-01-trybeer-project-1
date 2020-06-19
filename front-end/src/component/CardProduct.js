@@ -12,7 +12,7 @@ function CardProduct({ index, attributes }) {
   return (
     <div className="CardProduct">
       <h3 data-testid={`${index}-product-price`}>{`R$ ${price.toLocaleString('pt-BR')}`}</h3>
-      <img data-testid={`${index}-product-img`} src={img} />
+      <img data-testid={`${index}-product-img`} src={img} alt={`Image Product ${name}`} />
       <h2 data-testid={`${index}-product-name`}>{name}</h2>
       <div>
         <input type="button" value="-" data-testid={`${index}-product-minus`} onClick={() => setCarBuyer(addItemInCarBuyer(carBuyer, { id, name, price, qtd: qtd - 1 }))} />
