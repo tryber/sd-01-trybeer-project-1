@@ -31,5 +31,3 @@ exports.addItemInCarBuyer = (ObjCarBuyer, objProduct) => {
   getItem.qtd = qtd;
   return { list, total: getTotalCar(list) }
 }
-
-
