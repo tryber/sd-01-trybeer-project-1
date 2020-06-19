@@ -12,6 +12,6 @@ function createTokenJWT({ ...userData }) {
 
   const token = jwt.sign(userData, process.env.SECRET_KEY_JWT, jwtConfig);
   return token;
-};
+}
 
 module.exports = createTokenJWT;
