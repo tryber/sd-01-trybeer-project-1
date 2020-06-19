@@ -1,10 +1,10 @@
-const { registerUserDB } = require('../models/appBeer');
+const appBeer = require('../models/appBeer');
 const { encrypt } = require('../services/crypto');
 
 exports.register = async (req, res) => {
   const { name, email, password, role } = req.body;
   const ecryptedPassword = encrypt(password);
-  const userData = await registerUserDB(name, email, ecryptedPassword, role);
+  const userData = await appBeer.registerUserDB(name, email, ecryptedPassword, role);
 
   if (userData) return res.status(200).json({ message: 'Registered successfully.' });
 };
