@@ -1,5 +1,5 @@
-const login = require('../controllers/login');
+const registerUser = require('../controllers/register');
 
 module.exports = {
-  login,
+  registerUser,
 };

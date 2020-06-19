@@ -1,14 +1,21 @@
 const express = require('express');
 
+const bodyParser = require('body-parser');
+
 const path = require('path');
 
 const app = express();
 
-const { login } = require('./routes');
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+const { registerUser } = require('./routes');
+
+const { validRegisterMiddleware } = require('../middlewares/register');
 
 const apiTrybeer = express.Router();
 
-apiTrybeer.get('/login', login.login);
+apiTrybeer.post('/register', validRegisterMiddleware, registerUser.register);
 
 app.use(express.static(path.resolve(__dirname, '..', 'public')));
 
