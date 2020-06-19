@@ -1,10 +1,12 @@
 import React from 'react';
-// import Router from 'react-router-dom'
+import { Provider } from './context/RedditContext.js';
 
 function App() {
   return (
+    <Provider>
     <div className="App">
     </div>
+    </Provider>
   );
 }
 

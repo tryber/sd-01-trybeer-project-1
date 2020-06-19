@@ -3,9 +3,9 @@ import { Link, Redirect } from 'react-router-dom';
 import {clearUser} from '../service'
 
 const logout = (callback) => {
-  clearUser()
-  callback(true)
-}
+  clearUser();
+  callback(true);
+};
 
 const linksCliente = (setOut) => (
   <div className="NavBar">

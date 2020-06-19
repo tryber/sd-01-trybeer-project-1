@@ -45,26 +45,14 @@ describe('Verifica requisitos projeto', () => {
     expect(linkLogout).toBeInTheDocument();
   });
 
-  test('data-test-id quando está no Admin', () => {
-    const { getByTestId } = renderWithRouter(<NavBar type="admin" />);
-
-    const linkMyPerfil = getByTestId('side-menu-item-profile');
-    const linkMyOrders = getByTestId('side-menu-item-orders');
-    const linkLogout = getByTestId('side-menu-item-logout');
-
-    expect(linkMyPerfil).toBeInTheDocument();
-    expect(linkMyOrders).toBeInTheDocument();
-    expect(linkLogout).toBeInTheDocument();
-  });
-
-  test('Verificando se função de limpar o local Storage está funcionando ao clicar no botao de logout', () => {
+  test('Verificando se função de limpar o local Storage está funcionando ao clicar no botao de logout ADMIN', () => {
     const { getByTestId } = renderWithRouter(<NavBar type="admin" />);
     const linkLogout = getByTestId('side-menu-item-logout');
     fireEvent.click(linkLogout);
     expect(spyClearData).toHaveBeenCalled();
   });
 
-  test('Verificando se função de limpar o local Storage está funcionando ao clicar no botao de logout', () => {
+  test('Verificando se função de limpar o local Storage está funcionando ao clicar no botao de logout CLIENTE', () => {
     const { getByTestId } = renderWithRouter(<NavBar type="cliente" />);
     const linkLogout = getByTestId('side-menu-item-logout');
     fireEvent.click(linkLogout);
