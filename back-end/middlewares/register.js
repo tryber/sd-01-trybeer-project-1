@@ -13,8 +13,12 @@ function isRoleValid(role = '') {
 
 function validRegisterMiddleware(req, res, next) {
   const { name, email, password, role } = req.body;
-  if (!isNameValid(name) || !isEmailValid(email) || !isPasswordValid(password) || !isRoleValid(role))
-    return res.status(400).json({ message: 'Invalid Fields' });
+  if (
+    !isNameValid(name)
+    || !isEmailValid(email)
+    || !isPasswordValid(password)
+    || !isRoleValid(role)
+  ) return res.status(400).json({ message: 'Invalid Fields' });
 
   next();
 }

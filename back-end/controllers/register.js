@@ -7,4 +7,4 @@ exports.register = async (req, res) => {
   const userData = await registerUserDB(name, email, ecryptedPassword, role);
 
   if (userData) return res.status(200).json({ message: 'Registered successfully.' });
-}
+};

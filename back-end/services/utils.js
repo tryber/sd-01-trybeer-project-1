@@ -10,5 +10,5 @@ function isPasswordValid(password = '') {
 
 module.exports = {
   isEmailValid,
-  isPasswordValid
+  isPasswordValid,
 };
