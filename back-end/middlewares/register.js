@@ -13,7 +13,6 @@ function isRoleValid(role = '') {
 }
 
 async function validRegisterMiddleware(req, res, next) {
-
   const { name, email, password, role } = req.body;
   if (
     !isNameValid(name)

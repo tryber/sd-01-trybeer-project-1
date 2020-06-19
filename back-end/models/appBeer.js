@@ -9,9 +9,9 @@ const registerUserDB = async (name, email, ecryptedPassword, role) => {
 const verifyEmail = async (email) => {
   const query = `SELECT email FROM users WHERE email = "${email}"`;
   const data = await connectionPromise(query);
-  
+
   if (data.email === email) return true;
-}
+};
 
 module.exports = {
   registerUserDB,
