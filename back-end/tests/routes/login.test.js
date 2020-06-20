@@ -55,33 +55,68 @@ describe('POST /login', () => {
     });
   });
 
-  // describe('when everything is ok', () => {
-  //   let response;
+  describe('when password is invalid but is valid in forms', () => {
+    let response;
 
-  //   beforeAll(async () => {
-  //     response = await axios.post('/login', fixtures.validLogin);
-  //   });
+    beforeAll(async () => {
+      response = await axios.post('/login', fixtures.passwordFormsValid);
+    });
 
-  //   it('returns a 200 HTTP status code', () => {
-  //     expect(response.status).toBe(200);
-  //   });
+    it('returns 400 a HTTP status code', () => {
+      expect(response.status).toBe(400);
+    });
 
-  //   // it('returns an object', () => {
-  //   //   expect(typeof response.data).toBe('object');
-  //   // });
+    it('returns a `Invalid Fields`', () => {
+      expect(response.data.message).toBe('Invalid Fields');
+    });
+  });
 
-  //   // it('returns a valid token', () => {
-  //   //   expect(response.data).toHaveProperty('token');
-  //   // });
+  describe('when email is invalid but is valid in forms', () => {
+    let response;
 
-  //   // describe('the valid token', () => {
-  //   //   it('has 16 characters', () => {
-  //   //     expect(response.data.token).toHaveLength(16);
-  //   //   });
+    beforeAll(async () => {
+      response = await axios.post('/login', fixtures.emailFormsValid);
+    });
 
-  //   //   it('is made of numbers and letters', () => {
-  //   //     expect(/^[0-9a-z]+$/ig.test(response.data.token)).toBe(true);
-  //   //   });
-  //   // });
-  // });
+    it('returns 400 a HTTP status code', () => {
+      expect(response.status).toBe(400);
+    });
+
+    it('returns a `Invalid Fields`', () => {
+      expect(response.data.message).toBe('Invalid Fields');
+    });
+  });
+
+  describe('when everything is ok', () => {
+    let response;
+
+    beforeAll(async () => {
+      response = await axios.post('/login', fixtures.validLogin);
+    });
+
+    it('returns a 200 HTTP status code', () => {
+      expect(response.status).toBe(200);
+    });
+
+    it('returns an object', () => {
+      expect(typeof response.data).toBe('object');
+    });
+
+    it('returns a valid token', () => {
+      expect(response.data).toHaveProperty('token');
+      expect(response.data).toHaveProperty('name');
+      expect(response.data).toHaveProperty('email');
+      expect(response.data).toHaveProperty('role');
+    });
+
+    // describe('the valid token', () => {
+    //   it('has 16 characters', () => {
+    //     expect(response.data.token).toHaveLength(16);
+    //   });
+
+    //   it('is made of numbers and letters', () => {
+    //     expect(/^[0-9a-z]+$/ig.test(response.data.token)).toBe(true);
+    //   });
+    // });
+  });
 });

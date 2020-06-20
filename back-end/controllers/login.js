@@ -4,8 +4,7 @@ const { encrypt } = require('../services/crypto');
 exports.login = async (req, res) => {
   const { email, password } = req.body;
 
-  const ecryptedPassword = encrypt(password);
-  const login = await appBeer.loginUser(email, ecryptedPassword);
+  const login = await appBeer.loginUser(email, password);
 
   if (!login) return res.status(400).json({ message: 'Invalid Fields' });
 

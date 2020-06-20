@@ -67,15 +67,6 @@ VALUES
 (3, 5, 10),
 (2, 1, 10);
 
-USE trybeer;
-SELECT P.name_product, P.price, OP.quantity, P.price * OP.quantity AS Total
-FROM products AS P
-INNER JOIN orders_products AS OP
-ON P.id_product = OP.id_product
-INNER JOIN orders AS O
-ON O.id_order = OP.id_order
-WHERE O.id_order = 2;
-
 DELIMITER $$
 CREATE PROCEDURE `createUser`(IN nameValue VARCHAR(80),IN emailValue VARCHAR(50),IN passwordValue VARCHAR(64),IN roleValue VARCHAR(20))
 BEGIN
@@ -110,7 +101,7 @@ DELIMITER ;
 DELIMITER $$
 CREATE PROCEDURE `getAllDataOrder`()
 BEGIN
-SELECT O.id_order, O.data, O.address, O.address_number, U.name AS client, 
+SELECT O.id_order, O.data, O.address, O.address_number, U.name AS client,
 O.status, priceOrderTotal(id_order) AS Total
 FROM orders AS O
 INNER JOIN users AS U
