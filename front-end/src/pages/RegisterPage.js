@@ -1,10 +1,11 @@
-import React from 'react';
-import { Provider } from './context/index';
-import Forms from './component/Forms.js';
+import React, { useState } from 'react';
+import Forms from '../component/Forms';
+import { Redirect } from 'react-router-dom';
 import { elementsRegister } from './modelFormRegister.js';
 import { fetchApi } from '../service/serviceFetch';
+import ReportComponent from '../component/ReportComponent';
 
-async function handleSubmit(event) {
+async function handleSubmit(event, setMessageRequest) {
   event.preventDefault();
   const { name, email, password, checkbox } = event.target;
   const body = {
@@ -18,16 +19,20 @@ async function handleSubmit(event) {
     method: 'POST',
     body,
   })
-  console.log(data);
+  console.log(data)
+  setMessageRequest(data.message)
 }
 
 function Register() {
+  const [messageRequest, setMessageRequest] = useState();
+  const [shouldRedirect, setShouldRedirect] = useState(false);
+  console.log(shouldRedirect);
+  if (shouldRedirect) return <Redirect to="/login" />
   return (
-    <Provider>
-      <div className="elementsRegister">
-        <Forms elements={elementsRegister} handleSubmit={(e) => handleSubmit(e)} />
-      </div>
-    </Provider>
+    <div className="elementsRegister">
+      {!messageRequest || <ReportComponent message={{ messageRequest, setMessageRequest }} callback={(value) => setShouldRedirect(value)} />}
+      <Forms elements={elementsRegister} handleSubmit={(e) => handleSubmit(e, setMessageRequest)} />
+    </div>
   );
 }
 
