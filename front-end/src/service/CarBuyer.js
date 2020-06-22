@@ -19,3 +19,12 @@ exports.addItemInCarBuyer = (ObjCarBuyer, objProduct) => {
   getItem.qtd = qtd;
   return { list, total: getTotalCar(list) }
 }
+
+exports.saveCar = (car) => {
+  const itemJson = JSON.stringify(car);
+  localStorage.setItem('car', itemJson);
+}
+
+exports.clearCar = () => {
+  localStorage.removeItem('user');
+}
