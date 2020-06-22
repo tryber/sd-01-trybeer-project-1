@@ -2,7 +2,7 @@ const { connectionPromise } = require('../services/connectionPromise');
 const { verifyPassword } = require('../services/utils');
 const createTokenJWT = require('../services/createJWT');
 
-async function loginUser(emailUser, passwordUser) {
+const loginUser = async (emailUser, passwordUser) => {
   const query = `call getUser("${emailUser}")`;
   const userData = await connectionPromise(query);
 
@@ -15,6 +15,21 @@ async function loginUser(emailUser, passwordUser) {
   return ({ name, email, token, role });
 }
 
+const registerUserDB = async (name, email, ecryptedPassword, role) => {
+  const query = `call createUser("${name}", "${email}", "${ecryptedPassword}", "${role}")`;
+  const data = await connectionPromise(query);
+  return data;
+};
+
+const verifyEmail = async (email) => {
+  const query = `SELECT email FROM users WHERE email = "${email}"`;
+  const data = await connectionPromise(query);
+
+  if (data.email === email) return true;
+};
+
 module.exports = {
   loginUser,
+  registerUserDB,
+  verifyEmail,
 };

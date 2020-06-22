@@ -3,17 +3,21 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const cors = require('cors');
 
-const { login } = require('./routes');
+const { login, registerUser } = require('./routes');
 const { invalidLogin } = require('../rescue/rescues');
 const { validLoginMiddleware } = require('../middlewares/loginValid');
+const { validRegisterMiddleware } = require('../middlewares/register');
 
 const app = express();
-app.use(cors());
+
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(cors());
 app.use(express.static(path.resolve(__dirname, '..', 'public')));
 
 const apiTrybeer = express.Router();
 
+apiTrybeer.post('/register', validRegisterMiddleware, registerUser.register);
 apiTrybeer.post('/login', validLoginMiddleware, invalidLogin(login.login));
 
 app.use(apiTrybeer);
