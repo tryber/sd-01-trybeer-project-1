@@ -21,15 +21,15 @@ const registerUserDB = async (name, email, ecryptedPassword, role) => {
   return data;
 };
 
-const verifyEmail = async (email) => {
+const getEmail = async (email) => {
   const query = `SELECT email FROM users WHERE email = "${email}"`;
   const data = await connectionPromise(query);
 
-  if (data.email === email) return true;
+  return data;
 };
 
 module.exports = {
   loginUser,
   registerUserDB,
-  verifyEmail,
+  getEmail,
 };

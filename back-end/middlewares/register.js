@@ -1,5 +1,5 @@
 const utils = require('../services/utils');
-const { verifyEmail } = require('../models/appBeer');
+const { getEmail } = require('../models/appBeer');
 
 function isNameValid(name = '') {
   const regex = /^[a-zA-Z\s]*$/;
@@ -21,7 +21,7 @@ async function validRegisterMiddleware(req, res, next) {
     || !isRoleValid(role)
   ) return res.status(400).json({ message: 'Invalid Fields' });
 
-  if (await verifyEmail(email)) return res.status(400).json({ message: 'The email already registered' });
+  if (await getEmail(email)) return res.status(400).json({ message: 'The email already registered' });
 
   next();
 }
