@@ -8,7 +8,7 @@ const baseEmail = {
 
 const invalidEmail = { email: 'test.com', ...basePassword };
 
-const invalidPassword = { ...baseEmail, password: 'a123' };
+const invalidPassword = { ...baseEmail };
 
 const passwordFormsValid = { ...baseEmail, password: '1234567' };
 
@@ -22,4 +22,5 @@ module.exports = {
   passwordFormsValid,
   emailFormsValid,
   validLogin,
+  basePassword,
 };

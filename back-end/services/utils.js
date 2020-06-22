@@ -6,8 +6,8 @@ function isEmailValid(email = '') {
 }
 
 function isPasswordValid(password = '') {
-  const regex = /^[0-9]+$/;
-  return regex.test(password) && password.length >= 6;
+  const regex = /(^[0-9]{6,})+$/;
+  return regex.test(password);
 }
 
 function verifyPassword(passwordUser, password) {

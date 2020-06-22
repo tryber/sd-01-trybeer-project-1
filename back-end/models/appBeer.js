@@ -1,4 +1,4 @@
-const { connectionPromise } = require('../services/distributor');
+const { connectionPromise } = require('../services/connectionPromise');
 const { verifyPassword } = require('../services/utils');
 const createTokenJWT = require('../services/createJWT');
 
