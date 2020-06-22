@@ -48,11 +48,6 @@ VALUES
 ('Skol Beats Senses 269ml', 3.57, 'http://localhost:3001/skol-beats-senses-269ml.jpg'),
 ('Stella Artois 275ml', 3.49, 'http://localhost:3001/stella-artois-275ml.jpg');
 
-INSERT INTO users (name, password, email, role)
-VALUES
-('Henrique', 123456, 'henrique@gmail.com', 'admin'),
-('Coruja', 123456, 'henrique@gmail.com', 'admin');
-
 INSERT INTO orders (id_user, address, address_number)
 VALUES
 (1, 'Belo Horizonte', 50),

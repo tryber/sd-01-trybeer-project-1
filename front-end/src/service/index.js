@@ -14,6 +14,10 @@ exports.saveUser = (user) => {
   localStorage.setItem('user', itemJson);
 }
 
+exports.getUser = () => (
+  JSON.parse(localStorage.getItem('user'))
+)
+
 exports.clearUser = () => {
   localStorage.removeItem('user');
 }

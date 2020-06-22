@@ -43,7 +43,6 @@ exports.elementsLogin= [
     name: "password",
     label: "Senha:",
     dataTestId: "password",
-    isRequired: true,
     pattern: "^[0-9]{6,20}$"
   },
   {

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Forms from '../component/Forms';
 import { Redirect } from 'react-router-dom';
-import { elementsRegister } from './modelFormRegister.js';
+import { elementsRegister } from './modelForm.js';
 import { fetchApi } from '../service/serviceFetch';
 import ReportComponent from '../component/ReportComponent';
 
