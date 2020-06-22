@@ -17,4 +17,3 @@ exports.saveUser = (user) => {
 exports.clearUser = () => {
   localStorage.removeItem('user');
 }
-
