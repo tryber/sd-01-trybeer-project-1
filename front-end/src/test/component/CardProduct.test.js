@@ -64,5 +64,8 @@ describe('Verifica requisitos projeto', () => {
     fireEvent.change(inputQtd, { target: { value: 0 } });
     expect(inputQtd.value).toBe("0");
     expect(btnMinus.disabled).toBe(true);
+    fireEvent.change(inputQtd, { target: { value: -2 } });
+    expect(inputQtd.value).toBe("0");
+    expect(btnMinus.disabled).toBe(true);
   });
 });

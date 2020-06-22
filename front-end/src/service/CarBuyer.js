@@ -7,7 +7,7 @@ const removeProduct = (car, id) => {
 exports.addItemInCarBuyer = (ObjCarBuyer, objProduct) => {
   const { list } = ObjCarBuyer;
   const { qtd, id } = objProduct;
-  if (qtd === 0) {
+  if (qtd <= 0) {
     const updatedCar = removeProduct(list, id);
     return { list: updatedCar, total: getTotalCar(updatedCar) }
   }
