@@ -25,6 +25,8 @@ const getEmail = async (email) => {
   const query = `SELECT email FROM users WHERE email = "${email}"`;
   const data = await connectionPromise(query);
 
+  console.log(data);
+
   return data;
 };
 

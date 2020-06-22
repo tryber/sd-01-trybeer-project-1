@@ -6,5 +6,5 @@ exports.register = async (req, res) => {
   const ecryptedPassword = encrypt(password);
   await appBeer.registerUserDB(name, email, ecryptedPassword, role);
 
-  res.status(200).json({ message: 'Registered successfully.' });
+  res.status(200).json({ message: 'Registered successfully' });
 };
