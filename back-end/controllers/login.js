@@ -1,5 +1,4 @@
 const appBeer = require('../models/appBeer');
-const { encrypt } = require('../services/crypto');
 
 exports.login = async (req, res) => {
   const { email, password } = req.body;

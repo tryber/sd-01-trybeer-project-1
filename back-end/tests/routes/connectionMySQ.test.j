@@ -54,7 +54,5 @@
 //         getData().then((data) => {
 //             expect(data).toBe(localDatabaseResultIsDifferentThanServer);
 //         })
-
 //     })
 // })
-
