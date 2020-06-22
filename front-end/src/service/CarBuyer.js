@@ -26,5 +26,5 @@ exports.saveCar = (car) => {
 }
 
 exports.clearCar = () => {
-  localStorage.removeItem('user');
+  localStorage.removeItem('car');
 }
