@@ -13,7 +13,7 @@ const loginUser = async (emailUser, passwordUser) => {
 
   const token = createTokenJWT(userData[0]);
   return ({ name, email, token, role });
-}
+};
 
 const registerUserDB = async (name, email, ecryptedPassword, role) => {
   const query = `call createUser("${name}", "${email}", "${ecryptedPassword}", "${role}")`;
