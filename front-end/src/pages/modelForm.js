@@ -30,3 +30,24 @@ exports.elementsRegister = [
     value: "Cadastrar",
   }
 ];
+
+exports.elementsLogin= [
+  {
+    type: "email",
+    name: "email",
+    label: "Email:",
+    dataTestId: "email",
+  },
+  {
+    type: "password",
+    name: "password",
+    label: "Senha:",
+    dataTestId: "password",
+    isRequired: true,
+    pattern: "^[0-9]{6,20}$"
+  },
+  {
+    type: "submit",
+    value: "Cadastrar",
+  }
+];
