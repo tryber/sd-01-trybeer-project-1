@@ -13,21 +13,19 @@ async function handleSubmit(event, setMessageRequest, setShouldRedirect) {
     email: email.value,
     password: password.value,
   };
-  // console.log(body)
   const data = await fetchApi({
     endpoint: 'http://localhost:3001/login',
     method: 'POST',
     body,
   });
-  if (data.message) return setMessageRequest(data.message)
+  if (data.message) return setMessageRequest(data.message);
   saveUser(data);
-  setShouldRedirect(true)
+  setShouldRedirect(true);
 }
 
 function Login() {
   const [messageRequest, setMessageRequest] = useState();
   const [shouldRedirect, setShouldRedirect] = useState(false);
-  // console.log(getUser(),'foi')
   if (getUser() && getUser().role === 'admin') return <Redirect to="/admin/orders" />;
   if (getUser() && getUser().role === 'client') return <Redirect to="/products" />;
   if (shouldRedirect) return <Redirect to="/login" />;

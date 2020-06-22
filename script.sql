@@ -48,19 +48,6 @@ VALUES
 ('Skol Beats Senses 269ml', 3.57, 'http://localhost:3001/skol-beats-senses-269ml.jpg'),
 ('Stella Artois 275ml', 3.49, 'http://localhost:3001/stella-artois-275ml.jpg');
 
-INSERT INTO orders (id_user, address, address_number)
-VALUES
-(1, 'Belo Horizonte', 50),
-(1, 'São Paulo', 29),
-(2, 'São Paulo', 42);
-
-INSERT INTO orders_products (id_order, id_product, quantity)
-VALUES
-(1, 1, 12),
-(1, 5, 6),
-(2, 3, 2),
-(3, 5, 10),
-(2, 1, 10);
 
 DELIMITER $$
 CREATE PROCEDURE `createUser`(IN nameValue VARCHAR(80),IN emailValue VARCHAR(50),IN passwordValue VARCHAR(64),IN roleValue VARCHAR(20))
@@ -71,6 +58,8 @@ VALUES
 END$$
 DELIMITER ;
 
+call createUser('tryber', 'U2FsdGVkX19hSbUMewrMCE66WGQILvQdq2kn8ea+yBk=', 'tryber@gmail.com', 'admin');
+
 DELIMITER $$
 CREATE PROCEDURE `createOrder`(IN idUser INT, IN address VARCHAR(255), IN addressNumber INT)
 BEGIN
@@ -80,9 +69,6 @@ VALUES
 SELECT id_order FROM orders order by id_order desc limit 1;
 END$$
 DELIMITER ;
-
-call createOrder(3,'Rua show');
-call getListProducts()
 
 DELIMITER $$
 CREATE PROCEDURE `createProductOrder`(IN idOrder INT, IN idProducts INT, IN qtdValue INT)
@@ -185,3 +171,4 @@ WHERE O.id_order = idOrder INTO sum_total;
 RETURN sum_total;
 END$$
 DELIMITER ;
+
