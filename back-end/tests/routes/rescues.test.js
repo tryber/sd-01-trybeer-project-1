@@ -14,7 +14,7 @@ describe('middleware rescue fail process', () => {
     testLogin.mockRestore();
   });
 
-  describe('when has a error in the code', () => {
+  describe('Error in server when is made a login', () => {
     let response;
 
     beforeAll(async () => {
@@ -22,11 +22,29 @@ describe('middleware rescue fail process', () => {
       response = await axios.post('/login', fixtures.validLogin);
     });
 
-    console.log(response)
-
     it('mock error function loginUser', () => {
       expect(response.status).toBe(400);
       expect(response.data.message).toBe('Invalid Fields');
+    });
+  });
+
+  describe('Error in server when is made a request to the listProducts', () => {
+    let response;
+
+    const mockGetListProduct = jest.spyOn(login, 'getListProduct');
+
+    afterAll(() => {
+      mockGetListProduct.mockRestore();
+    });
+
+    beforeAll(async () => {
+      mockGetListProduct.mockRejectedValue(new Error('Internal Server Error'));
+      response = await axios.get('/products');
+    });
+
+    it('mock error function loginUser', () => {
+      expect(response.status).toBe(500);
+      expect(response.data.message).toBe('Internal Server Error');
     });
   });
 });
