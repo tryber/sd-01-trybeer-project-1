@@ -33,7 +33,7 @@ const getListProduct = async () => {
   const data = await connectionPromise(query);
 
   return data;
-}
+};
 
 module.exports = {
   loginUser,
