@@ -28,8 +28,16 @@ const getEmail = async (email) => {
   return data;
 };
 
+const getListProduct = async () => {
+  const query = 'call getListProducts()';
+  const data = await connectionPromise(query);
+
+  return data;
+};
+
 module.exports = {
   loginUser,
   registerUserDB,
   getEmail,
+  getListProduct,
 };

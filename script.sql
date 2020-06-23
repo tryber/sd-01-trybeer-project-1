@@ -50,22 +50,16 @@ VALUES
 
 INSERT INTO users (name, password, email, role)
 VALUES
-('Henrique', 123456, 'henrique@gmail.com', 'admin'),
-('Coruja', 123456, 'henrique@gmail.com', 'admin');
+('tryber', 'U2FsdGVkX1+VEr77ZZsY1np0AxvGEoaeyPooPgY/sDI=', 'tryber@gmail.com', 'admin');
 
 INSERT INTO orders (id_user, address, address_number)
 VALUES
-(1, 'Belo Horizonte', 50),
-(1, 'São Paulo', 29),
-(2, 'São Paulo', 42);
+(1, 'Belo Horizonte', 50);
 
 INSERT INTO orders_products (id_order, id_product, quantity)
 VALUES
 (1, 1, 12),
-(1, 5, 6),
-(2, 3, 2),
-(3, 5, 10),
-(2, 1, 10);
+(1, 5, 6);
 
 DELIMITER $$
 CREATE PROCEDURE `createUser`(IN nameValue VARCHAR(80),IN emailValue VARCHAR(50),IN passwordValue VARCHAR(64),IN roleValue VARCHAR(20))
@@ -85,9 +79,6 @@ VALUES
 SELECT id_order FROM orders order by id_order desc limit 1;
 END$$
 DELIMITER ;
-
-call createOrder(3,'Rua show');
-call getListProducts()
 
 DELIMITER $$
 CREATE PROCEDURE `createProductOrder`(IN idOrder INT, IN idProducts INT, IN qtdValue INT)
