@@ -6,7 +6,7 @@ exports.invalidLogin = fn => async (req, res, next) => {
   }
 };
 
-exports.listProductsError = fn => async (req, res, next) => {
+exports.productsErrorHandling = fn => async (req, res, next) => {
   try {
     await fn(req, res, next);
   } catch (err) {
