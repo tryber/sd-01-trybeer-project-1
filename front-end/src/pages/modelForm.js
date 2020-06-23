@@ -3,20 +3,20 @@ exports.elementsRegister = [
     type: "text",
     name: "name",
     label: "Nome:",
-    dataTestId: "nome",
+    dataTestId: "signup-name",
     pattern: "^[a-zA-Z]{12,40}$",
   },
   {
     type: "email",
     name: "email",
     label: "Email:",
-    dataTestId: "email",
+    dataTestId: "signup-email",
   },
   {
     type: "password",
     name: "password",
     label: "Senha:",
-    dataTestId: "password",
+    dataTestId: "signup-password",
     isRequired: true,
     pattern: "^[0-9]{6,20}$"
   },
@@ -24,10 +24,12 @@ exports.elementsRegister = [
     label: "Quero vender",
     type: "checkbox",
     name: "checkbox",
+    dataTestId: "signup-seller",
   },
   {
     type: "submit",
     value: "Cadastrar",
+    dataTestId: "signup-btn",
   }
 ];
 

@@ -7,6 +7,8 @@ import ReportComponent from '../component/ReportComponent';
 
 async function handleSubmit(event, setMessageRequest) {
   event.preventDefault();
+  // console.log(event.target)
+  console.log('event.target')
   const { name, email, password, checkbox } = event.target;
   const body = {
     name: name.value,
