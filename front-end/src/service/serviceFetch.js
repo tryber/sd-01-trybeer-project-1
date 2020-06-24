@@ -9,4 +9,3 @@ exports.fetchApi = async ({ endpoint, method, body, headers = { 'Content-Type': 
   const data = await response.json();
   return data;
 }
-

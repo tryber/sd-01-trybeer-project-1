@@ -171,4 +171,3 @@ WHERE O.id_order = idOrder INTO sum_total;
 RETURN sum_total;
 END$$
 DELIMITER ;
-
