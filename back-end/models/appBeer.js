@@ -39,7 +39,7 @@ const getProfileAdmin = async (token) => {
   const query = `SELECT name, email FROM users WHERE email = "${email}"`;
   const data = await connectionPromise(query);
   return data;
-}
+};
 
 module.exports = {
   loginUser,
