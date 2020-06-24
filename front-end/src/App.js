@@ -1,6 +1,6 @@
 import React from 'react';
 import { Provider } from './context/index';
-import Register from './pages/Register';
+// import Register from './pages/Register';
 import Login from './pages/Login';
 
 function App() {
@@ -8,7 +8,7 @@ function App() {
     <Provider>
       <div className="App">
         <Login />
-        <Register />
+        {/* <Register /> */}
       </div>
     </Provider>
   );

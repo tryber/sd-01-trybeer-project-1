@@ -20,12 +20,15 @@ async function handleSubmit(obj, setMessageRequest, setShouldRedirect) {
   saveUser(data);
   setShouldRedirect(true);
 }
+const redirectPage = (role) => {
+  const endpoint = (role === 'admin') ? "/admin/orders" : "/products";
+  return <Redirect to={endpoint} />
+}
 
 function Login() {
   const [messageRequest, setMessageRequest] = useState();
   const [shouldRedirect, setShouldRedirect] = useState(false);
-  if (getUser() && getUser().role === 'admin') return <Redirect to="/admin/orders" />;
-  if (getUser() && getUser().role === 'client') return <Redirect to="/products" />;
+  if (getUser()) return redirectPage(getUser().role);
   if (shouldRedirect) return <Redirect to="/login" />;
   return (
     <div className="elementsRegister">
