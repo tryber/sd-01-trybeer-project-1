@@ -48,6 +48,15 @@ const getUser = async (email) => {
   return data;
 }
 
+const updateUserName = async (user, name) => {
+  const { id_user } = user[0];
+
+  const query = `call updateUser("${id_user}", "${name}")`;
+  const data = await connectionPromise(query);
+  
+  return data;
+};
+
 module.exports = {
   loginUser,
   registerUserDB,
@@ -55,4 +64,5 @@ module.exports = {
   getListProduct,
   getUser,
   getProfileAdmin,
+  updateUserName,
 };
