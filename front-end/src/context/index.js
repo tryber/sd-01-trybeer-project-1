@@ -7,7 +7,7 @@ const TrybeerProvider = ({ children }) => {
   // const [data, setData] = useState({ Reddit: [], time:getDate(), isFinished: false });
   // const [type, setType] = useState('frontend');
   // const [error, setError] = useState(false);
-
+  const [user, setUser] = useState();
   const [carBuyer, setCarBuyer] = useState({
     list: [],
     total: 0,
@@ -15,7 +15,9 @@ const TrybeerProvider = ({ children }) => {
 
   const context = {
     carBuyer,
+    user,
     setCarBuyer,
+    setUser,
   };
 
   return (
