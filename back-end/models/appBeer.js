@@ -1,6 +1,7 @@
 const { connectionPromise } = require('../services/connectionPromise');
 const { verifyPassword } = require('../services/utils');
 const createTokenJWT = require('../services/createJWT');
+const tokenValid = require('../services/validJWT');
 
 const loginUser = async (emailUser, passwordUser) => {
   const query = `call getUser("${emailUser}")`;
@@ -24,14 +25,19 @@ const registerUserDB = async (name, email, ecryptedPassword, role) => {
 const getEmail = async (email) => {
   const query = `SELECT email FROM users WHERE email = "${email}"`;
   const data = await connectionPromise(query);
-
   return data;
 };
 
 const getListProduct = async () => {
   const query = 'call getListProducts()';
   const data = await connectionPromise(query);
+  return data;
+};
 
+const getProfileAdmin = async (token) => {
+  const { email } = tokenValid(token);
+  const query = `SELECT name, email FROM users WHERE email = "${email}"`;
+  const data = await connectionPromise(query);
   return data;
 };
 
@@ -40,4 +46,5 @@ module.exports = {
   registerUserDB,
   getEmail,
   getListProduct,
+  getProfileAdmin,
 };
