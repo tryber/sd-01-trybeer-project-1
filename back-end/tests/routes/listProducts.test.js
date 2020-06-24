@@ -1,6 +1,7 @@
 const axiosist = require('axiosist');
 const mockListProducts = require('../fixtures/listProducts');
 const app = require('../../api/server');
+const fixtures = require('../fixtures/login');
 
 jest.setTimeout(20000);
 
@@ -11,7 +12,8 @@ describe('GET /produtcs', () => {
     let response;
 
     beforeAll(async () => {
-      response = await axios.get('/products');
+      const { data } = await axios.post('/login', fixtures.baseLoginClient);
+      response = await axios.get('/products', { headers: { Authorization: data.token } });
     });
 
     it('returns a 200 HTTP status code', () => {
