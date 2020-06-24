@@ -7,7 +7,7 @@ const filterFieldsInvalid = (inputs) => {
 
 const submitValues = ({ email, setIsValid }) => {
   const inputs = {};
-  inputs.email = /^(([^<>()\[\]\\.,;:\s@']+(\.[^<>()\[\]\\.,;:\s@']+)*)|('.+'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
+  inputs.email = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/.test(email);
   const validate = filterFieldsInvalid(inputs);
   if (validate.length > 0) return setIsValid({ status: false, invalid: validate });
   return setIsValid({ status: true, invalid: [] });
