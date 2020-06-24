@@ -1,9 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import NavBar from './NavBar';
-import { getTitle } from '../service';
+import { getTitle, getUser } from '../service';
+import { Redirect } from 'react-router-dom';
+import { TrybeerContext } from '../context';
 
 function Header({ path, id }) {
   const [displayNav, setDisplayNav] = useState(false);
+  const { setUser } = useContext(TrybeerContext);
+  useEffect(() => {
+    const dataUser = getUser();
+    if (!dataUser) return <Redirect to="/" />;
+    setUser(dataUser)
+  }, [])
+
   return (
     <div className="Header">
       <div>

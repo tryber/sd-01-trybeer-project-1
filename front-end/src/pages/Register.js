@@ -23,7 +23,7 @@ async function handleSubmit(obj, setMessageRequest) {
 function Register() {
   const [messageRequest, setMessageRequest] = useState();
   const [shouldRedirect, setShouldRedirect] = useState(false);
-  if (shouldRedirect) return <Redirect to="/login" />
+  if (shouldRedirect) return <Redirect to="/" />
   return (
     <div className="elementsRegister">
       {!messageRequest || <ReportComponent message={{ messageRequest, setMessageRequest }} callback={(value) => setShouldRedirect(value)} />}

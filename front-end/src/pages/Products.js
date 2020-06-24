@@ -1,13 +1,16 @@
-import React from 'react';
-import { Provider } from './context/index';
-// import Register from './pages/Register';
-import Login from './pages/Login';
+import React, { useContext } from 'react';
+import Headers from '../component/Header';
+import { TrybeerContext } from '../context';
+
 
 function Products() {
+  const path = "products"
+  const { user } = useContext(TrybeerContext);
+  console.log(user,'Product')
   return (
-    <Provider>
-      <Headers />
-    </Provider>
+    <div className="Products">
+      <Headers path={path} />
+    </div>
   );
 }
 

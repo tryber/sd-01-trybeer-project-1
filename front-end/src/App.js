@@ -1,15 +1,21 @@
 import React from 'react';
 import { Provider } from './context/index';
-// import Register from './pages/Register';
+import Products from './pages/Products';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Register from './pages/Register';
 import Login from './pages/Login';
+
 
 function App() {
   return (
     <Provider>
-      <div className="App">
-        <Login />
-        {/* <Register /> */}
-      </div>
+      <Router>
+        <Switch>
+          <Route exact path="/" component={Login} />
+          <Route exact path="/register" component={Register} />
+          <Route exact path="/products" component={Products} />
+        </Switch>
+      </Router>
     </Provider>
   );
 }
