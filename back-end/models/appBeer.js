@@ -49,8 +49,7 @@ const getUser = async (email) => {
 };
 
 const updateUserName = async (user, name) => {
-  const idUser = user[0]['id_user'];
-
+  const idUser = user[0].id_user;
   const query = `call updateUser("${idUser}", "${name}")`;
   const data = await connectionPromise(query);
 
