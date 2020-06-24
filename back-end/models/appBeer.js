@@ -41,10 +41,27 @@ const getProfileAdmin = async (token) => {
   return data;
 };
 
+const createProductOrder = async (result, orders) => {
+  const resultOrder = await orders.map(({ id_product: idProduct, quantity }) => {
+    const query = `call createProductOrder("${result}", "${idProduct}", "${quantity}")`;
+    return connectionPromise(query);
+  });
+  console.log(resultOrder);
+};
+
+const createOrder = async (token, address, addressNumber, orders) => {
+  const { id_user: idUser } = tokenValid(token);
+  const query = `createOrder("${idUser}", "${address}", "${addressNumber}")`;
+  const result = await connectionPromise(query);
+  console.log(result)
+  return await createProductOrder(result, orders);
+};
+
 module.exports = {
   loginUser,
   registerUserDB,
   getEmail,
   getListProduct,
   getProfileAdmin,
+  createOrder,
 };
