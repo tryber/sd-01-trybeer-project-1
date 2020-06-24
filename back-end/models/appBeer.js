@@ -46,15 +46,15 @@ const createProductOrder = async (idOrder, orders) => {
     const query = `call createProductOrder("${idOrder.id_order}", "${idProduct}", "${quantity}")`;
     return connectionPromise(query);
   });
-  console.log(resultOrder);
+  return resultOrder;
 };
 
 const createOrder = async (token, address, addressNumber, orders) => {
   const { id_user: idUser } = tokenValid(token);
   const query = `call createOrder("${idUser}", "${address}", "${addressNumber}")`;
   const result = await connectionPromise(query);
-  return await createProductOrder(result[0], orders);
-}
+  return createProductOrder(result[0], orders);
+};
 
 const updateUserName = async (user, nameUser) => {
   const idUser = user[0].id_user;
