@@ -1,10 +1,9 @@
 exports.elementsRegister = [
   {
     type: "text",
-    name: "name",
+    name: "nome",
     label: "Nome:",
     dataTestId: "signup-name",
-    pattern: "^[a-zA-Z]{12,40}$",
   },
   {
     type: "email",
@@ -17,8 +16,6 @@ exports.elementsRegister = [
     name: "password",
     label: "Senha:",
     dataTestId: "signup-password",
-    isRequired: true,
-    pattern: "^[0-9]{6,20}$"
   },
   {
     label: "Quero vender",
@@ -27,7 +24,7 @@ exports.elementsRegister = [
     dataTestId: "signup-seller",
   },
   {
-    type: "submit",
+    type: "button",
     value: "Cadastrar",
     dataTestId: "signup-btn",
   }
@@ -39,16 +36,17 @@ exports.elementsLogin= [
     name: "email",
     label: "Email:",
     dataTestId: "email",
+    pattern: /^(([^<>()\[\]\\.,;:\s@']+(\.[^<>()\[\]\\.,;:\s@']+)*)|('.+'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
   },
   {
     type: "password",
     name: "password",
     label: "Senha:",
     dataTestId: "password",
-    pattern: "^[0-9]{6,20}$"
+    pattern: /^[0-9]{6,20}$/
   },
   {
-    type: "submit",
+    type: "button",
     value: "Cadastrar",
   }
 ];

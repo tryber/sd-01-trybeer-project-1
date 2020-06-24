@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent, screen } from '@testing-library/react';
 import { createMemoryHistory } from 'history';
 import { Router } from 'react-router-dom';
 import '@testing-library/jest-dom/extend-expect';
@@ -36,23 +36,28 @@ describe('Verifica requisitos projeto', () => {
     expect(inputSubmit).toBeInTheDocument();
   });
 
-  // test('Testando Vendedor valido', async () => {
-  //   const { getByTestId } = renderWithRouter(<Register />);
-  //   const { name, password, email, seller, mockMessageResponse } = fixture.validSeller;
+  test('Testando Vendedor valido', () => {
+    const { getByTestId } = renderWithRouter(<Register />);
+    const { name, password, email, seller, mockMessageResponse } = fixture.validClient;
 
-  //   serviceApi.fetchApi.mockImplementation(() => ({ message: mockMessageResponse }));
+    serviceApi.fetchApi.mockImplementation(() => ({ message: mockMessageResponse }));
 
-  //   const inputName = getByTestId('signup-name');
-  //   const inputEmail = getByTestId('signup-email');
-  //   const inputPassword = getByTestId('signup-password');
-  //   const checkboxSeller = getByTestId('signup-seller');
-  //   const inputSubmit = getByTestId('signup-btn');
+    const inputName = getByTestId('signup-name');
+    const inputEmail = getByTestId('signup-email');
+    const inputPassword = getByTestId('signup-password');
+    const checkboxSeller = getByTestId('signup-seller');
+    const inputSubmit = getByTestId('signup-btn');
 
-  //   fireEvent.change(inputName, { target: { value: name } });
-  //   fireEvent.change(inputEmail, { target: { value: email } });
-  //   fireEvent.change(inputPassword, { target: { value: password } });
-  //   fireEvent.click(checkboxSeller);
-  //   fireEvent.click(inputSubmit);
-  // });
+  
+
+    inputName.value= name;
+    fireEvent.change(inputEmail, { target: { value: 'henrique@j.com' } });
+    fireEvent.change(inputPassword, { target: { value: password } });
+    fireEvent.click(checkboxSeller);
+
+
+    fireEvent.click(inputSubmit);
+    
+  });
 });
 

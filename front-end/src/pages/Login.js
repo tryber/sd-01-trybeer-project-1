@@ -1,17 +1,15 @@
 import React, { useState } from 'react';
-import Forms from '../component/Forms';
 import { Redirect, Link } from 'react-router-dom';
-import { elementsLogin } from './modelForm.js';
 import { fetchApi } from '../service/serviceFetch';
 import { getUser, saveUser } from '../service/index';
 import ReportComponent from '../component/ReportComponent';
+import FormLogin from '../component/FormLogin';
 
-async function handleSubmit(event, setMessageRequest, setShouldRedirect) {
-  event.preventDefault();
-  const { email, password } = event.target;
+async function handleSubmit(obj, setMessageRequest, setShouldRedirect) {
+  const { email, password } = obj;
   const body = {
-    email: email.value,
-    password: password.value,
+    email,
+    password,
   };
   const data = await fetchApi({
     endpoint: 'http://localhost:3001/login',
@@ -31,9 +29,9 @@ function Login() {
   if (shouldRedirect) return <Redirect to="/login" />;
   return (
     <div className="elementsRegister">
-      {!messageRequest || <ReportComponent message={{ messageRequest, setMessageRequest }} callback={() => setMessageRequest('')} />}
-      <Forms elements={elementsLogin} handleSubmit={(e) => handleSubmit(e, setMessageRequest, setShouldRedirect)} />
-      <Link to="/register">Ainda não tenho conta</Link>
+      {!messageRequest || <ReportComponent message={{ messageRequest, setMessageRequest }} callback={(value) => setShouldRedirect(value)} />}
+      <FormLogin getValues={(obj) => { handleSubmit(obj, setMessageRequest, setShouldRedirect) }} />
+      <Link to="/register">Quero me cadastrar</Link>
     </div>
   );
 }
