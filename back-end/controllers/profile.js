@@ -6,8 +6,7 @@ exports.profile = async (req, res) => {
   const token = req.headers.authorization;
   const unencryptedToken = tokenValid(token);
 
-  const user = await appBeer.getUser(unencryptedToken.email);
-  await appBeer.updateUserName(user, name);
+  const updatedUser = await appBeer.getUser(unencryptedToken.email, name);
 
-  return res.status(200).json({ message: 'Name has been successfully changed' });
+  return res.status(200).json(updatedUser);
 };

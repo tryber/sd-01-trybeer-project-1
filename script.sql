@@ -163,6 +163,7 @@ BEGIN
 UPDATE users s
 	SET s.name = name_Value
 WHERE s.id_user = idUser;
+SELECT * FROM users WHERE id_user = idUser;
 END$$
 DELIMITER ;
 

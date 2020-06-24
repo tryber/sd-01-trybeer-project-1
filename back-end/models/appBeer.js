@@ -41,19 +41,23 @@ const getProfileAdmin = async (token) => {
   return data;
 };
 
-const getUser = async (email) => {
+const updateUserName = async (user, nameUser) => {
+  const idUser = user[0].id_user;
+  const query = `call updateUser("${idUser}", "${nameUser}")`;
+  const data = await connectionPromise(query);
+
+  const { email, name, role, id_user } = data[0];
+
+  const token = createTokenJWT({ email, name, role, id_user });
+
+  return ({ name, email, token, role });
+};
+
+const getUser = async (email, name) => {
   const query = `call getUser("${email}")`;
   const data = await connectionPromise(query);
 
-  return data;
-};
-
-const updateUserName = async (user, name) => {
-  const idUser = user[0].id_user;
-  const query = `call updateUser("${idUser}", "${name}")`;
-  const data = await connectionPromise(query);
-
-  return data;
+  return updateUserName(data, name);
 };
 
 module.exports = {
