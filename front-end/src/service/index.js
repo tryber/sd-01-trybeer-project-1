@@ -17,17 +17,3 @@ exports.saveUser = (user) => {
 exports.clearUser = () => {
   localStorage.removeItem('user');
 }
-
-const getTotalCar = car => car.reduce((acc, product) => acc + (product.qtd * product.price), 0);
-
-exports.addItemInCarBuyer = (ObjCarBuyer, objProduct) => {
-  const { list } = ObjCarBuyer;
-  const { qtd, id } = objProduct;
-  const getItem = list.find(product => product.id === id);
-  if (!getItem) {
-    list.push(objProduct);
-    return { list, total: getTotalCar(list) }
-  }
-  getItem.qtd = qtd;
-  return { list, total: getTotalCar(list) }
-}
