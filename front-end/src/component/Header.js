@@ -9,6 +9,7 @@ function Header({ path, id }) {
   const { setUser } = useContext(TrybeerContext);
   useEffect(() => {
     const dataUser = getUser();
+    console.log(dataUser)
     if (!dataUser) return <Redirect to="/" />;
     setUser(dataUser)
   }, [])

@@ -1,0 +1,44 @@
+.CardProduct img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.CardProduct .img-product {
+  width: 150px;
+  height: 150px;
+}
+
+.CardProduct .div-qtd {
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.CardProduct h2{
+  font-size: 20px;
+  height: 40px;
+  text-align: center;
+}
+
+
+.CardProduct .div-qtd input {
+  width: 100%;
+
+}
+
+.Products .list-products {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.CardProduct  {
+  width: 40%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}

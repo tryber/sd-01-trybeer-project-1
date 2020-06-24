@@ -1,4 +1,14 @@
 exports.fetchApi = async ({ endpoint, method, body, headers = { 'Content-Type': 'application/json' } }) => {
+  if (method === "GET") {
+    const response = await fetch(
+      endpoint,
+      {
+        method,
+        headers,
+      })
+    const data = await response.json();
+    return data;
+  }
   const response = await fetch(
     endpoint,
     {
