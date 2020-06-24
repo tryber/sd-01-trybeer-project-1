@@ -52,15 +52,6 @@ INSERT INTO users (name, password, email, role)
 VALUES
 ('tryber', 'U2FsdGVkX1+VEr77ZZsY1np0AxvGEoaeyPooPgY/sDI=', 'tryber@gmail.com', 'admin');
 
-INSERT INTO orders (id_user, address, address_number)
-VALUES
-(1, 'Belo Horizonte', 50);
-
-INSERT INTO orders_products (id_order, id_product, quantity)
-VALUES
-(1, 1, 12),
-(1, 5, 6);
-
 DELIMITER $$
 CREATE PROCEDURE `createUser`(IN nameValue VARCHAR(80),IN emailValue VARCHAR(50),IN passwordValue VARCHAR(64),IN roleValue VARCHAR(20))
 BEGIN
@@ -69,6 +60,8 @@ VALUES
 (nameValue, emailValue, passwordValue, roleValue);
 END$$
 DELIMITER ;
+
+call createUser('tryber', 'U2FsdGVkX19hSbUMewrMCE66WGQILvQdq2kn8ea+yBk=', 'tryber@gmail.com', 'admin');
 
 DELIMITER $$
 CREATE PROCEDURE `createOrder`(IN idUser INT, IN address VARCHAR(255), IN addressNumber INT)
@@ -143,7 +136,7 @@ DELIMITER ;
 DELIMITER $$
 CREATE PROCEDURE `getUser`(IN emailUser VARCHAR(50))
 BEGIN
-SELECT email, name, password, role FROM users
+SELECT * FROM users
 WHERE email = emailUser;
 END$$
 DELIMITER ;
@@ -163,6 +156,7 @@ BEGIN
 UPDATE users s
 	SET s.name = name_Value
 WHERE s.id_user = idUser;
+SELECT * FROM users WHERE id_user = idUser;
 END$$
 DELIMITER ;
 

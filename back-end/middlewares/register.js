@@ -1,11 +1,6 @@
 const utils = require('../services/utils');
 const { getEmail } = require('../models/appBeer');
 
-function isNameValid(name = '') {
-  const regex = /^[a-zA-Z\s]*$/;
-  return regex.test(name) && name.length >= 12;
-}
-
 function isRoleValid(role = '') {
   const roleOptions = ['admin', 'client'];
 
@@ -15,10 +10,10 @@ function isRoleValid(role = '') {
 async function validRegisterMiddleware(req, res, next) {
   const { name, email, password, role } = req.body;
   if (
-    !isNameValid(name)
+    !isRoleValid(role)
     || !utils.isEmailValid(email)
     || !utils.isPasswordValid(password)
-    || !isRoleValid(role)
+    || !utils.isNameValid(name)
   ) return res.status(400).json({ message: 'Invalid Fields' });
 
   if (await getEmail(email)) return res.status(400).json({ message: 'The email already registered' });

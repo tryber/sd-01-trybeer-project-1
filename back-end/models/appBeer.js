@@ -9,10 +9,10 @@ const loginUser = async (emailUser, passwordUser) => {
 
   if (userData.length === 0) return false;
 
-  const { password, email, name, role } = userData[0];
+  const { password, email, name, role, id_user } = userData[0];
   if (!verifyPassword(passwordUser, password)) return false;
 
-  const token = createTokenJWT({ email, name, role });
+  const token = createTokenJWT({ email, name, role, id_user });
   return ({ name, email, token, role });
 };
 
@@ -55,6 +55,25 @@ const createOrder = async (token, address, addressNumber, orders) => {
   const result = await connectionPromise(query);
   console.log(result)
   return await createProductOrder(result, orders);
+}
+
+const updateUserName = async (user, nameUser) => {
+  const idUser = user[0].id_user;
+  const query = `call updateUser("${idUser}", "${nameUser}")`;
+  const data = await connectionPromise(query);
+
+  const { email, name, role, id_user } = data[0];
+
+  const token = createTokenJWT({ email, name, role, id_user });
+
+  return ({ name, email, token, role });
+};
+
+const getUser = async (email, name) => {
+  const query = `call getUser("${email}")`;
+  const data = await connectionPromise(query);
+
+  return updateUserName(data, name);
 };
 
 module.exports = {
@@ -62,6 +81,8 @@ module.exports = {
   registerUserDB,
   getEmail,
   getListProduct,
+  getUser,
   getProfileAdmin,
   createOrder,
+  updateUserName,
 };
