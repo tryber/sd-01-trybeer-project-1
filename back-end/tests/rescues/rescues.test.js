@@ -8,14 +8,13 @@ jest.setTimeout(20000);
 describe('middleware rescue fail process', () => {
   const axios = axiosist(app);
 
-  const testLogin = jest.spyOn(login, 'loginUser');
-
-  afterAll(() => {
-    testLogin.mockRestore();
-  });
-
   describe('Error in server when is made a login', () => {
     let response;
+    const testLogin = jest.spyOn(login, 'loginUser');
+
+    afterAll(() => {
+      testLogin.mockRestore();
+    });
 
     beforeAll(async () => {
       testLogin.mockRejectedValue(new Error('Invalid Fields'));
@@ -38,13 +37,27 @@ describe('middleware rescue fail process', () => {
     });
 
     beforeAll(async () => {
+      const { data } = await axios.post('/login', fixtures.baseLoginClient);
       mockGetListProduct.mockRejectedValue(new Error('Internal Server Error'));
-      response = await axios.get('/products');
+      response = await axios.get('/products', { headers: { Authorization: data.token } });
     });
 
     it('mock error function loginUser', () => {
       expect(response.status).toBe(500);
       expect(response.data.message).toBe('Internal Server Error');
+    });
+  });
+
+  describe('Error in jwt when token is denied', () => {
+    let response;
+
+    beforeAll(async () => {
+      response = await axios.get('/products', { headers: { Authorization: 'invalidToken' } });
+    });
+
+    it('mock error function loginUser', () => {
+      expect(response.status).toBe(422);
+      expect(response.data.message).toBe('Unprocessable Entity');
     });
   });
 });
