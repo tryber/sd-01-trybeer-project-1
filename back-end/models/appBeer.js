@@ -35,9 +35,17 @@ const getListProduct = async () => {
   return data;
 };
 
+const getUser = async (email) => {
+  const query = `call getUser("${email}")`;
+  const data = await connectionPromise(query);
+
+  return data;
+}
+
 module.exports = {
   loginUser,
   registerUserDB,
   getEmail,
   getListProduct,
+  getUser,
 };
