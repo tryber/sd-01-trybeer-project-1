@@ -48,6 +48,9 @@ VALUES
 ('Skol Beats Senses 269ml', 3.57, 'http://localhost:3001/skol-beats-senses-269ml.jpg'),
 ('Stella Artois 275ml', 3.49, 'http://localhost:3001/stella-artois-275ml.jpg');
 
+INSERT INTO users (name, password, email, role)
+VALUES
+('tryber', 'U2FsdGVkX1+VEr77ZZsY1np0AxvGEoaeyPooPgY/sDI=', 'tryber@gmail.com', 'admin');
 
 DELIMITER $$
 CREATE PROCEDURE `createUser`(IN nameValue VARCHAR(80),IN emailValue VARCHAR(50),IN passwordValue VARCHAR(64),IN roleValue VARCHAR(20))

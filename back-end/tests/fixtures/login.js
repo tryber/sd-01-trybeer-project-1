@@ -6,6 +6,11 @@ const baseEmail = {
   email: 'tryber@gmail.com',
 };
 
+const baseLoginClient = {
+  password: '123456',
+  email: 'script@yahoo.com',
+};
+
 const invalidEmail = { email: 'test.com', ...basePassword };
 
 const invalidPassword = { ...baseEmail };
@@ -23,4 +28,5 @@ module.exports = {
   emailFormsValid,
   validLogin,
   basePassword,
+  baseLoginClient,
 };

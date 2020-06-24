@@ -11,7 +11,7 @@ function isPasswordValid(password = '') {
 }
 
 function verifyPassword(passwordUser, password) {
-  return passwordUser === (decrypt(password));
+  return passwordUser === decrypt(password);
 }
 
 module.exports = {
