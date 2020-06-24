@@ -34,7 +34,7 @@ function Login() {
     <div className="elementsRegister">
       {!messageRequest || <ReportComponent message={{ messageRequest, setMessageRequest }} callback={(value) => setShouldRedirect(value)} />}
       <FormLogin getValues={(obj) => { handleSubmit(obj, setMessageRequest, setShouldRedirect) }} />
-      <Link to="/register">Quero me cadastrar</Link>
+      <Link to="/register" data-testid="no-account-btn">Quero me cadastrar</Link>
     </div>
   );
 }
