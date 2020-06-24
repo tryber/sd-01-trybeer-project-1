@@ -9,7 +9,7 @@ const baseEmail = {
 const baseLoginClient = {
   password: '123456',
   email: 'script@yahoo.com',
-}
+};
 
 const invalidEmail = { email: 'test.com', ...basePassword };
 
