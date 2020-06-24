@@ -136,7 +136,7 @@ DELIMITER ;
 DELIMITER $$
 CREATE PROCEDURE `getUser`(IN emailUser VARCHAR(50))
 BEGIN
-SELECT email, name, password, role FROM users
+SELECT * FROM users
 WHERE email = emailUser;
 END$$
 DELIMITER ;
@@ -156,6 +156,7 @@ BEGIN
 UPDATE users s
 	SET s.name = name_Value
 WHERE s.id_user = idUser;
+SELECT * FROM users WHERE id_user = idUser;
 END$$
 DELIMITER ;
 

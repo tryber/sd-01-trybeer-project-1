@@ -3,12 +3,13 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const cors = require('cors');
 
-const { login, registerUser, listProducts } = require('./routes');
+const { login, registerUser, profile, listProducts } = require('./routes');
 const { adminProfile } = require('./routes');
 const { invalidLogin, databaseErrorHandling } = require('../rescue/rescues');
 const { validLoginMiddleware } = require('../middlewares/loginValid');
 const { validRegisterMiddleware } = require('../middlewares/register');
 const { userValidMiddleware } = require('../middlewares/userValid');
+const { updateNameMiddleware } = require('../middlewares/profile');
 
 const app = express();
 
@@ -21,6 +22,7 @@ const apiTrybeer = express.Router();
 
 apiTrybeer.post('/register', validRegisterMiddleware, registerUser.register);
 apiTrybeer.post('/login', validLoginMiddleware, invalidLogin(login.login));
+apiTrybeer.post('/profile', userValidMiddleware, updateNameMiddleware, profile.profile);
 apiTrybeer.get('/products', userValidMiddleware, databaseErrorHandling(listProducts.listProducts));
 apiTrybeer.get('/admin/profile', userValidMiddleware, databaseErrorHandling(adminProfile.adminProfile));
 
