@@ -41,9 +41,9 @@ const getProfileAdmin = async (token) => {
   return data;
 };
 
-const createProductOrder = async (result, orders) => {
+const createProductOrder = async (idOrder, orders) => {
   const resultOrder = await orders.map(({ id_product: idProduct, quantity }) => {
-    const query = `call createProductOrder("${result}", "${idProduct}", "${quantity}")`;
+    const query = `call createProductOrder("${idOrder.id_order}", "${idProduct}", "${quantity}")`;
     return connectionPromise(query);
   });
   console.log(resultOrder);
@@ -51,10 +51,9 @@ const createProductOrder = async (result, orders) => {
 
 const createOrder = async (token, address, addressNumber, orders) => {
   const { id_user: idUser } = tokenValid(token);
-  const query = `createOrder("${idUser}", "${address}", "${addressNumber}")`;
+  const query = `call createOrder("${idUser}", "${address}", "${addressNumber}")`;
   const result = await connectionPromise(query);
-  console.log(result)
-  return await createProductOrder(result, orders);
+  return await createProductOrder(result[0], orders);
 }
 
 const updateUserName = async (user, nameUser) => {
