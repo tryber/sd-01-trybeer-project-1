@@ -1,5 +1,6 @@
 const { connectionPromise } = require('../services/connectionPromise');
 const createTokenJWT = require('../services/createJWT');
+const tokenValid = require('../services/decryptJwt');
 
 const updateUserName = async (user, nameUser) => {
   const idUser = user[0].id_user;
@@ -12,7 +13,8 @@ const updateUserName = async (user, nameUser) => {
   return ({ name, email, token, role });
 };
 
-const getUser = async (email, name) => {
+const getUser = async (token, name) => {
+  const { email } = tokenValid(token);
   const query = `call getUser("${email}")`;
   const data = await connectionPromise(query);
 
