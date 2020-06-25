@@ -61,8 +61,6 @@ VALUES
 END$$
 DELIMITER ;
 
-call createUser('tryber', 'U2FsdGVkX19hSbUMewrMCE66WGQILvQdq2kn8ea+yBk=', 'tryber@gmail.com', 'admin');
-
 DELIMITER $$
 CREATE PROCEDURE `createOrder`(IN idUser INT, IN address VARCHAR(255), IN addressNumber INT)
 BEGIN
