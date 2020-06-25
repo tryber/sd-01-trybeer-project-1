@@ -3,7 +3,7 @@ import React, { useState, createContext } from 'react';
 import PropTypes from 'prop-types';
 import { fetchApi, requestWithToken } from '../service/serviceFetch';
 import { clearUser } from '../service/index';
-import { saveCar, getCar } from '../service/CarBuyer';
+import { saveCar } from '../service/CarBuyer';
 
 const TrybeerContext = createContext();
 
