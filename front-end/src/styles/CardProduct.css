@@ -1,5 +1,8 @@
 .CardProduct {
+  align-items: center;
   border: 2px solid black;
+  display: flex;
+  flex-direction: column;
   height: 100%;
   margin: 10px;
   max-width: 300px;
@@ -25,62 +28,50 @@
 .CardProduct .div-qtd {
   align-items: center;
   display: flex;
-  justify-content: space-between;
-  width: 80%;
+  justify-content: space-around;
+  width: 100%;
 }
 
-.CardProduct h3{
+.CardProduct .product-price{
   align-self: flex-start;
   font-size: 20px;
   height: 40px;
 }
 
-.CardProduct h2{
+.CardProduct .product-name{
   font-size: 20px;
   height: 40px;
   text-align: center;
 }
 
-.CardProduct .div-qtd {
-  display: flex;
-  justify-content: space-around;
-  width: 100%;
-}
-
-.CardProduct .div-qtd input[ type="number" ] {
+.CardProduct .div-qtd .input-qtd {
   font-size: 25px;
   text-align: center;
   width: 50%;
 }
 
-.CardProduct .div-qtd input[ type="button" ] {
+.CardProduct .div-qtd .btn-qtd{
   background: transparent;
   border: 0;
   font-size: 40px;
   width: 20%;
 }
 
-.CardProduct .div-qtd input[ type="button" ]:hover {
+.CardProduct .div-qtd .btn-qtd:hover {
   color: royalblue;
-  transform: scale(1.2)
+  transform: scale( 1.2 );
 }
 
 .Products .list-products {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex-flow: row wrap;
   justify-content: space-around;
   padding-bottom: 120px;
   padding-top: 80px;
   width: 100%;
 }
 
-.CardProduct {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  width: 40%;
-}
+
 
 .Products .btn-checkout {
   background: greenyellow;
@@ -106,7 +97,7 @@
   background: grey;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and ( max-width : 600px ) {
   .CardProduct {
     align-items: center;
     display: flex;
