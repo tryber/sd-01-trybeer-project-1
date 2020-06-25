@@ -28,14 +28,14 @@ const TrybeerProvider = ({ children }) => {
     setProducts(res);
     setIsFetching(false);
   }
-  const verifyCarBuyer = () => {
-    const car = getCar();
-    if (car) return setCarBuyer(car);
-  }
-  const saveCarBuyer = (obj) => {
-    saveCar(obj);
-    setCarBuyer(obj);
-  }
+  // const verifyCarBuyer = () => {
+  //   const car = getCar();
+  //   if (car) return setCarBuyer(car);
+  // }
+  // const saveCarBuyer = (obj) => {
+  //   saveCar(obj);
+  //   setCarBuyer(obj);
+  // }
   const context = {
     carBuyer,
     user,
