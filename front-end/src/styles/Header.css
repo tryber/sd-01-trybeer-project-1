@@ -1,24 +1,24 @@
 .Header {
-  background: black;
-  font-size: 25px;
-  color: white;
-  height: 60px;
-  display: flex;
   align-items: center;
+  background: black;
+  color: white;
+  display: flex;
+  font-size: 25px;
+  height: 60px;
   justify-content: center;
   position: fixed;
   width: 100%;
   z-index: 1;
 }
 
-.Header > input[type="button"]{
-font-size: 20px;
-height: 30px;
-width: 30px;
-color: white;
-border: 1.5px white solid;
-border-radius: 4px;
-background: transparent;
-position: absolute;
-left: 20px;
+.Header .top-hamburguer {
+  background: transparent;
+  border: 1.5px white solid;
+  border-radius: 4px;
+  color: white;
+  font-size: 20px;
+  height: 30px;
+  left: 20px;
+  position: absolute;
+  width: 30px;
 }

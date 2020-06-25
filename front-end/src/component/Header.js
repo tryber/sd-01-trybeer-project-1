@@ -18,7 +18,7 @@ function Header({ path, id }) {
 
   return (
     <div className="Header">
-      <input type="button" data-testid="top-hamburguer" value="N" onClick={() => setDisplayNav(!displayNav)} />
+      <input type="button" className="top-hamburguer" data-testid="top-hamburguer" value="N" onClick={() => setDisplayNav(!displayNav)} />
       <h2 data-testid="top-title" >{getTitle(path, id)}</h2>
       {displayNav && <NavBar type="cliente" />}
     </div>
