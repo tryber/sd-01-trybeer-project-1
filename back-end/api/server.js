@@ -6,10 +6,9 @@ const cors = require('cors');
 const { login, register, profileClient, listProducts } = require('./routes');
 const { adminProfile, createOrder, getOrdersClient } = require('./routes');
 const { invalidLogin, databaseErrorHandling } = require('../rescue/rescues');
-const { validLoginMiddleware } = require('../middlewares/loginValid');
-const { validRegisterMiddleware } = require('../middlewares/register');
-const { userValidMiddleware } = require('../middlewares/userValid');
-const { updateNameMiddleware } = require('../middlewares/profile');
+const { updateNameMiddleware, userValidMiddleware } = require('../middlewares/index');
+const { validRegisterMiddleware, validLoginMiddleware } = require('../middlewares/index');
+const { validOrderMiddleware } = require('../middlewares/index');
 
 const app = express();
 
@@ -25,7 +24,7 @@ apiTrybeer.post('/login', validLoginMiddleware, invalidLogin(login));
 apiTrybeer.post('/profile', userValidMiddleware, updateNameMiddleware, profileClient);
 apiTrybeer.get('/products', userValidMiddleware, databaseErrorHandling(listProducts));
 apiTrybeer.get('/admin/profile', userValidMiddleware, databaseErrorHandling(adminProfile));
-apiTrybeer.post('/checkout', userValidMiddleware, databaseErrorHandling(createOrder));
+apiTrybeer.post('/checkout', userValidMiddleware, validOrderMiddleware, databaseErrorHandling(createOrder));
 apiTrybeer.get('/orders', userValidMiddleware, databaseErrorHandling(getOrdersClient));
 
 app.use(apiTrybeer);
