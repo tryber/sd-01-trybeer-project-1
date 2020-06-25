@@ -22,14 +22,13 @@ const TrybeerProvider = ({ children }) => {
   const [isFetching, setIsFetching] = useState(false)
   const [carBuyer, setCarBuyer] = useState({ list: [], total: 0, });
 
-  const fetchProducts = () => {
+  const fetchProducts = async () => {
     if (isFetching || !user) return
     setIsFetching(true);
-    fetchApi(requestWithToken(user)).then((res) => {
-      if (res.error) return resetUser(res, setIsError, setUser)
-      setProducts(res);
-      setIsFetching(false);
-    });
+    const res = await fetchApi(requestWithToken(user));
+    if (res.error) return resetUser(res, setIsError, setUser);
+    setProducts(res);
+    setIsFetching(false);
   }
   const verifyCarBuyer = () => (getCar()) ? setCarBuyer(getCar()) : setCarBuyer({ list: [], total: 0, });
   const saveCarBuyer = (obj) => {
