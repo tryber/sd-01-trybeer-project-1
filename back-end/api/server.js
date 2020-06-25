@@ -23,10 +23,10 @@ apiTrybeer.post('/register', validRegisterMiddleware, register);
 apiTrybeer.post('/login', validLoginMiddleware, invalidLogin(login));
 
 apiTrybeer.get('/admin/profile', userValidMiddleware, databaseErrorHandling(adminProfile));
+apiTrybeer.get('/admin/orders', userValidMiddleware, databaseErrorHandling(ordersAdmin));
 
 apiTrybeer.get('/products', userValidMiddleware, databaseErrorHandling(listProducts));
 apiTrybeer.get('/orders', userValidMiddleware, databaseErrorHandling(getOrdersClient));
-apiTrybeer.get('/admin/orders', userValidMiddleware, databaseErrorHandling(ordersAdmin));
 apiTrybeer.get('/orders/:id', userValidMiddleware, databaseErrorHandling(getOneOrderClient));
 apiTrybeer.post('/profile', userValidMiddleware, updateNameMiddleware, databaseErrorHandling(profileClient));
 apiTrybeer.post('/checkout', userValidMiddleware, validOrderMiddleware, databaseErrorHandling(createOrder));
