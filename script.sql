@@ -108,15 +108,15 @@ END$$
 DELIMITER ;
 
 DELIMITER $$
-CREATE PROCEDURE `getProductsInOrder`(IN idOrder INT)
+CREATE PROCEDURE `getProductsInOrder`(IN idOrder INT, IN idUser INT)
 BEGIN
-SELECT P.name_product, P.price, OP.quantity, P.price * OP.quantity AS Total
+SELECT P.name_product, P.price, OP.quantity, P.price * OP.quantity AS total
 FROM products AS P
 INNER JOIN orders_products AS OP
 ON P.id_product = OP.id_product
 INNER JOIN orders AS O
 ON O.id_order = OP.id_order
-WHERE O.id_order = idOrder;
+WHERE O.id_order = idOrder AND O.id_user = idUser;
 END$$
 DELIMITER ;
 

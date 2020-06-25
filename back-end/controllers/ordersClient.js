@@ -1,4 +1,4 @@
-const orderClient = require('../models/orderClient');
+const orderClient = require('../models/ordersClient');
 
 exports.createOrder = async (req, res) => {
   const token = req.headers.authorization;
@@ -18,3 +18,14 @@ exports.getOrdersClient = async (req, res) => {
 
   res.status(200).json(order);
 };
+
+exports.getOneOrderClient = async (req, res) => {
+  const token = req.headers.authorization;
+  const { id } = req.params;
+  const order = await orderClient.getOrderClient(token, id);
+
+  if (!order) return res.status(404).json({ message: 'Order is not exist' });
+
+  res.status(200).json(order);
+};
+

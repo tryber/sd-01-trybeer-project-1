@@ -23,7 +23,26 @@ const getListOrderClient = async (token) => {
   return data;
 };
 
+const getOrderPriceTotal = async (id) => {
+  const queryFunction = `SELECT priceOrderTotal("${id}") AS priceTotal`;
+  return connectionPromise(queryFunction);
+};
+
+const getOrderClient = async (token, id) => {
+  const { id_user: idUser } = tokenValid(token);
+  const query = `call getProductsInOrder("${id}", "${idUser}")`;
+  const data = await connectionPromise(query);
+
+  if (data.length === 0) return false;
+  const { priceTotal } = await getOrderPriceTotal(id);
+  data.push({ priceTotal });
+  console.log(data[0].price)
+
+  return data;
+};
+
 module.exports = {
   createOrder,
   getListOrderClient,
+  getOrderClient,
 };
