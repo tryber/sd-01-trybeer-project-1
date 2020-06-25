@@ -3,6 +3,7 @@ const { profileClient } = require('../controllers/profileClient');
 const { listProducts } = require('../controllers/products');
 const { adminProfile } = require('../controllers/profileAdmin');
 const { createOrder, getOrdersClient } = require('../controllers/ordersClient');
+const { ordersAdmin } = require('../controllers/ordersAdmin');
 
 module.exports = {
   register,
@@ -12,4 +13,5 @@ module.exports = {
   adminProfile,
   createOrder,
   getOrdersClient,
+  ordersAdmin,
 };

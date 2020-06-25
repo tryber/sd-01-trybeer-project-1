@@ -163,13 +163,13 @@ CREATE FUNCTION `priceOrderTotal`(idOrder INT) RETURNS double
 READS SQL DATA
 BEGIN
 DECLARE sum_total DOUBLE;
-SELECT SUM(P.price * OP.quantity) AS Total
+SELECT SUM(P.price * OP.quantity) AS total
 FROM products AS P
 INNER JOIN orders_products AS OP
 ON P.id_product = OP.id_product
 INNER JOIN orders AS O
 ON O.id_order = OP.id_order
 WHERE O.id_order = idOrder INTO sum_total;
-RETURN sum_total;
+RETURN FORMAT(sum_total, 2);
 END$$
 DELIMITER ;
