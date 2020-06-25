@@ -17,7 +17,7 @@ const loginUser = async (emailUser, passwordUser) => {
   return ({ name, email, token, role });
 };
 
-const registerUserDB = async (name, email, ecryptedPassword, role) => {
+const registerUserDB = async (name, email, password, role) => {
   const ecryptedPassword = encrypt(password);
   const query = `call createUser("${name}", "${email}", "${ecryptedPassword}", "${role}")`;
   const data = await connectionPromise(query);
