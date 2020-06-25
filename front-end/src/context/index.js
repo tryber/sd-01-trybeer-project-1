@@ -7,12 +7,10 @@ import { saveCar, getCar } from '../service/CarBuyer';
 
 const TrybeerContext = createContext();
 
-const resetUser = (res, setIsError, setUser) => {
-  if (res.error) {
-    clearUser();
-    setUser();
-    return setIsError(true);
-  }
+const resetUser = (setIsError, setUser) => {
+  clearUser();
+  setUser();
+  return setIsError(true);
 }
 
 const TrybeerProvider = ({ children }) => {
@@ -26,11 +24,14 @@ const TrybeerProvider = ({ children }) => {
     if (isFetching || !user) return
     setIsFetching(true);
     const res = await fetchApi(requestWithToken(user));
-    if (res.error) return resetUser(res, setIsError, setUser);
+    if (res.error) return resetUser(setIsError, setUser);
     setProducts(res);
     setIsFetching(false);
   }
-  const verifyCarBuyer = () => (getCar()) ? setCarBuyer(getCar()) : setCarBuyer({ list: [], total: 0, });
+  const verifyCarBuyer = () => {
+    const car = getCar();
+    if (car) return setCarBuyer(car);
+  }
   const saveCarBuyer = (obj) => {
     saveCar(obj);
     setCarBuyer(obj);
