@@ -3,6 +3,7 @@ import NavBar from './NavBar';
 import { getTitle, getUser } from '../service';
 import { Redirect } from 'react-router-dom';
 import { TrybeerContext } from '../context';
+import '../styles/Header.css';
 
 function Header({ path, id }) {
   const [displayNav, setDisplayNav] = useState(false);
@@ -16,10 +17,8 @@ function Header({ path, id }) {
 
   return (
     <div className="Header">
-      <div>
-        <input type="button" data-testid="top-hamburguer" onClick={() => setDisplayNav(!displayNav)} />
-        <h2 data-testid="top-title" >{getTitle(path, id)}</h2>
-      </div>
+      <input type="button" data-testid="top-hamburguer" value="N" onClick={() => setDisplayNav(!displayNav)} />
+      <h2 data-testid="top-title" >{getTitle(path, id)}</h2>
       {displayNav && <NavBar type="cliente" />}
     </div>
   );

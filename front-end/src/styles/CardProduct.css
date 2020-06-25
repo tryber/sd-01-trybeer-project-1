@@ -66,6 +66,7 @@
 }
 
 .Products .list-products {
+  padding-top: 100px;
   width: 100%;
   display: flex;
   justify-content: space-around;
@@ -73,9 +74,28 @@
   flex-wrap: wrap;
 }
 
-.CardProduct  {
+.CardProduct {
   width: 40%;
   display: flex;
   align-items: center;
   flex-direction: column;
+}
+
+.Products .btn-checkout {
+  position: fixed;
+  color: black;
+  width: 80%;
+  display: flex;
+  background: greenyellow;
+  border: 2px solid black;
+  border-radius: 5px;
+  padding:  15px;
+  top: 90%;
+  max-width: 300px;
+  font-size: 18px;
+  z-index: 0;
+}
+
+.Products .btn-checkout span {
+  width: 50%;
 }

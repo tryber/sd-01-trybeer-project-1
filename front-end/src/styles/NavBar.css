@@ -1,0 +1,43 @@
+.NavBar {
+  color: white;
+  width: 280px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  background: black;
+  position: fixed;
+  top: 60px;
+  left: 0;
+  height: 100%;
+  font-size: 30px;
+}
+
+.NavBar .checkout{
+  background: transparent;
+  width: 100%;
+  color: white;
+  border: 2px white solid;
+  font-size: 30px;
+}
+
+.NavBar .checkout:hover, .NavBar .checkout:active{
+  background-color: white;
+  color: black;
+}
+
+
+.NavBar .links a{
+  background: transparent;
+  width: 100%;
+  color: white;
+  border: 2px white solid;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.NavBar .links a:hover,.NavBar .links a:active {
+  background-color: white;
+  color: black;
+}

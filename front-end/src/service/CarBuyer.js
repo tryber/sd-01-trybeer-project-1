@@ -14,7 +14,7 @@ exports.addItemInCarBuyer = (ObjCarBuyer, objProduct) => {
   const getItem = list.find(product => product.id === id);
   if (!getItem) {
     list.push(objProduct);
-    return { list, total: getTotalCar(list) }
+    return { list, total: getTotalCar(list).toFixed(2) }
   }
   getItem.qtd = qtd;
   return { list, total: getTotalCar(list) }
