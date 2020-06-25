@@ -19,9 +19,15 @@ function verifyPassword(passwordUser, password) {
   return passwordUser === decrypt(password);
 }
 
+function formatDate(date) {
+  return `${date.getDate()}/${date.getMonth() + 1}`;
+}
+
 module.exports = {
   isEmailValid,
   isNameValid,
   isPasswordValid,
   verifyPassword,
+  formatDate,
 };
+console.log(formatDate(new Date()));
