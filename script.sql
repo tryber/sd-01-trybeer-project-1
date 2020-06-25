@@ -94,7 +94,7 @@ DELIMITER ;
 DELIMITER $$
 CREATE PROCEDURE `getAllDataOrderUser`(IN idUser INT)
 BEGIN
-SELECT O.id_order, O.data, priceOrderTotal(id_order) AS Total -- Não precisa do endereço
+SELECT O.id_order, O.data, priceOrderTotal(id_order) AS total
 FROM orders AS O
 WHERE O.id_user = idUser;
 END$$
@@ -170,6 +170,6 @@ ON P.id_product = OP.id_product
 INNER JOIN orders AS O
 ON O.id_order = OP.id_order
 WHERE O.id_order = idOrder INTO sum_total;
-RETURN sum_total;
+RETURN FORMAT(sum_total, 2);
 END$$
 DELIMITER ;

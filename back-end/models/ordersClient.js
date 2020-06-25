@@ -1,4 +1,5 @@
 const { connectionPromise } = require('../services/connectionPromise');
+const { formatDate } = require('../services/utils');
 const tokenValid = require('../services/validJWT');
 
 const createProductOrder = async (idOrder, orders) => {
@@ -20,25 +21,26 @@ const getListOrderClient = async (token) => {
   const { id_user: idUser } = tokenValid(token);
   const query = `call getAllDataOrderUser(${idUser})`;
   const data = await connectionPromise(query);
-  return data;
+  return data.map(({ id_order, data, total }) => {
+    return { id_order, total, date: formatDate(data) }
+  });
 };
 
 const getOrderPriceTotal = async (id) => {
-  const queryFunction = `SELECT priceOrderTotal("${id}") AS priceTotal`;
-  return connectionPromise(queryFunction);
+  const queryFunction = `SELECT priceOrderTotal("${id}") AS priceTotal, data, id_order FROM orders
+  WHERE id_order = ${id}`;
+  const { priceTotal, data, id_order } = await connectionPromise(queryFunction);
+  return { id_order, priceTotal, date: formatDate(data) };
 };
 
 const getOrderClient = async (token, id) => {
   const { id_user: idUser } = tokenValid(token);
   const query = `call getProductsInOrder("${id}", "${idUser}")`;
-  const data = await connectionPromise(query);
+  const dataProducts = await connectionPromise(query);
 
-  if (data.length === 0) return false;
-  const { priceTotal } = await getOrderPriceTotal(id);
-  data.push({ priceTotal });
-  console.log(data[0].price)
-
-  return data;
+  if (dataProducts.length === 0) return false;
+  const result = await getOrderPriceTotal(id);
+  return { dataProducts, dataPurchase: result };
 };
 
 module.exports = {
