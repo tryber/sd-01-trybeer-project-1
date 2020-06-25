@@ -19,3 +19,12 @@ exports.fetchApi = async ({ endpoint, method, body, headers = { 'Content-Type': 
   const data = await response.json();
   return data;
 }
+
+exports.requestWithToken = (user) => ({
+  endpoint: 'http://localhost:3001/products',
+  method: 'GET',
+  headers: {
+    'Content-Type': 'application/json',
+    authorization: user.token,
+  }
+})

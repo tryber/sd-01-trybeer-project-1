@@ -1,18 +1,31 @@
 import React, { useState, createContext } from 'react';
 import PropTypes from 'prop-types';
+import { fetchApi, requestWithToken } from '../service/serviceFetch'
+import { clearUser } from '../service/index'
 
 const TrybeerContext = createContext();
 
 const TrybeerProvider = ({ children }) => {
-  // const [data, setData] = useState({ Reddit: [], time:getDate(), isFinished: false });
-  // const [type, setType] = useState('frontend');
-  // const [error, setError] = useState(false);
   const [products, setProducts] = useState([]);
   const [user, setUser] = useState();
-  const [carBuyer, setCarBuyer] = useState({
-    list: [],
-    total: 0,
-  });
+  const [isError, setIsError] = useState(false);
+  const [isFetching, setIsFetching] = useState(false)
+  const [carBuyer, setCarBuyer] = useState({ list: [], total: 0, });
+
+  const fetchProducts = () => {
+    if (!isFetching && user) {
+      setIsFetching(true);
+      fetchApi(requestWithToken(user)).then((res) => {
+        if (res.error) {
+          clearUser();
+          setUser();
+          return setIsError(true);
+        }
+        setProducts(res);
+        setIsFetching(false);
+      })
+    }
+  }
 
   const context = {
     carBuyer,
@@ -21,8 +34,12 @@ const TrybeerProvider = ({ children }) => {
     setUser,
     products,
     setProducts,
+    isFetching,
+    fetchProducts,
+    isError,
+    setIsError
   };
-  console.log(carBuyer)
+
   return (
     <TrybeerContext.Provider value={context}>
       {children}

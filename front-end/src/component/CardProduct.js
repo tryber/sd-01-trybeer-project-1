@@ -15,7 +15,7 @@ function CardProduct({ index, attributes }) {
       <div className="img-product">
         <img data-testid={`${index}-product-img`} src={image} alt={`Product ${name}`} />
       </div>
-      <h2 data-testid={`${index}-product-name`}>{name}</h2>
+      <h2 data-testid={`${index}-product-name`} className="product-name">{name}</h2>
       <div className="div-qtd">
         <input type="button" value="-" disabled={qtd === 0} data-testid={`${index}-product-minus`} onClick={() => setCarBuyer(addItemInCarBuyer(carBuyer, { id, name, price, qtd: qtd - 1 }))} />
         <input type="number" min="0" value={qtd} data-testid={`${index}-product-qtd`} onChange={(e) => setCarBuyer(addItemInCarBuyer(carBuyer, { id, name, price, qtd: Number(e.target.value) }))} />
