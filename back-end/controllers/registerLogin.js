@@ -1,10 +1,8 @@
 const registerLogin = require('../models/userRegisterLogin');
-const { encrypt } = require('../services/crypto');
 
 exports.register = async (req, res) => {
   const { name, email, password, role } = req.body;
-  const ecryptedPassword = encrypt(password);
-  await registerLogin.registerUserDB(name, email, ecryptedPassword, role);
+  await registerLogin.registerUserDB(name, email, password, role);
 
   res.status(200).json({ message: 'Registered successfully.' });
 };

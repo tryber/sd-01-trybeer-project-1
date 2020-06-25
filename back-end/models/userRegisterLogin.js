@@ -1,6 +1,8 @@
 const { connectionPromise } = require('../services/connectionPromise');
+const { encrypt } = require('../services/crypto');
 const { verifyPassword } = require('../services/utils');
 const createTokenJWT = require('../services/createJWT');
+
 
 const loginUser = async (emailUser, passwordUser) => {
   const query = `call getUser("${emailUser}")`;
@@ -16,6 +18,7 @@ const loginUser = async (emailUser, passwordUser) => {
 };
 
 const registerUserDB = async (name, email, ecryptedPassword, role) => {
+  const ecryptedPassword = encrypt(password);
   const query = `call createUser("${name}", "${email}", "${ecryptedPassword}", "${role}")`;
   const data = await connectionPromise(query);
   return data;
