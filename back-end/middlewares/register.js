@@ -1,5 +1,5 @@
 const utils = require('../services/utils');
-const { getEmail } = require('../models/appBeer');
+const { getEmail } = require('../models/userRegisterLogin');
 
 function isRoleValid(role = '') {
   const roleOptions = ['admin', 'client'];

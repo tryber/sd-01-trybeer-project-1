@@ -1,13 +1,16 @@
-const registerUser = require('../controllers/register');
-const login = require('../controllers/login');
-const profile = require('../controllers/profile');
-const listProducts = require('../controllers/listProducts');
-const adminProfile = require('../controllers/adminProfile');
+const { login, register } = require('../controllers/registerLogin');
+const { profileClient } = require('../controllers/profileClient');
+const { listProducts } = require('../controllers/products');
+const { adminProfile } = require('../controllers/profileAdmin');
+const { createOrder, getOrdersClient, getOneOrderClient } = require('../controllers/ordersClient');
 
 module.exports = {
-  registerUser,
+  register,
   login,
-  profile,
+  profileClient,
   listProducts,
   adminProfile,
+  createOrder,
+  getOrdersClient,
+  getOneOrderClient,
 };

@@ -61,8 +61,6 @@ VALUES
 END$$
 DELIMITER ;
 
-call createUser('tryber', 'U2FsdGVkX19hSbUMewrMCE66WGQILvQdq2kn8ea+yBk=', 'tryber@gmail.com', 'admin');
-
 DELIMITER $$
 CREATE PROCEDURE `createOrder`(IN idUser INT, IN address VARCHAR(255), IN addressNumber INT)
 BEGIN
@@ -96,7 +94,7 @@ DELIMITER ;
 DELIMITER $$
 CREATE PROCEDURE `getAllDataOrderUser`(IN idUser INT)
 BEGIN
-SELECT O.id_order, O.data, priceOrderTotal(id_order) AS Total -- Não precisa do endereço
+SELECT O.id_order, O.data, priceOrderTotal(id_order) AS total
 FROM orders AS O
 WHERE O.id_user = idUser;
 END$$
@@ -110,15 +108,15 @@ END$$
 DELIMITER ;
 
 DELIMITER $$
-CREATE PROCEDURE `getProductsInOrder`(IN idOrder INT)
+CREATE PROCEDURE `getProductsInOrder`(IN idOrder INT, IN idUser INT)
 BEGIN
-SELECT P.name_product, P.price, OP.quantity, P.price * OP.quantity AS Total
+SELECT P.name_product, P.price, OP.quantity, P.price * OP.quantity AS total
 FROM products AS P
 INNER JOIN orders_products AS OP
 ON P.id_product = OP.id_product
 INNER JOIN orders AS O
 ON O.id_order = OP.id_order
-WHERE O.id_order = idOrder;
+WHERE O.id_order = idOrder AND O.id_user = idUser;
 END$$
 DELIMITER ;
 
@@ -172,6 +170,6 @@ ON P.id_product = OP.id_product
 INNER JOIN orders AS O
 ON O.id_order = OP.id_order
 WHERE O.id_order = idOrder INTO sum_total;
-RETURN sum_total;
+RETURN FORMAT(sum_total, 2);
 END$$
 DELIMITER ;

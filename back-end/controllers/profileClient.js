@@ -1,12 +1,12 @@
 const tokenValid = require('../services/decryptJwt');
-const appBeer = require('../models/appBeer');
+const profileClient = require('../models/profileClient');
 
-exports.profile = async (req, res) => {
+exports.profileClient = async (req, res) => {
   const { name } = req.body;
   const token = req.headers.authorization;
   const { email } = tokenValid(token);
 
-  const updatedUser = await appBeer.getUser(email, name);
+  const updatedUser = await profileClient.getUser(email, name);
 
   return res.status(200).json(updatedUser);
 };
