@@ -25,6 +25,13 @@ exports.saveCar = (car) => {
   localStorage.setItem('car', itemJson);
 }
 
+exports.getCar = () => JSON.parse(localStorage.getItem('car'));
+
 exports.clearCar = () => {
   localStorage.removeItem('car');
+}
+
+exports.verifyCarBuyer = (setCarBuyer) => {
+  const car = this.getCar();
+  if (car) return setCarBuyer(car);
 }
