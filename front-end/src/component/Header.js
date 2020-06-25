@@ -1,17 +1,18 @@
 import React, { useState, useContext, useEffect } from 'react';
 import NavBar from './NavBar';
 import { getTitle, getUser } from '../service';
+import {verifyCarBuyer} from '../service/CarBuyer'
 import { Redirect } from 'react-router-dom';
 import { TrybeerContext } from '../context';
 import '../styles/Header.css';
 
 function Header({ path, id }) {
   const [displayNav, setDisplayNav] = useState(false);
-  const { setUser, verifyCarBuyer } = useContext(TrybeerContext);
+  const { setUser, setCarBuyer } = useContext(TrybeerContext);
   useEffect(() => {
     const dataUser = getUser();
     if (!dataUser) return <Redirect to="/" />;
-    verifyCarBuyer();
+    verifyCarBuyer(setCarBuyer);
     setUser(dataUser)
   }, [])
 

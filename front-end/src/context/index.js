@@ -28,14 +28,10 @@ const TrybeerProvider = ({ children }) => {
     setProducts(res);
     setIsFetching(false);
   }
-  // const verifyCarBuyer = () => {
-  //   const car = getCar();
-  //   if (car) return setCarBuyer(car);
-  // }
-  // const saveCarBuyer = (obj) => {
-  //   saveCar(obj);
-  //   setCarBuyer(obj);
-  // }
+  const saveCarBuyer = (obj) => {
+    saveCar(obj);
+    setCarBuyer(obj);
+  }
   const context = {
     carBuyer,
     user,
@@ -47,7 +43,7 @@ const TrybeerProvider = ({ children }) => {
     fetchProducts,
     isError,
     setIsError,
-    verifyCarBuyer
+    setCarBuyer
   };
   return (
     <TrybeerContext.Provider value={context}>
