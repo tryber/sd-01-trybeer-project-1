@@ -14,7 +14,7 @@ exports.addItemInCarBuyer = (ObjCarBuyer, objProduct) => {
   const getItem = list.find(product => product.id === id);
   if (!getItem) {
     list.push(objProduct);
-    return { list, total: getTotalCar(list).toFixed(2) }
+    return { list, total: getTotalCar(list) }
   }
   getItem.qtd = qtd;
   return { list, total: getTotalCar(list) }
@@ -24,6 +24,8 @@ exports.saveCar = (car) => {
   const itemJson = JSON.stringify(car);
   localStorage.setItem('car', itemJson);
 }
+
+exports.getCar = () => JSON.parse(localStorage.getItem('car'));
 
 exports.clearCar = () => {
   localStorage.removeItem('car');

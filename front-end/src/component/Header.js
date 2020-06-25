@@ -7,11 +7,11 @@ import '../styles/Header.css';
 
 function Header({ path, id }) {
   const [displayNav, setDisplayNav] = useState(false);
-  const { setUser } = useContext(TrybeerContext);
+  const { setUser, verifyCarBuyer } = useContext(TrybeerContext);
   useEffect(() => {
     const dataUser = getUser();
-    console.log(dataUser)
     if (!dataUser) return <Redirect to="/" />;
+    verifyCarBuyer();
     setUser(dataUser)
   }, [])
 
