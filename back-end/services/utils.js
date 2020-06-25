@@ -20,7 +20,7 @@ function verifyPassword(passwordUser, password) {
 }
 
 function formatDate(date) {
-  return `${date.getDate()}/${date.getMonth() + 1}`
+  return `${date.getDate()}/${date.getMonth() + 1}`;
 }
 
 module.exports = {

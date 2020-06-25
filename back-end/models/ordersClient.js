@@ -20,10 +20,8 @@ const createOrder = async (token, address, addressNumber, orders) => {
 const getListOrderClient = async (token) => {
   const { id_user: idUser } = tokenValid(token);
   const query = `call getAllDataOrderUser(${idUser})`;
-  const data = await connectionPromise(query);
-  return data.map(({ id_order, data, total }) => {
-    return { id_order, total, date: formatDate(data) }
-  });
+  const result = await connectionPromise(query);
+  return result.map(({ id_order, data, total }) => ({ id_order, total, date: formatDate(data) }));
 };
 
 const getOrderPriceTotal = async (id) => {
