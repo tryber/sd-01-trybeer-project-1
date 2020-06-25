@@ -34,7 +34,7 @@ const TrybeerProvider = ({ children }) => {
   const saveCarBuyer = (obj) => {
     saveCar(obj);
     setCarBuyer(obj);
-  }
+  }//
   const context = {
     carBuyer,
     user,
