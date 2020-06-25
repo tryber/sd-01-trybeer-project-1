@@ -3,10 +3,8 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const cors = require('cors');
 
-const { login, register, profileClient, listProducts } = require('./routes');
-const { adminProfile, createOrder, getOrdersClient, ordersAdmin } = require('./routes');
 const { login, register, profileClient, listProducts, adminProfile } = require('./routes');
-const { createOrder, getOrdersClient, getOneOrderClient } = require('./routes');
+const { createOrder, getOrdersClient, getOneOrderClient, ordersAdmin } = require('./routes');
 const { invalidLogin, databaseErrorHandling } = require('../rescue/rescues');
 const { updateNameMiddleware, userValidMiddleware } = require('../middlewares/index');
 const { validRegisterMiddleware, validLoginMiddleware } = require('../middlewares/index');

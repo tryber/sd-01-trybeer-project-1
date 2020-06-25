@@ -30,4 +30,3 @@ module.exports = {
   verifyPassword,
   formatDate,
 };
-console.log(formatDate(new Date()));
