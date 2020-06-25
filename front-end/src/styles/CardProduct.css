@@ -99,3 +99,12 @@
 .Products .btn-checkout span {
   width: 50%;
 }
+
+@media only screen and (max-width: 460px) {
+  .CardProduct {
+    width: 80%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+}
