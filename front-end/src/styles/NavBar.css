@@ -13,7 +13,7 @@
   width: 280px;
 }
 
-.NavBar .checkout{
+.NavBar .checkout {
   background: transparent;
   border: 2px white solid;
   color: white;
@@ -21,7 +21,7 @@
   width: 100%;
 }
 
-.NavBar .checkout:hover, .NavBar .checkout:active {
+.NavBar .checkout:hover , .NavBar .checkout:active {
   background-color: white;
   color: black;
 }
@@ -36,7 +36,7 @@
   width: 100%;
 }
 
-.NavBar .links a:hover,.NavBar .links .nav-link:active {
+.NavBar .links a:hover , .NavBar .links .nav-link:active {
   background-color: white;
   color: black;
 }
