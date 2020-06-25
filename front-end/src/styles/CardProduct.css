@@ -32,13 +32,13 @@
   width: 100%;
 }
 
-.CardProduct .product-price{
+.CardProduct .product-price {
   align-self: flex-start;
   font-size: 20px;
   height: 40px;
 }
 
-.CardProduct .product-name{
+.CardProduct .product-name {
   font-size: 20px;
   height: 40px;
   text-align: center;
@@ -50,7 +50,7 @@
   width: 50%;
 }
 
-.CardProduct .div-qtd .btn-qtd{
+.CardProduct .div-qtd .btn-qtd {
   background: transparent;
   border: 0;
   font-size: 40px;
@@ -70,8 +70,6 @@
   padding-top: 80px;
   width: 100%;
 }
-
-
 
 .Products .btn-checkout {
   background: greenyellow;
