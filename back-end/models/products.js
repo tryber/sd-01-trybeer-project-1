@@ -8,4 +8,4 @@ const getListProduct = async () => {
 
 module.exports = {
   getListProduct,
-}
+};

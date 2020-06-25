@@ -18,7 +18,6 @@ const createOrder = async (token, address, addressNumber, orders) => {
 
 const getListOrderClient = async (token) => {
   const { id_user: idUser } = tokenValid(token);
-  console.log(idUser)
   const query = `call getAllDataOrderUser(${idUser})`;
   const data = await connectionPromise(query);
   return data;
@@ -27,4 +26,4 @@ const getListOrderClient = async (token) => {
 module.exports = {
   createOrder,
   getListOrderClient,
-}
+};
