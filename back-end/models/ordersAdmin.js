@@ -27,7 +27,7 @@ const updateStatus = async (id, status) => {
   if (status === newStatus) newStatus = 1;
   const query = `call updateStatusOrder("${id}", "${newStatus}")`;
   return connectionPromise(query);
-}
+};
 
 const putStatusOrder = async (id) => {
   const query = `SELECT status FROM orders WHERE id_order = ${id}`;

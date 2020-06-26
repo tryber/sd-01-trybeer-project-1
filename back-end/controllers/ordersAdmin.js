@@ -18,5 +18,5 @@ exports.putStatusOrderAdmin = async (req, res) => {
   const { id } = req.params;
   await putStatusOrder(id);
 
-  res.status(200).json({ message: 'Completed order'});
+  res.status(200).json({ message: 'Completed order' });
 };
