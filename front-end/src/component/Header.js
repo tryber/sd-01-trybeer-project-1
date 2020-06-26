@@ -12,7 +12,6 @@ function Header({ path, id }) {
   const { setUser, setCarBuyer } = useContext(TrybeerContext);
   useEffect(() => {
     const dataUser = getUser();
-    // console.log(!dataUser)
     if (!dataUser) return setShouldRedirect(true);
     verifyCarBuyer(setCarBuyer);
     setUser(dataUser)
