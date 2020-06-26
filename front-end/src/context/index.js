@@ -1,4 +1,3 @@
-
 import React, { useState, createContext } from 'react';
 import PropTypes from 'prop-types';
 import { fetchApi, requestWithToken } from '../service/serviceFetch';
@@ -19,7 +18,8 @@ const TrybeerProvider = ({ children }) => {
   const [isError, setIsError] = useState(false);
   const [isFetching, setIsFetching] = useState(false)
   const [carBuyer, setCarBuyer] = useState({ list: [], total: 0, });
-  // const [profileAdmin, setProfileAdmin] = useState();
+  const [profileAdmin, setProfileAdmin] = useState();
+
 
   const typeSetContext = (value, type) => {
     const obj = {
@@ -52,7 +52,7 @@ const TrybeerProvider = ({ children }) => {
     fetchContext,
     isError,
     setIsError,
-    setCarBuyer
+    setCarBuyer,
   };
   return (
     <TrybeerContext.Provider value={context}>
