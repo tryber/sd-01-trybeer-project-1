@@ -121,12 +121,14 @@ END$$
 DELIMITER ;
 
 DELIMITER $$
-CREATE PROCEDURE `getUniqueDataOrder`(IN idOrder INT)
+CREATE PROCEDURE `getUniqueOrderAdmin`(IN idOrder INT)
 BEGIN
-SELECT O.id_order, O.data, O.address, U.name AS client, O.status, priceOrderTotal(id_order) AS Total
-FROM orders AS O
-INNER JOIN users AS U
-ON O.id_user = U.id_user
+SELECT P.name_product, P.price, OP.quantity
+FROM products AS P
+INNER JOIN orders_products AS OP
+ON P.id_product = OP.id_product
+INNER JOIN orders AS O
+ON O.id_order = OP.id_order
 WHERE O.id_order = idOrder;
 END$$
 DELIMITER ;
@@ -140,7 +142,7 @@ END$$
 DELIMITER ;
 
 DELIMITER $$
-CREATE PROCEDURE `updateStatusOrder`(IN idOrder INT, IN valueStatus TINYINT)
+CREATE PROCEDURE `updateStatusOrder`(IN idOrder INT, IN valueStatus INT)
 BEGIN
 UPDATE orders O
 	SET O.status = valueStatus
