@@ -11,7 +11,7 @@ function CardProduct({ index, attributes }) {
   const qtd = (infoProductCar) ? infoProductCar.qtd : 0;
   return (
     <div className="CardProduct">
-      <h3 className="product-price" data-testid={`${index}-product-price`}>{`R$ ${price.toLocaleString('pt-BR')}`}</h3>
+      <h3 className="product-price" data-testid={`${index}-product-price`}>{`R$ ${price.toFixed(2).toLocaleString('pt-BR')}`}</h3>
       <div className="img-product">
         <img data-testid={`${index}-product-img`} src={image} alt={`Product ${name}`} />
       </div>

@@ -1,4 +1,4 @@
-const getTotalCar = car => car.reduce((acc, product) => acc + (product.qtd * product.price), 0);
+const getTotalCar = car => car.reduce((acc, product) => acc + (product.qtd * product.price), 0).toFixed(2);
 
 const removeProduct = (car, id) => {
   return car.filter(product => product.id !== id);
@@ -9,7 +9,7 @@ exports.addItemInCarBuyer = (ObjCarBuyer, objProduct) => {
   const { qtd, id } = objProduct;
   if (qtd <= 0) {
     const updatedCar = removeProduct(list, id);
-    return { list: updatedCar, total: getTotalCar(updatedCar) }
+    return { list: updatedCar, total: getTotalCar(updatedCar) };
   }
   const getItem = list.find(product => product.id === id);
   if (!getItem) {

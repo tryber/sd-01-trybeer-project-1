@@ -21,7 +21,7 @@ const linksCliente = (setOut) => (
 
 function NavBar({ type }) {
   const [out, setOut] = useState(false);
-  if (out) return <Redirect to="/login" />
+  if (out) return <Redirect to="/" />
   if (type === 'cliente') return linksCliente(setOut);
   return (
     <div className="NavBar admin">
