@@ -10,7 +10,6 @@ function Header({ path, id }) {
   const [displayNav, setDisplayNav] = useState(false);
   const [shouldRedirect, setShouldRedirect] = useState(false);
   const { setUser, setCarBuyer } = useContext(TrybeerContext);
-
   useEffect(() => {
     const dataUser = getUser();
     console.log(!dataUser)
@@ -18,9 +17,7 @@ function Header({ path, id }) {
     verifyCarBuyer(setCarBuyer);
     setUser(dataUser)
   }, [])
-
   if (shouldRedirect) return <Redirect to="/" />;
-  
   return (
     <div className="Header">
       <input type="button" className="top-hamburguer" data-testid="top-hamburguer" value="N" onClick={() => setDisplayNav(!displayNav)} />
