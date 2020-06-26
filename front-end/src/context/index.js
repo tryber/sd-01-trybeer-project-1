@@ -1,32 +1,55 @@
+
 import React, { useState, createContext } from 'react';
 import PropTypes from 'prop-types';
+import { fetchApi, requestWithToken } from '../service/serviceFetch';
+import { clearUser } from '../service/index';
+import { saveCar } from '../service/CarBuyer';
 
 const TrybeerContext = createContext();
 
-const TrybeerProvider = ({ children }) => {
-  // const [data, setData] = useState({ Reddit: [], time:getDate(), isFinished: false });
-  // const [type, setType] = useState('frontend');
-  // const [error, setError] = useState(false);
-  const [user, setUser] = useState();
-  const [carBuyer, setCarBuyer] = useState({
-    list: [],
-    total: 0,
-  });
+const resetUser = (setIsError, setUser) => {
+  clearUser();
+  setUser();
+  return setIsError(true);
+}
 
+const TrybeerProvider = ({ children }) => {
+  const [products, setProducts] = useState([]);
+  const [user, setUser] = useState();
+  const [isError, setIsError] = useState(false);
+  const [isFetching, setIsFetching] = useState(false)
+  const [carBuyer, setCarBuyer] = useState({ list: [], total: 0, });
+
+  const fetchProducts = async () => {
+    if (isFetching || !user) return
+    setIsFetching(true);
+    const res = await fetchApi(requestWithToken(user));
+    if (res.error) return resetUser(setIsError, setUser);
+    setProducts(res);
+    setIsFetching(false);
+  }
+  const saveCarBuyer = (obj) => {
+    saveCar(obj);
+    setCarBuyer(obj);
+  }
   const context = {
     carBuyer,
     user,
-    setCarBuyer,
+    saveCarBuyer,
     setUser,
+    products,
+    setProducts,
+    isFetching,
+    fetchProducts,
+    isError,
+    setIsError,
+    setCarBuyer
   };
-
   return (
     <TrybeerContext.Provider value={context}>
       {children}
     </TrybeerContext.Provider>
   );
-
-
 };
 
 export { TrybeerContext, TrybeerProvider as Provider };

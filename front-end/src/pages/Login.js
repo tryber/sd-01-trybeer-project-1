@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Redirect, Link } from 'react-router-dom';
 import { fetchApi } from '../service/serviceFetch';
 import { getUser, saveUser } from '../service/index';
 import ReportComponent from '../component/ReportComponent';
 import FormLogin from '../component/FormLogin';
+import { TrybeerContext } from '../context';
 
 async function handleSubmit(obj, setMessageRequest, setShouldRedirect) {
   const { email, password } = obj;
@@ -20,16 +21,19 @@ async function handleSubmit(obj, setMessageRequest, setShouldRedirect) {
   saveUser(data);
   setShouldRedirect(true);
 }
-const redirectPage = (role) => {
-  const endpoint = (role === 'admin') ? "/admin/orders" : "/products";
+const redirectPage = (user, setUser) => {
+  setUser(user);
+  console.log('passouAqui', user)
+  const endpoint = (user.role === 'admin') ? "/admin/orders" : "/products";
   return <Redirect to={endpoint} />
 }
 
 function Login() {
   const [messageRequest, setMessageRequest] = useState();
   const [shouldRedirect, setShouldRedirect] = useState(false);
-  if (getUser()) return redirectPage(getUser().role);
-  if (shouldRedirect) return <Redirect to="/login" />;
+  const { setUser } = useContext(TrybeerContext);
+  if (getUser()) return redirectPage(getUser(), setUser);
+  if (shouldRedirect) return <Redirect to="/" />;
   return (
     <div className="elementsRegister">
       {!messageRequest || <ReportComponent message={{ messageRequest, setMessageRequest }} callback={(value) => setShouldRedirect(value)} />}
