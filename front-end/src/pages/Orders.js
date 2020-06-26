@@ -1,9 +1,10 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import Headers from '../component/Header';
 import { TrybeerContext } from '../context';
 import { Redirect } from 'react-router-dom';
 import CardOrder from '../component/CardOrder';
 import '../styles/Orders.css';
+import { getUser } from '../service';
 
 function Orders({ location: { pathname } }) {
   const { user, orders, isFetching, fetchContext, isError } = useContext(TrybeerContext);
@@ -11,6 +12,7 @@ function Orders({ location: { pathname } }) {
     fetchContext('orders');
   }, [user]);
   if (isError) return <Redirect to="/" />
+  if (!getUser()) return <Redirect to="/" />
   return (
     <div className="Orders">
       <Headers path={`${pathname}`} />
