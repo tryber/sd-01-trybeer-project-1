@@ -6,10 +6,10 @@ import '../styles/CardProduct.css';
 import { Redirect } from 'react-router-dom';
 
 function Products({ location: { pathname } }) {
-  const { user, products, isFetching, fetchProducts, isError, carBuyer } = useContext(TrybeerContext);
+  const { user, products, isFetching, fetchContext, isError, carBuyer } = useContext(TrybeerContext);
   const [done, setDone] = useState(false);
   useEffect(() => {
-    fetchProducts();
+    fetchContext('products');
   }, [user]);
 
   if (isError) return <Redirect to="/" />
