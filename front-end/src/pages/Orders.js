@@ -23,7 +23,7 @@ function Orders({ location: { pathname } }) {
         </div>
       }
       {orders && orders.message &&
-        <h2 className="message-orders">Nenhum Pedido encontrado.</h2>
+        <h2 className="message-orders">Nenhum pedido encontrado.</h2>
       }
     </div>
   );
