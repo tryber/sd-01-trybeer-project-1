@@ -20,9 +20,9 @@ exports.fetchApi = async ({ endpoint, method, body, headers = { 'Content-Type': 
   return data;
 }
 
-exports.requestWithToken = (user) => ({
-  endpoint: 'http://localhost:3001/products',
-  method: 'GET',
+exports.requestWithToken = (user, endpoint, method = 'GET') => ({
+  endpoint: `http://localhost:3001/${endpoint}`,
+  method,
   headers: {
     'Content-Type': 'application/json',
     authorization: user.token,
