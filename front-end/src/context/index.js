@@ -1,4 +1,3 @@
-
 import React, { useState, createContext } from 'react';
 import PropTypes from 'prop-types';
 import { fetchApi, requestWithToken } from '../service/serviceFetch';
@@ -19,12 +18,10 @@ const TrybeerProvider = ({ children }) => {
   const [isError, setIsError] = useState(false);
   const [isFetching, setIsFetching] = useState(false)
   const [carBuyer, setCarBuyer] = useState({ list: [], total: 0, });
-  // const [profileAdmin, setProfileAdmin] = useState();
 
   const typeSetContext = (value, type) => {
     const obj = {
       products: setProducts(value),
-      'admin/profile': setProfileAdmin(value),
     };
     return obj[type];
   }
@@ -32,6 +29,7 @@ const TrybeerProvider = ({ children }) => {
   const fetchContext = async (endpoint, method = 'GET') => {
     if (isFetching || !user) return
     setIsFetching(true);
+    console.log('user', user)
     const res = await fetchApi(requestWithToken(user, endpoint, method));
     if (res.error) return resetUser(setIsError, setUser);
     typeSetContext(res, endpoint);
@@ -52,8 +50,9 @@ const TrybeerProvider = ({ children }) => {
     fetchContext,
     isError,
     setIsError,
-    setCarBuyer
+    setCarBuyer,
   };
+
   return (
     <TrybeerContext.Provider value={context}>
       {children}
