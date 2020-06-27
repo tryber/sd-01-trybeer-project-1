@@ -3,7 +3,6 @@ const tokenValid = require('../services/validJWT');
 
 const userValidMiddleware = errorReadingJWT((req, res, next) => {
   const token = req.headers.authorization;
-
   if (!token) return res.status(401).json({ message: 'Access denied' });
   const { role } = tokenValid(token);
 
@@ -14,7 +13,6 @@ const userValidMiddleware = errorReadingJWT((req, res, next) => {
 
   if (role === 'admin' && validRole !== 'admin')
     return res.status(401).json({ message: 'User Unauthorized' });
-
   next();
 });
 

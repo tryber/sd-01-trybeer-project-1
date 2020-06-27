@@ -19,20 +19,19 @@ const TrybeerProvider = ({ children }) => {
   const [isError, setIsError] = useState(false);
   const [isFetching, setIsFetching] = useState(false)
   const [carBuyer, setCarBuyer] = useState({ list: [], total: 0, });
-  // const [profileAdmin, setProfileAdmin] = useState();
-
+  const [orders, setOrders] = useState([]);
   const typeSetContext = (value, type) => {
     const obj = {
       products: setProducts(value),
-      'admin/profile': setProfileAdmin(value),
+      orders: setOrders(value),
     };
     return obj[type];
   }
 
-  const fetchContext = async (endpoint, method = 'GET') => {
+  const fetchContext = async (endpoint, method = 'GET', body) => {
     if (isFetching || !user) return
     setIsFetching(true);
-    const res = await fetchApi(requestWithToken(user, endpoint, method));
+    const res = await fetchApi(requestWithToken(user, endpoint, method, body));
     if (res.error) return resetUser(setIsError, setUser);
     typeSetContext(res, endpoint);
     setIsFetching(false);
@@ -52,7 +51,8 @@ const TrybeerProvider = ({ children }) => {
     fetchContext,
     isError,
     setIsError,
-    setCarBuyer
+    setCarBuyer,
+    orders,
   };
   return (
     <TrybeerContext.Provider value={context}>
