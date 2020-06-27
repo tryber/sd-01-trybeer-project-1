@@ -19,7 +19,6 @@ const createOrder = async (token, address, addressNumber, orders) => {
 
 const getListOrderClient = async (token) => {
   const { id_user: idUser } = tokenValid(token);
-  console.log(idUser,'id')
   const query = `call getAllDataOrderUser(${idUser})`;
   const result = await connectionPromise(query);
   return result.map(({ id_order, data, total }) => ({ id_order, total, date: formatDate(data) }));

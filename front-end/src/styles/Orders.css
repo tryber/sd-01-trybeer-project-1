@@ -3,7 +3,7 @@
 }
 
 .Orders .message-orders {
-  text-align: center;
-  padding-top: 200px;
   margin-top: 0;
+  padding-top: 200px;
+  text-align: center;
 }
