@@ -18,6 +18,6 @@ exports.errorReadingJWT = fn => async (req, res, next) => {
   try {
     await fn(req, res, next);
   } catch (err) {
-    res.status(422).json({ message: 'Unprocessable Entity', error: err.message, trace:err.trace  });
+    res.status(422).json({ message: 'Unprocessable Entity', error: err.message });
   }
 };
