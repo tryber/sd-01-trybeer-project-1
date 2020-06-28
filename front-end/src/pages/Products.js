@@ -1,26 +1,32 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Headers from '../component/Header';
+import useAxios from 'axios-hooks';
 import { TrybeerContext } from '../context';
 import CardProduct from '../component/CardProduct';
 import '../styles/CardProduct.css';
 import { Redirect } from 'react-router-dom';
+import { getUser } from '../service';
 
 function Products({ location: { pathname } }) {
-  const { user, products, isFetching, fetchContext, isError, carBuyer } = useContext(TrybeerContext);
+  const user = getUser();
+  const { carBuyer } = useContext(TrybeerContext);
   const [done, setDone] = useState(false);
-  useEffect(() => {
-    fetchContext('products');
-  }, [user]);
-
-  if (isError) return <Redirect to="/" />
+  const [{ data, loading, error }] = useAxios({
+    url: `http://localhost:3001/products`,
+    method: 'GET',
+    headers: { authorization: (getUser()) ? user.token : '', }
+  })
+  console.log(error)
+  if (!getUser()) return <Redirect to="/" />
+  if (error) return <h2>Algum erro aconteceu!</h2>
   if (done) return <Redirect to="/checkout" />
   return (
     <div className="Products">
       <Headers path={`${pathname}`} />
-      {!isFetching || <h2>Loading</h2>}
-      {(products.length > 0 && !isFetching) &&
+      {loading && <h2>Loading</h2>}
+      {!loading &&
         <div className="list-products">
-          {products.map((product, index) => <CardProduct key={product.id_product} index={index} attributes={product} />)}
+          {data.map((product, index) => <CardProduct key={`product-${product.id_product}`} index={index} attributes={product} />)}
           <button type="button" className="btn-checkout" data-testid="checkout-bottom-btn"
             disabled={carBuyer.total === 0} onClick={() => setDone(true)}
           >

@@ -1,28 +1,30 @@
-import React, { useContext, useEffect } from 'react';
+import React from 'react';
 import Headers from '../component/Header';
-import { TrybeerContext } from '../context';
+import useAxios from 'axios-hooks';
 import { Redirect } from 'react-router-dom';
 import CardOrder from '../component/CardOrder';
 import '../styles/Orders.css';
 import { getUser } from '../service';
 
 function Orders({ location: { pathname } }) {
-  const { user, orders, isFetching, fetchContext, isError } = useContext(TrybeerContext);
-  useEffect(() => {
-    fetchContext('orders');
-  }, [user]);
-  if (isError) return <Redirect to="/" />
+  const user = getUser();
+  const [{ data, loading, error }] = useAxios({
+    url: `http://localhost:3001/orders`,
+    method: 'GET',
+    headers: { authorization: (getUser()) ? user.token : '', }
+  })
   if (!getUser()) return <Redirect to="/" />
+  if (error || (data && data.message)) return <Redirect to="/" />
   return (
     <div className="Orders">
       <Headers path={`${pathname}`} />
-      {!isFetching || <h2>Loading</h2>}
-      {(!orders.message && orders.length > 0 && !isFetching) &&
+      {!loading || <h2>Loading</h2>}
+      {loading ||
         <div className="list-orders">
-          {orders.map((order, index) => <CardOrder key={order.id_order} index={index} attributes={order} />)}
+          {data.map((order, index) => <CardOrder key={`order-${order.id_order}`} index={index} att={order} />)}
         </div>
       }
-      {orders && orders.message &&
+      {data && data.message &&
         <h2 className="message-orders">Nenhum pedido encontrado.</h2>
       }
     </div>

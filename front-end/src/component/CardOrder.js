@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function CardOrder({ index, attributes }) {
-  const { id_order: idOrder, total, data } = attributes;
-  console.log(attributes)
+function CardOrder({ index, att }) {
+  const { id_order: idOrder, total, data } = att;
+  console.log(att)
   return (
     <div className="CardOrder">
       <Link to={`/order/${idOrder}`}>
