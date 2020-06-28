@@ -4,14 +4,14 @@ import useAxios from 'axios-hooks';
 import { Redirect } from 'react-router-dom';
 import CardOrder from '../component/CardOrder';
 import '../styles/Orders.css';
-import { getUser } from '../service';
+import { getUser, verifyUser } from '../service';
 
 function Orders({ location: { pathname } }) {
   const user = getUser();
   const [{ data, loading, error }] = useAxios({
     url: `http://localhost:3001/orders`,
     method: 'GET',
-    headers: { authorization: (getUser()) ? user.token : '', }
+    headers: { authorization: verifyUser(user), }
   })
   if (!getUser()) return <Redirect to="/" />
   if (error || (data && data.message)) return <Redirect to="/" />

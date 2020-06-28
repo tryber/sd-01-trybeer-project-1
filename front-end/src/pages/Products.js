@@ -5,7 +5,7 @@ import { TrybeerContext } from '../context';
 import CardProduct from '../component/CardProduct';
 import '../styles/CardProduct.css';
 import { Redirect } from 'react-router-dom';
-import { getUser } from '../service';
+import { getUser, verifyUser } from '../service';
 
 function Products({ location: { pathname } }) {
   const user = getUser();
@@ -14,9 +14,8 @@ function Products({ location: { pathname } }) {
   const [{ data, loading, error }] = useAxios({
     url: `http://localhost:3001/products`,
     method: 'GET',
-    headers: { authorization: (getUser()) ? user.token : '', }
+    headers: { authorization: verifyUser(user) }
   })
-  console.log(error)
   if (!getUser()) return <Redirect to="/" />
   if (error) return <h2>Algum erro aconteceu!</h2>
   if (done) return <Redirect to="/checkout" />
