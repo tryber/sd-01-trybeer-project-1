@@ -34,7 +34,6 @@ function MyProfile() {
   useEffect(() => {
     if (user) setName(user.name)
   }, [user])
-  console.log('message', messageRequest)
   return (
     <div className="MyProfile">
       <Headers path="/profile" />
