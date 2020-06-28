@@ -10,7 +10,6 @@ exports.databaseErrorHandling = fn => async (req, res, next) => {
   try {
     await fn(req, res, next);
   } catch (err) {
-    console.log(err)
     res.status(500).json({ message: 'Internal Server Error', error: err.message });
   }
 };
