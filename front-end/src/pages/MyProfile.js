@@ -4,7 +4,7 @@ import { TrybeerContext } from '../context';
 import { fetchApi } from '../service/serviceFetch';
 import ReportComponent from '../component/ReportComponent';
 import { saveUser, getUser } from '../service';
-import '../styles/DataProfile.css';
+import '../styles/MyProfile.css';
 
 async function handleSubmit(obj, setMessageRequest, setUser) {
   const { name, } = obj;
@@ -41,10 +41,10 @@ function MyProfile() {
       {!user ||
         <div className="DataProfile">
           {!messageRequest || <ReportComponent message={{ messageRequest, setMessageRequest }} />}
-          <label className="lbl-name" htmlFor="name">Nome:</label>
-          <input data-testid="profile-name-input" className="input-name" id="name" type="text" value={name} onChange={(e) => setName(e.target.value)} />
-          <label className="lbl-name" htmlFor="name">Email:</label>
-          <div data-testid="profile-email-input" className="input-email" id="email">
+          <label className="lbl name" htmlFor="name">Nome:</label>
+          <input data-testid="profile-name-input" className="input-profile name" id="name" type="text" value={name} onChange={(e) => setName(e.target.value)} />
+          <label className="lbl email" htmlFor="name">Email:</label>
+          <div data-testid="profile-email-input" className="input-profile email" id="email">
             {user.email}
           </div>
           <button data-testid="profile-save-btn" type="button" className="btn-save-name" onClick={() => handleSubmit({ name }, setMessageRequest, setUser)}
