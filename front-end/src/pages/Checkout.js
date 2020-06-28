@@ -8,15 +8,15 @@ import '../styles/Checkout.css';
 import ListCar from '../component/ListCar';
 import FormCheckout from '../component/FormCheckout';
 
-async function handleSubmit(obj, setMessageRequest, setUser) {
+async function handleSubmit(obj, setMessageRequest, orders) {
   const { address, addressNumber } = obj;
   const body = {
     address,
     addressNumber,
-
+    orders
   };
   const data = await fetchApi({
-    endpoint: 'http://localhost:3001/profile',
+    endpoint: 'http://localhost:3001/checkout',
     method: 'POST',
     body,
     headers: {
@@ -24,7 +24,7 @@ async function handleSubmit(obj, setMessageRequest, setUser) {
       authorization: getUser().token,
     }
   });
-  setMessageRequest((data.message || 'Pedido Feito!'));
+  setMessageRequest((data.message));
 }
 
 function Checkout() {
@@ -37,7 +37,7 @@ function Checkout() {
       <div className="body-checkout">
         {!carBuyer || carBuyer.list.length === 0 || <ListCar car={carBuyer} />}
         {!carBuyer || carBuyer.list.length === 0 && <h2>Carrinho vazio</h2>}
-        <FormCheckout getValues={(obj) => { handleSubmit(obj, setMessageRequest) }} valid={carBuyer.list.length === 0} />
+        <FormCheckout getValues={(obj) => { handleSubmit(obj, setMessageRequest, carBuyer.list) }} valid={carBuyer.list.length === 0} />
         {!messageRequest || <ReportComponent message={{ messageRequest, setMessageRequest }} />}
       </div>
     </div>

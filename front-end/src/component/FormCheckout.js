@@ -7,6 +7,7 @@ const filterFieldsInvalid = (inputs) => {
 
 const submitValues = ({ address, addressNumber, setIsValid }) => {
   const inputs = {};
+  console.log(address.length > 0)
   inputs.address = address.length > 0;
   inputs.addressNumber = /^[0-9]{1,20}$/.test(addressNumber);
   const validate = filterFieldsInvalid(inputs);

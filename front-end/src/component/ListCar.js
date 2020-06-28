@@ -7,7 +7,7 @@ function ListCar({ car }) {
       <h2>Produtos</h2>
       {
         car.list.map((item, index) => (
-          <CarItem index={index} attributes={item} />
+          <CarItem key={`car-${index}`} index={index} attributes={item} />
         ))
       }
       <h2>{Number(car.total).toFixed(2).toLocaleString('pt-BR')}</h2>
