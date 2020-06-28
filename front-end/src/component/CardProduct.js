@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import InputQTD from '../component/InputQTD';
 import { addItemInCarBuyer } from '../service/CarBuyer';
 import { TrybeerContext } from '../context';
 import '../styles/CardProduct.css'
@@ -18,7 +19,7 @@ function CardProduct({ index, attributes }) {
       <h2 data-testid={`${index}-product-name`} className="product-name">{name}</h2>
       <div className="div-qtd">
         <input type="button" className="btn-qtd" value="-" disabled={qtd === 0} data-testid={`${index}-product-minus`} onClick={() => saveCarBuyer(addItemInCarBuyer(carBuyer, { id, name, price, qtd: qtd - 1 }))} />
-        <input type="number" className="input-qtd" min="0" value={qtd} data-testid={`${index}-product-qtd`} onChange={(e) => saveCarBuyer(addItemInCarBuyer(carBuyer, { id, name, price, qtd: Number(e.target.value) }))} />
+        <InputQTD index={index} qtd={qtd} callback={(value)=>saveCarBuyer(addItemInCarBuyer(carBuyer, { id, name, price, qtd: Number(value)}))}/>
         <input type="button" className="btn-qtd" value="+" data-testid={`${index}-product-plus`} onClick={() => saveCarBuyer(addItemInCarBuyer(carBuyer, { id, name, price, qtd: qtd + 1 }))} />
       </div>
     </div>
