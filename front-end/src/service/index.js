@@ -9,6 +9,12 @@ exports.getTitle = (path, idExist) => {
   return titles[path];
 };
 
+exports.validateLocalUser = (data) => {
+  if (!data) return false;
+  if (!data.name || !data.token || !data.email) return false;
+  return data;
+}
+
 exports.saveUser = (user) => {
   const itemJson = JSON.stringify(user);
   localStorage.setItem('user', itemJson);
