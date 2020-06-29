@@ -1,0 +1,9 @@
+.Orders .list-orders {
+  padding-top: 200px;
+}
+
+.Orders .message-orders {
+  margin-top: 0;
+  padding-top: 200px;
+  text-align: center;
+}
