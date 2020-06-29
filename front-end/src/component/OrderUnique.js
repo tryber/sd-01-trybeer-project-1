@@ -7,7 +7,7 @@ const statusOrder = (status) => {
 
 const OrderUnique = (props) => {
   if (props.data.message) return 'Pedido não registrado';
-  
+
   const { dataProducts, dataPurchase } = props.data;
   const { id_order: idOrder, name, priceTotal, status } = dataPurchase[0];
 

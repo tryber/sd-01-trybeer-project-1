@@ -1,4 +1,5 @@
 const { connectionPromise } = require('../services/connectionPromise');
+const { isNumber } = require('../services/utils');
 
 const getAllDataOrder = async () => {
   const query = 'call getAllDataOrder()';
@@ -13,6 +14,8 @@ const getOrderPriceTotal = async (id) => {
 };
 
 const getOrderAdmin = async (id) => {
+  if (!isNumber(id)) return false;
+
   const query = `call getUniqueOrderAdmin("${id}")`;
   const dataProducts = await connectionPromise(query);
 

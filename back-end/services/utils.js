@@ -23,10 +23,16 @@ function formatDate(date) {
   return `${date.getDate()}/${date.getMonth() + 1}`;
 }
 
+function isNumber(number = '') {
+  const regex = /^[0-9]+$/;
+  return regex.test(number);
+}
+
 module.exports = {
   isEmailValid,
   isNameValid,
   isPasswordValid,
   verifyPassword,
   formatDate,
+  isNumber,
 };
