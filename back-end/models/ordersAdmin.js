@@ -1,10 +1,12 @@
 const { connectionPromise } = require('../services/connectionPromise');
+const { formatDate } = require('../services/utils');
 
 const getAllDataOrder = async () => {
   const query = 'call getAllDataOrder()';
-  const data = await connectionPromise(query);
-
-  return data;
+  const result = await connectionPromise(query);
+  const dateModify = result.map(({ data }) => ({ date: formatDate(data) }));
+  console.log(dateModify);
+  return result;
 };
 
 const getOrderPriceTotal = async (id) => {

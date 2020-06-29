@@ -55,6 +55,7 @@ const TrybeerProvider = ({ children }) => {
     setCarBuyer,
     orders,
   };
+
   return (
     <TrybeerContext.Provider value={context}>
       {children}
