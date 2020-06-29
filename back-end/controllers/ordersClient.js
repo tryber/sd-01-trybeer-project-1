@@ -24,7 +24,7 @@ exports.getOneOrderClient = async (req, res) => {
   const { id } = req.params;
   const order = await orderClient.getOrderClient(token, id);
 
-  if (!order) return res.status(404).json({ message: 'Order is not exist' });
+  if (!order) return res.status(404).json({ message: 'Order not exist' });
 
   res.status(200).json(order);
 };

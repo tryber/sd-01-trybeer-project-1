@@ -1,5 +1,5 @@
 const { connectionPromise } = require('../services/connectionPromise');
-const { formatDate } = require('../services/utils');
+const { formatDate, isNumber } = require('../services/utils');
 const tokenValid = require('../services/validJWT');
 
 const createProductOrder = async (idOrder, orders) => {
@@ -32,6 +32,8 @@ const getOrderPriceTotal = async (id) => {
 };
 
 const getOrderClient = async (token, id) => {
+  if (!isNumber(id)) return false;
+  
   const { id_user: idUser } = tokenValid(token);
   const query = `call getProductsInOrder("${id}", "${idUser}")`;
   const dataProducts = await connectionPromise(query);
