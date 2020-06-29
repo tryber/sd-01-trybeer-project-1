@@ -1,4 +1,3 @@
-
 import React, { useState, createContext } from 'react';
 import PropTypes from 'prop-types';
 import { fetchApi, requestWithToken } from '../service/serviceFetch';
@@ -54,6 +53,7 @@ const TrybeerProvider = ({ children }) => {
     setCarBuyer,
     orders,
   };
+
   return (
     <TrybeerContext.Provider value={context}>
       {children}

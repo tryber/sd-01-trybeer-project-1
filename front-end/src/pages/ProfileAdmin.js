@@ -1,24 +1,28 @@
-// import React from 'react';
-// import { fetchApi } from '../service/serviceFetch';
-// import Headers from '../component/Header';
+import React from 'react';
+import { getUser } from '../service';
+import useAxios from 'axios-hooks'
+import NavBar from '../component/NavBar';
+import Profile from '../component/ProfileAdmin';
+import '../styles/ProfileAdmin.css';
 
-// async function handleSubmit(obj, setMessageRequest, setShouldRedirect) {
-//   const data = await fetchApi({
-//     endpoint: 'http://localhost:3001/Admin/profile',
-//     method: 'GET',
-//   });
-//   if (data.message) return setMessageRequest(data.message);
-//   saveUser(data);
-//   setShouldRedirect(true);
-// }
+function ProfileAdmin() {
+  const [{ data, loading, error }] = useAxios({
+    url: 'http://localhost:3001/admin/profile',
+    headers: {
+      'Content-Type': 'application/json',
+      authorization: getUser().token
+    }
+  });
 
-// function ProfileAdmin({ location: { pathname } }) {
+  if (loading) return <p>Loading...</p>
+  if (error) return <p>Error!</p>
 
-//   return (
-//     <div>
-//       <Headers path={`${pathname}`} />
-//     </div>
-//   );
-// }
+  return (
+    <div>
+      <NavBar />
+      <Profile index={data} />
+    </div>
+  )
+}
 
-// export default ProfileAdmin;
+export default ProfileAdmin;
