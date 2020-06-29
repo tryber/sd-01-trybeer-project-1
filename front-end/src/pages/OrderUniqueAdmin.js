@@ -1,49 +1,45 @@
 import React, { useState, useEffect } from 'react';
 import { getUser } from '../service';
-import useAxios from 'axios-hooks'
 import NavBar from '../component/NavBar';
 import OrderUnique from '../component/OrderUnique';
+import '../styles/OrderUniqueAdmin.css';
 
-const updateStatus = (method, endpoint) => {
-  return {
-    url: `http://localhost:3001/admin/orders/${endpoint}`,
-    method,
-    headers: {
+const fetchUpdate = async (lastCharacter, method, setData = '') => {
+  const result = await fetch(`http://localhost:3001/admin/orders/${lastCharacter}`, {
+    method, headers: {
       'Content-Type': 'application/json',
-      authorization: getUser().token
-    }
-  }
-}
-
-const fetchUpdate = (lastCharacter) => {
-  fetch(updateStatus(`http://localhost:3001/admin/orders/${lastCharacter}`, {
-    method: 'PUT', headers: {
-      'Content-Type': 'application/json',
-      authorization: getUser().token
+      authorization: getUser().token,
     },
-  }))
+  })
+  const resolve = await result.json();
+  if (setData) setData(resolve)
+  return resolve;
 }
 
 function OrderUniqueAdmin({ location: { pathname } }) {
-  const [put, setPut] = useState(0);
-  const newArray = pathname.split('');
-  const lastCharacter = newArray[newArray.length - 1];
-
-  const [{ data, loading, error }, refetch] = useAxios(updateStatus('GET', lastCharacter));
+  const [update, setUpdate] = useState(0);
+  const [data, setData] = useState();
+  const lastCharacter = pathname.replace('/admin/orders/', '');
 
   useEffect(() => {
-    if (data) fetchUpdate(lastCharacter)
-  }, [put])
+    if (data) fetchUpdate(lastCharacter, 'PUT')
+    fetchUpdate(lastCharacter, 'GET', setData)
+  }, [update])
 
-  if (loading) return <p>Loading...</p>
-  if (error) return <p>Error!</p>
-  console.log('free', data)
+  if (!data) return <p>Loading...</p>;
+
+  let status = 1;
+  if (data.dataPurchase) status = data.dataPurchase[0].status;
 
   return (
-    <div>
-      {/* <NavBar /> */}
-      <button onClick={() => setPut(put + 1)}>refetch</button>
-      <OrderUnique data={data} />
+    <div className="OrderUniqueAdmin">
+      <NavBar />
+      <section className="statusOrder">
+        <OrderUnique data={data} />
+        <button className={status === 0 ? 'visible' : 'not-visible'} onClick={() => setUpdate(new Date())}>
+          Marcar como entregue
+        </button>
+      </section>
     </div>
   )
 }
