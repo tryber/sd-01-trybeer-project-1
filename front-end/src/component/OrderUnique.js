@@ -19,7 +19,6 @@ const OrderUnique = (props) => {
         {dataProducts.map(({ name_product, price, quantity }) =>
           <li key={name_product}>{quantity} - {name_product} R${price.toFixed(2).toLocaleString('pt-BR')}</li>)}
       </ul>
-      <section>Status: {status}</section>
       <section>Total: R$ {priceTotal.toFixed(2).toLocaleString('pt-BR')}</section>
     </div>
   )
