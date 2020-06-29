@@ -34,15 +34,12 @@ function Orders() {
       });
     }
   }, [isFetching]);
-  
-  // if (!user) return <Redirect to="/" />
+
   if (isFetching) return <h1>Loading...</h1>;
 
   return (
     <div>
       {ordersAdmin && ordersAdmin.map((result, index) => <CardOrdersAdmin orders={result} key={index} />)}
-      {ordersAdmin && console.log(ordersAdmin)}
-      <h1>Olá</h1>
     </div>
   );
 }

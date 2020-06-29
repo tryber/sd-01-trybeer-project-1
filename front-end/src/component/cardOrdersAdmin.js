@@ -5,14 +5,14 @@ function CardOrders({ orders }) {
 
   return (
     <div>
-      <p>Total: {Total}</p>
+      <p>Total: R${Total}</p>
       <p>Endereço: {address}</p>
       <p>Número: {address_number}</p>
       <p>Data de Compra: {data}</p>
       <p>Pedido {id_order}</p>
       <p>Status: {status === 0 ? 'Pendente' : 'Entregue' }</p>
     </div>
-  )
-}
+  );
+};
 
 export default CardOrders;
