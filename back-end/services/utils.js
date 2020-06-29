@@ -1,8 +1,8 @@
 const { decrypt } = require('./crypto');
 
 function isNameValid(name = '') {
-  const regex = /^[a-zA-Z\s]*$/;
-  return regex.test(name) && name.length >= 12;
+  const regex = /^[a-zA-Z-\s]{12,40}$/;
+  return regex.test(name);
 }
 
 function isEmailValid(email = '') {
