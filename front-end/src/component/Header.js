@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import NavBar from './NavBar';
-import { getTitle, getUser } from '../service';
+import { getTitle, getUser, validateLocalUser } from '../service';
 import { verifyCarBuyer } from '../service/CarBuyer'
 import { Redirect } from 'react-router-dom';
 import { TrybeerContext } from '../context';
@@ -12,7 +12,7 @@ function Header({ path, id }) {
   const { setUser, setCarBuyer } = useContext(TrybeerContext);
   useEffect(() => {
     const dataUser = getUser();
-    if (!dataUser) return setShouldRedirect(true);
+    if (!validateLocalUser(dataUser)) return setShouldRedirect(true);
     verifyCarBuyer(setCarBuyer);
     setUser(dataUser)
   }, [])
