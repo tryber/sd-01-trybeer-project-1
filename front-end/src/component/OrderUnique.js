@@ -13,10 +13,10 @@ const orderProducts = (dataProducts) => (
           {quantity}
         </span>
         <span data-testid={`${index}-product-name`}>
-          - {name_product} R$
+          - {name_product}
         </span>
         <span data-testid={`${index}-product-total-value`}>
-          {` ${price.toFixed(2).toLocaleString('pt-BR')}`}
+          {` R$ ${price.toFixed(2).toLocaleString('pt-BR')}`}
         </span>
       </li>)
     }
@@ -31,7 +31,7 @@ const OrderUnique = (props) => {
 
   return (
     <div>
-      <h1 data-testid="order-number" data-testid="order-status">
+      <h1>
         <span data-testid="order-number">Pedido {idOrder}</span>
         <span data-testid="order-status"> - {statusOrder(status)}</span>
       </h1>
