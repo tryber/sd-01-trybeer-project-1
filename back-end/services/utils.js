@@ -15,6 +15,11 @@ function isPasswordValid(password = '') {
   return regex.test(password);
 }
 
+function isAddressValid(number = '') {
+  const regex = /(^[0-9]{1,})+$/;
+  return regex.test(number);
+}
+
 function verifyPassword(passwordUser, password) {
   return passwordUser === decrypt(password);
 }
@@ -29,4 +34,5 @@ module.exports = {
   isPasswordValid,
   verifyPassword,
   formatDate,
+  isAddressValid,
 };

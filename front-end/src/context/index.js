@@ -54,6 +54,7 @@ const TrybeerProvider = ({ children }) => {
     setIsError,
     setCarBuyer,
     orders,
+    setOrders,
   };
 
   return (

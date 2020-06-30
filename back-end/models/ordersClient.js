@@ -3,8 +3,8 @@ const { formatDate } = require('../services/utils');
 const tokenValid = require('../services/validJWT');
 
 const createProductOrder = async (idOrder, orders) => {
-  const resultOrder = await orders.map(({ id_product: idProduct, quantity }) => {
-    const query = `call createProductOrder("${idOrder.id_order}", "${idProduct}", "${quantity}")`;
+  const resultOrder = await orders.map(({ id, qtd }) => {
+    const query = `call createProductOrder("${idOrder.id_order}", "${id}", "${qtd}")`;
     return connectionPromise(query);
   });
   return resultOrder;
