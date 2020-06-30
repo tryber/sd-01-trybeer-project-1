@@ -36,7 +36,11 @@ function OrderUniqueAdmin({ location: { pathname } }) {
       <NavBar />
       <section className="statusOrder">
         <OrderUnique data={data} />
-        <button className={status === 0 ? 'visible' : 'not-visible'} onClick={() => setUpdate(new Date())}>
+        <button
+          data-testid="mark-as-delivered-btn"
+          className={status === 0 ? 'visible' : 'not-visible'}
+          onClick={() => setUpdate(new Date())}
+        >
           Marcar como entregue
         </button>
       </section>

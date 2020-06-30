@@ -5,6 +5,24 @@ const statusOrder = (status) => {
   return 'Entregue';
 }
 
+const orderProducts = (dataProducts) => (
+  <ul>
+    {dataProducts.map(({ name_product, price, quantity }, index) =>
+      <li key={name_product}>
+        <span data-testid={`${index}-product-qtd`}>
+          {quantity}
+        </span>
+        <span data-testid={`${index}-product-name`}>
+          - {name_product} R$
+        </span>
+        <span data-testid={`${index}-product-total-value`}>
+          {` ${price.toFixed(2).toLocaleString('pt-BR')}`}
+        </span>
+      </li>)
+    }
+  </ul>
+)
+
 const OrderUnique = (props) => {
   if (props.data.message) return 'Pedido não registrado';
 
@@ -13,13 +31,15 @@ const OrderUnique = (props) => {
 
   return (
     <div>
-      <h1>Pedido {idOrder} - {statusOrder(status)}</h1>
+      <h1 data-testid="order-number" data-testid="order-status">
+        <span data-testid="order-number">Pedido {idOrder}</span>
+        <span data-testid="order-status"> - {statusOrder(status)}</span>
+      </h1>
       <h3>Cliente: {name}</h3>
-      <ul>
-        {dataProducts.map(({ name_product, price, quantity }) =>
-          <li key={name_product}>{quantity} - {name_product} R${price.toFixed(2).toLocaleString('pt-BR')}</li>)}
-      </ul>
-      <section>Total: R$ {priceTotal.toFixed(2).toLocaleString('pt-BR')}</section>
+      {orderProducts(dataProducts)}
+      <section data-testid="order-total-value">
+        Total: R$ {priceTotal.toFixed(2).toLocaleString('pt-BR')}
+      </section>
     </div>
   )
 }
