@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import '../styles/CardOrder.css'
 
 function CardOrders({ index, orders }) {
@@ -6,11 +7,13 @@ function CardOrders({ index, orders }) {
 
   return (
     <section className="card">
-      <p data-testid={`${index}-order-number`}> Pedido {id_order}</p>
-      <p data-testid={`${index}-order-address`}>Endereço: {address}, {address_number}</p>
-      <p> Data de Compra: {data}</p>
-      <p> Status: {status === 0 ? 'Pendente' : 'Entregue'}</p>
-      <p data-testid={`${index}-order-total-value`}>Total: R${Total}</p>
+      <Link to={`/admin/orders/${id_order}`}>
+        <p data-testid={`${index}-order-number`}> Pedido {id_order}</p>
+        <p data-testid={`${index}-order-address`}>Endereço: {address}, {address_number}</p>
+        <p> Data de Compra: {data}</p>
+        <p> Status: {status === 0 ? 'Pendente' : 'Entregue'}</p>
+        <p data-testid={`${index}-order-total-value`}>Total: R${Total}</p>
+      </Link>
     </section>
   );
 };
