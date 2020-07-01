@@ -13,7 +13,7 @@ function Orders({ location: { pathname } }) {
     method: 'GET',
     headers: { authorization: verifyUser(user), }
   })
-  if (!getUser() || data.message) return <Redirect to="/" />
+  if (!getUser()) return <Redirect to="/" />
   if (error) return <h2>Algo deu de errado!</h2>
   return (
     <div className="Orders">

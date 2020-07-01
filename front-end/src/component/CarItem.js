@@ -9,10 +9,10 @@ function CarItem({ index, attributes }) {
   const { saveCarBuyer, carBuyer } = useContext(TrybeerContext);
   return (
     <div className="CarItem">
-      <InputQTD index={index} qtd={qtd} callback={(value) => saveCarBuyer(addItemInCarBuyer(carBuyer, { id, name, price, qtd: Number(value) }))} />
+      <InputQTD dataTest={`${index}-product-qtd-input`} qtd={qtd} callback={(value) => saveCarBuyer(addItemInCarBuyer(carBuyer, { id, name, price, qtd: Number(value) }))} />
       <h2 data-testid={`${index}-product-name`} className="product-name">{name}</h2>
       <h2 className="product-price" data-testid={`${index}-product-total-value`}>{`R$ ${(price * qtd).toFixed(2).toLocaleString('pt-BR')}`}</h2>
-      <input type="button" className="btn-qtd" value="X" data-testid={`${index}-product-plus`} onClick={() => saveCarBuyer(addItemInCarBuyer(carBuyer, { id, name, price, qtd: 0 }))} />
+      <input type="button" className="btn-qtd" value="X" data-testid={`${index}-btn-remove-product`} onClick={() => saveCarBuyer(addItemInCarBuyer(carBuyer, { id, name, price, qtd: 0 }))} />
     </div>
   );
 }

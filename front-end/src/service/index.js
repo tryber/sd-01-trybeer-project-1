@@ -24,6 +24,7 @@ exports.getUser = () => JSON.parse(localStorage.getItem('user'));
 
 exports.clearUser = () => {
   localStorage.removeItem('user');
+  localStorage.removeItem('car');
 }
 
 exports.verifyUser = (user) => user ? user.token : '';

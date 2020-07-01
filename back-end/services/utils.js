@@ -11,12 +11,12 @@ function isEmailValid(email = '') {
 }
 
 function isPasswordValid(password = '') {
-  const regex = /(^[0-9]{6,})+$/;
+  const regex = /(^[0-9]{6,63})+$/;
   return regex.test(password);
 }
 
 function isAddressValid(number = '') {
-  const regex = /(^[0-9]{1,})+$/;
+  const regex = /(^[0-9]{1,10})+$/;
   return regex.test(number);
 }
 

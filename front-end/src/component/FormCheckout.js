@@ -7,9 +7,8 @@ const filterFieldsInvalid = (inputs) => {
 
 const submitValues = ({ address, addressNumber, setIsValid }) => {
   const inputs = {};
-  console.log(address.length > 0)
   inputs.address = address.length > 0;
-  inputs.addressNumber = /^[0-9]{1,20}$/.test(addressNumber);
+  inputs.addressNumber = /^[0-9]{1,10}$/.test(addressNumber);
   const validate = filterFieldsInvalid(inputs);
   if (validate.length > 0) return setIsValid({ status: false, invalid: validate });
   return setIsValid({ status: true, invalid: [] });
@@ -29,9 +28,9 @@ function FormCheckout({ getValues, valid }) {
     <div className="Forms">
       <h2>Endereço</h2>
       <label htmlFor="street">Rua:</label><input id="street" type="text" data-testid="checkout-street-input" onChange={e => setAddress(e.target.value)} /><br />
-      <label htmlFor="password">Senha:</label><input id="password" type="text" data-testid="checkout-house-number-input" onChange={e => setAddressNumber(e.target.value)} /><br />
+      <label htmlFor="house-number-input">Número da Casa:</label><input id="house-number-input" size="10" type="text" data-testid="checkout-house-number-input" onChange={e => setAddressNumber(e.target.value)} /><br />
       <input type="button" disabled={valid || !address || !addressNumber} value="Finalizar Pedido" data-testid="checkout-finish-btn" onClick={() => submitValues({ address, addressNumber, setIsValid })} />
-      {isValid.status || isValid.invalid.length === 0 || <div><h3 data-testid="">{isValid.invalid.reduce((acc, field) => `${acc} ${field}`, 'Campos Inválidos:')}</h3></div>}
+      {isValid.status || isValid.invalid.length === 0 || <div><h3 data-testid="invalid">{isValid.invalid.reduce((acc, field) => `${acc} ${field}`, 'Campos Inválidos:')}</h3></div>}
     </div>
   );
 }
