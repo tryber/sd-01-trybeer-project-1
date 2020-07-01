@@ -29,7 +29,7 @@ function OrderUniqueAdmin({ location: { pathname } }) {
   if (!data) return <p>Loading...</p>;
 
   let status = 1;
-  if (data.dataPurchase) status = data.dataPurchase[0].status;
+  if (data.dataPurchase) status = data.dataPurchase.status;
 
   return (
     <div className="OrderUniqueAdmin">

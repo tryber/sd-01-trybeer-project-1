@@ -12,7 +12,8 @@ const getAllDataOrder = async () => {
 };
 
 const getOrderPriceTotal = async (id) => {
-  const queryFunction = `call getStatusOneOrder("${id}")`;
+  const queryFunction = `SELECT priceOrderTotal("${id}") AS priceTotal, data, id_order, status FROM orders
+  WHERE id_order = ${id}`;
   return connectionPromise(queryFunction);
 };
 
@@ -20,6 +21,7 @@ const getOrderAdmin = async (id) => {
   if (!isNumber(id)) return false;
 
   const query = `call getUniqueOrderAdmin("${id}")`;
+
   const dataProducts = await connectionPromise(query);
 
   if (dataProducts.length === 0) return false;
