@@ -7,7 +7,6 @@ const createProductOrder = async (idOrder, orders) => {
     const query = `call createProductOrder("${idOrder.id_order}", "${id}", "${qtd}")`;
     return connectionPromise(query);
   });
-  console.log(resultOrder)
   return resultOrder;
 };
 

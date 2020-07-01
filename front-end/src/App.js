@@ -27,7 +27,7 @@ function App() {
           <Route exact path="/profile" component={MyProfile} />
           <Route exact path="/checkout" component={Checkout} />
           <Route exact path="/orders" component={Orders} />
-          <Route exact path="/order/:id" component={OneOrder} />
+          <Route exact path="/orders/:id" component={OneOrder} />
         </Switch>
       </Router>
     </Provider>
