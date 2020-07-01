@@ -1,0 +1,18 @@
+.OrderUniqueAdmin {
+  display: flex;
+  min-height: 95vh;
+  width: 100%;
+}
+
+.OrderUniqueAdmin .visible {
+  visibility: visible;
+}
+
+.OrderUniqueAdmin .not-visible {
+  visibility: hidden;
+}
+
+.OrderUniqueAdmin .statusOrder {
+  margin-left: 400px;
+  margin-top: 50px;
+}
