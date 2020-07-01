@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS users (
   id_user INT NOT NULL AUTO_INCREMENT UNIQUE PRIMARY KEY,
   name VARCHAR(80) NOT NULL,
   password VARCHAR(64) NOT NULL,
-  email VARCHAR(50) NOT NULL,
+  email VARCHAR(50) NOT NULL UNIQUE,
   role VARCHAR(20) NOT NULL
 ) ENGINE = InnoDB;
 
@@ -21,6 +21,7 @@ CREATE TABLE IF NOT EXISTS orders (
   id_user INT NOT NULL,
   data TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
   address VARCHAR(255) NOT NULL,
+  address_number INT NOT NULL,
   status TINYINT DEFAULT 0,
   FOREIGN KEY (id_user) REFERENCES trybeer.users (id_user)
 ) ENGINE = InnoDB;
@@ -49,31 +50,7 @@ VALUES
 
 INSERT INTO users (name, password, email, role)
 VALUES
-('Henrique', 123456, 'henrique@gmail.com', 'admin'),
-('Coruja', 123456, 'henrique@gmail.com', 'admin');
-
-INSERT INTO orders (id_user, address)
-VALUES
-(1, 'Belo Horizonte'),
-(1, 'São Paulo'),
-(2, 'São Paulo');
-
-INSERT INTO orders_products (id_order, id_product, quantity)
-VALUES
-(1, 1, 12),
-(1, 5, 6),
-(2, 3, 2),
-(3, 5, 10),
-(2, 1, 10);
-
-USE trybeer;
-SELECT P.name_product, P.price, OP.quantity, P.price * OP.quantity AS Total
-FROM products AS P
-INNER JOIN orders_products AS OP
-ON P.id_product = OP.id_product
-INNER JOIN orders AS O
-ON O.id_order = OP.id_order
-WHERE O.id_order = 2;
+('tryber', 'U2FsdGVkX1+VEr77ZZsY1np0AxvGEoaeyPooPgY/sDI=', 'tryber@gmail.com', 'admin');
 
 DELIMITER $$
 CREATE PROCEDURE `createUser`(IN nameValue VARCHAR(80),IN emailValue VARCHAR(50),IN passwordValue VARCHAR(64),IN roleValue VARCHAR(20))
@@ -85,17 +62,14 @@ END$$
 DELIMITER ;
 
 DELIMITER $$
-CREATE PROCEDURE `createOrder`(IN idUser INT, IN address VARCHAR(255))
+CREATE PROCEDURE `createOrder`(IN idUser INT, IN address VARCHAR(255), IN addressNumber INT)
 BEGIN
-INSERT INTO orders (id_user, address)
+INSERT INTO orders (id_user, address, address_number)
 VALUES
-(idUser, address);
+(idUser, address, addressNumber);
 SELECT id_order FROM orders order by id_order desc limit 1;
 END$$
 DELIMITER ;
-
-call createOrder(3,'Rua show');
-call getListProducts()
 
 DELIMITER $$
 CREATE PROCEDURE `createProductOrder`(IN idOrder INT, IN idProducts INT, IN qtdValue INT)
@@ -109,7 +83,8 @@ DELIMITER ;
 DELIMITER $$
 CREATE PROCEDURE `getAllDataOrder`()
 BEGIN
-SELECT O.id_order, O.data, O.address, U.name AS client, O.status, priceOrderTotal(id_order) AS Total
+SELECT O.id_order, O.data, O.address, O.address_number, U.name AS client,
+O.status, priceOrderTotal(id_order) AS Total
 FROM orders AS O
 INNER JOIN users AS U
 ON O.id_user = U.id_user;
@@ -119,7 +94,7 @@ DELIMITER ;
 DELIMITER $$
 CREATE PROCEDURE `getAllDataOrderUser`(IN idUser INT)
 BEGIN
-SELECT O.id_order, O.data, O.address, priceOrderTotal(id_order) AS Total
+SELECT O.id_order, O.data, priceOrderTotal(id_order) AS total
 FROM orders AS O
 WHERE O.id_user = idUser;
 END$$
@@ -133,9 +108,22 @@ END$$
 DELIMITER ;
 
 DELIMITER $$
-CREATE PROCEDURE `getProductsInOrder`(IN idOrder INT)
+CREATE PROCEDURE `getProductsInOrder`(IN idOrder INT, IN idUser INT)
 BEGIN
-SELECT P.name_product, P.price, OP.quantity, P.price * OP.quantity AS Total
+SELECT P.name_product, P.price, OP.quantity, P.price * OP.quantity AS total
+FROM products AS P
+INNER JOIN orders_products AS OP
+ON P.id_product = OP.id_product
+INNER JOIN orders AS O
+ON O.id_order = OP.id_order
+WHERE O.id_order = idOrder AND O.id_user = idUser;
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE `getUniqueOrderAdmin`(IN idOrder INT)
+BEGIN
+SELECT P.name_product, P.price, OP.quantity
 FROM products AS P
 INNER JOIN orders_products AS OP
 ON P.id_product = OP.id_product
@@ -146,26 +134,15 @@ END$$
 DELIMITER ;
 
 DELIMITER $$
-CREATE PROCEDURE `getUniqueDataOrder`(IN idOrder INT)
+CREATE PROCEDURE `getUser`(IN emailUser VARCHAR(50))
 BEGIN
-SELECT O.id_order, O.data, O.address, U.name AS client, O.status, priceOrderTotal(id_order) AS Total
-FROM orders AS O
-INNER JOIN users AS U
-ON O.id_user = U.id_user
-WHERE O.id_order = idOrder;
+SELECT * FROM users
+WHERE email = emailUser;
 END$$
 DELIMITER ;
 
 DELIMITER $$
-CREATE PROCEDURE `getUser`(IN user INT)
-BEGIN
-SELECT email, name FROM users
-WHERE id_user = user;
-END$$
-DELIMITER ;
-
-DELIMITER $$
-CREATE PROCEDURE `updateStatusOrder`(IN idOrder INT, IN valueStatus TINYINT)
+CREATE PROCEDURE `updateStatusOrder`(IN idOrder INT, IN valueStatus INT)
 BEGIN
 UPDATE orders O
 	SET O.status = valueStatus
@@ -179,6 +156,7 @@ BEGIN
 UPDATE users s
 	SET s.name = name_Value
 WHERE s.id_user = idUser;
+SELECT * FROM users WHERE id_user = idUser;
 END$$
 DELIMITER ;
 
@@ -187,13 +165,13 @@ CREATE FUNCTION `priceOrderTotal`(idOrder INT) RETURNS double
 READS SQL DATA
 BEGIN
 DECLARE sum_total DOUBLE;
-SELECT SUM(P.price * OP.quantity) AS Total
+SELECT SUM(P.price * OP.quantity) AS total
 FROM products AS P
 INNER JOIN orders_products AS OP
 ON P.id_product = OP.id_product
 INNER JOIN orders AS O
 ON O.id_order = OP.id_order
 WHERE O.id_order = idOrder INTO sum_total;
-RETURN sum_total;
+RETURN FORMAT(sum_total, 2);
 END$$
 DELIMITER ;
