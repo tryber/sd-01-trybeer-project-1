@@ -1,15 +1,8 @@
 import React, { useState, createContext } from 'react';
 import PropTypes from 'prop-types';
-import { clearUser } from '../service/index';
 import { saveCar } from '../service/CarBuyer';
 
 const TrybeerContext = createContext();
-
-const resetUser = (setIsError, setUser) => {
-  clearUser();
-  setUser();
-  return setIsError(true);
-}
 
 const TrybeerProvider = ({ children }) => {
   const [user, setUser] = useState();
