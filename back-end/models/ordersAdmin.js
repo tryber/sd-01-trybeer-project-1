@@ -1,9 +1,12 @@
 const { connectionPromise } = require('../services/connectionPromise');
 const { isNumber } = require('../services/utils');
+const { formatDate } = require('../services/utils');
 
 const getAllDataOrder = async () => {
   const query = 'call getAllDataOrder()';
   const data = await connectionPromise(query);
+
+  data.forEach(result => result.data = formatDate(result.data));
 
   return data;
 };

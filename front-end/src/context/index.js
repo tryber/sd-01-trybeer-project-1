@@ -18,7 +18,9 @@ const TrybeerProvider = ({ children }) => {
   const [isError, setIsError] = useState(false);
   const [isFetching, setIsFetching] = useState(false)
   const [carBuyer, setCarBuyer] = useState({ list: [], total: 0, });
+  const [profileAdmin, setProfileAdmin] = useState();
   const [orders, setOrders] = useState([]);
+  
   const typeSetContext = (value, type) => {
     const obj = {
       products: setProducts(value),
@@ -52,6 +54,7 @@ const TrybeerProvider = ({ children }) => {
     setIsError,
     setCarBuyer,
     orders,
+    setOrders,
   };
 
   return (
