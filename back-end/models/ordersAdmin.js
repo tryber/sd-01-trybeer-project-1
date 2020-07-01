@@ -5,9 +5,9 @@ const getAllDataOrder = async () => {
   const query = 'call getAllDataOrder()';
   const data = await connectionPromise(query);
 
-  data.forEach(result => result.data = formatDate(result.data));
+  const formatedData = data.map(result => ({ ...result, data: formatDate(result.data) }));
 
-  return data;
+  return formatedData;
 };
 
 const getOrderPriceTotal = async (id) => {
