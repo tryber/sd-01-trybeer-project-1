@@ -41,7 +41,7 @@ function Orders() {
   return (
     <div>
       <NavBar />
-      {ordersAdmin && ordersAdmin.map((result, index) => <CardOrdersAdmin orders={result} key={index} />)}
+      {ordersAdmin && ordersAdmin.map((result, index) => <CardOrdersAdmin orders={result} index={index} key={index} />)}
     </div>
   );
 }
