@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import InvalidFields from './InvalidFields';
 import '../styles/Forms.css';
 
 const filterFieldsInvalid = (inputs) => {
@@ -30,7 +31,7 @@ function FormLogin({ getValues }) {
       <label className="lbl" htmlFor="email">Email:</label><input className="ipt" id="email" type="email" data-testid="email-input" onChange={e => setEmail(e.target.value)} />
       <label className="lbl" htmlFor="password">Senha:</label><input id="password" className="ipt" type="password" data-testid="password-input" onChange={e => setPassword(e.target.value)} />
       <input type="button" className="btn" value="Entrar" data-testid="signin-btn" onClick={() => submitValues({ email, password, setIsValid })} />
-      {isValid.status || isValid.invalid.length === 0 || <div><h3 data-testid="invalid-fields" className="invalid-fields">{isValid.invalid.reduce((acc, field) => `${acc} ${field}`, 'Campos Inválidos:')}</h3></div>}
+      {isValid.status || isValid.invalid.length === 0 || <InvalidFields isValid={isValid}/>}
     </div>
   );
 }

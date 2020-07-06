@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import InvalidFields from './InvalidFields';
 import '../styles/Forms.css';
 
 const filterFieldsInvalid = (inputs) => {
@@ -41,7 +42,7 @@ function FormRegister({ getValues }) {
         <label className="lbl lbl-check" htmlFor="checkbox">Quero vender</label>
       </div>
       <input type="button" className="btn" value="Cadastrar" data-testid="signup-btn" onClick={() => submitValues({ name, email, password, setIsValid })} />
-      {isValid.status || isValid.invalid.length === 0 || <div><h3 data-testid="invalid-fields" className="invalid-fields">{isValid.invalid.reduce((acc, field) => `${acc} ${field}`, 'Campos Inválidos:')}</h3></div>}
+      {isValid.status || isValid.invalid.length === 0 || <InvalidFields isValid={isValid}/>}
     </div>
   );
 }
