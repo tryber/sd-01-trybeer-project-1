@@ -11,7 +11,7 @@
   width: 60%;
 }
 
-.PageLogin, .PageRegister {
+.PageLogin , .PageRegister {
   align-items: center;
   background: black;
   box-sizing: border-box;
