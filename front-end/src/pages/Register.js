@@ -25,7 +25,7 @@ function Register() {
   const [shouldRedirect, setShouldRedirect] = useState(false);
   if (shouldRedirect) return <Redirect to="/" />
   return (
-    <div className="elementsRegister">
+    <div className="PageRegister">
       {!messageRequest || <ReportComponent message={{ messageRequest, setMessageRequest }} callback={(value) => setShouldRedirect(value)} />}
       <FormRegister getValues={(obj) => { handleSubmit(obj, setMessageRequest) }} />
     </div>

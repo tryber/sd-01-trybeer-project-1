@@ -1,0 +1,23 @@
+.ReportComponent {
+  position: fixed;
+  top: 10px;
+  width: 50%;
+}
+
+.ReportComponent .text-report {
+  background: white;
+  border-radius: 10px;
+  min-width: 250px;
+  font-size: 20px;
+  padding: 20px;
+  text-align: center;
+  color: white;
+}
+
+.ReportComponent .stay{
+  background: red;
+}
+
+.ReportComponent .redirect{
+  background: green;
+}
