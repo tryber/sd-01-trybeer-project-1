@@ -15,11 +15,11 @@
   text-align: center;
 }
 
-.ReportComponent .stay{
+.ReportComponent .stay {
   background: red;
 }
 
-.ReportComponent .redirect{
+.ReportComponent .redirect {
   background: green;
 }
 
