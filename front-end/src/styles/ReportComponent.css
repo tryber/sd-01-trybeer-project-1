@@ -1,18 +1,18 @@
 .ReportComponent {
+  animation: fadeIn 3s;
   position: fixed;
   top: 10px;
   width: 50%;
-  animation: fadeIn 3s;
 }
 
 .ReportComponent .text-report {
   background: white;
   border-radius: 10px;
-  min-width: 250px;
+  color: white;
   font-size: 12px;
+  min-width: 250px;
   padding: 5px;
   text-align: center;
-  color: white;
 }
 
 .ReportComponent .stay{
@@ -24,16 +24,21 @@
 }
 
 @keyframes fadeIn {
+
   0% {
     opacity: 0;
   }
+
   25% {
     opacity: 1;
   }
+
   75% {
     opacity: 1;
   }
+
   100% {
     opacity: 0;
   }
+
 }
