@@ -21,8 +21,10 @@ function ReportComponent({ message, callback }) {
   }, 3000);
   return (
     <div className="ReportComponent">
-      <h2 data-testid="message-report" className={`text-report ${verifyStatusMessage(messageRequest)}`}>{messageRequest + ''}</h2>
-      {verifyStatusMessage(messageRequest) === 'redirect' && <h3>Redirecionando para pagina de login</h3>}
+      <p data-testid="message-report" className={`text-report ${verifyStatusMessage(messageRequest)}`}>
+        <h2>{messageRequest + ''}</h2>
+        {verifyStatusMessage(messageRequest) === 'redirect' && <h3>Redirecionando para pagina de login</h3>}
+      </p>
     </div>
   );
 }
