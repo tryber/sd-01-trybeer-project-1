@@ -2,6 +2,7 @@
   position: fixed;
   top: 10px;
   width: 50%;
+  animation: fadeIn 3s;
 }
 
 .ReportComponent .text-report {
@@ -20,4 +21,19 @@
 
 .ReportComponent .redirect{
   background: green;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }
