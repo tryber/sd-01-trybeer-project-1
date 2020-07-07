@@ -17,14 +17,14 @@ const submitValues = ({ address, addressNumber, setIsValid }) => {
 
 const divInput = (type, onChange) => {
   if (type === 'number') return (
-    <>
+    <div>
       <label htmlFor="house-number-input" className="lbl">Número da Casa:</label><input className="ipt" id="house-number-input" type="text" data-testid="checkout-house-number-input" onChange={e => onChange(e.target.value)} />
-    </>
+    </div>
   )
   return (
-    <>
+    <div>
       <label htmlFor="street" className="lbl">Rua:</label><input id="street" type="text" className="ipt" data-testid="checkout-street-input" onChange={e => onChange(e.target.value)} />
-    </>
+    </div>
   )
 }
 

@@ -18,8 +18,8 @@
 }
 
 .DataProfile .ReportComponent .stay {
-  animation: fadeIn 3s;
   align-self: center;
+  animation: fadeIn 3s;
   background: grey;
   position: fixed;
   top: 60px;
