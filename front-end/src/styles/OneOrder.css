@@ -30,8 +30,8 @@
 }
 
 .OneOrder {
+  background: #0FA36B;
   display: flex;
   flex-direction: column;
-  background: #0FA36B;
   height: 100vh;
 }
