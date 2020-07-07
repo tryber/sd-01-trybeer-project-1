@@ -1,5 +1,6 @@
 .Orders .list-orders {
   align-items: center;
+  background: #0FA36B;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;

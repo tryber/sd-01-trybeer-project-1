@@ -5,6 +5,23 @@
   width: 50%;
 }
 
+.DataProfile .ReportComponent  {
+  animation: fadeIn 3s;
+  align-self: center;
+  position: fixed;
+  top: 60px;
+  width: 50%;
+}
+
+.DataProfile .ReportComponent .stay {
+  animation: fadeIn 3s;
+  align-self: center;
+  background: grey;
+  position: fixed;
+  top: 60px;
+  width: 50%;
+}
+
 .ReportComponent .text-report {
   background: white;
   border-radius: 10px;

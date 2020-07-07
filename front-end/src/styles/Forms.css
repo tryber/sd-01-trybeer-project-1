@@ -13,7 +13,7 @@
 
 .PageLogin , .PageRegister {
   align-items: center;
-  background: #0fa36b;
+  background: #0FA36B;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -22,10 +22,12 @@
 }
 
 .PageLogin .noAccount {
-  background: black;
-  border: 2px solid white;
+  background: #0FA36B;
+  border: 3px solid white;
   border-radius: 5px;
   color: white;
+  font-size: 19px;
+  font-weight: 700;
   padding: 8px 10px;
   position: fixed;
   text-decoration: none;
@@ -108,15 +110,15 @@
 }
 
 .forms-checkout .inputs {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
   align-items: center;
-  width: 100%;
-  justify-content: center;
+  background: white;
   border: 2px solid black;
+  display: flex;
+  flex-flow: wrap row;
+  justify-content: center;
   padding: 10px;
   margin-bottom: 200px;
+  width: 100%;
 }
 
 .forms-checkout .inputs .btn {
@@ -128,8 +130,14 @@
   font-size: 20px;
   height: 40px;
   transition: all 0.2s;
+  width: 200px;
+}
+
+.forms-checkout .inputs .btn:disabled {
+  background: grey;
   width: 180px;
 }
+
 
 .forms-checkout .inputs .input-checkout {
   width: 80%;

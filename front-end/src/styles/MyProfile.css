@@ -1,10 +1,13 @@
 .MyProfile {
   align-items: center;
+  background: #0FA36B;
+  height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
 .MyProfile .DataProfile {
+  background: white;
   display: flex;
   flex-direction: column;
   font-size: 25px;
@@ -24,8 +27,16 @@
 .DataProfile .btn-save-name {
   align-self: center;
   background: greenyellow;
+  border-radius: 20px;
+  border: none;
   font-size: 25px;
   margin-top: 10vh;
   max-width: 400px;
+  padding: ;
   width: 100%;
+}
+
+.DataProfile .btn-save-name:hover{
+  background: greenyellow;
+  transform: scale(1.2);
 }

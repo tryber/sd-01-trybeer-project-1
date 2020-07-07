@@ -1,25 +1,27 @@
 .Checkout .body-checkout {
-  padding-top: 100px;
-  display: flex;
-  box-sizing: border-box;
-  flex-direction: column;
   align-items: center;
+  background: #0FA36B;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
+  padding-top: 100px;
 }
 
 .Checkout .ListCar {
+  align-items: center;
   display: flex;
   flex-direction: column;
   padding: 20px;
-  align-items: center;
 }
 
 
 .Checkout .ListCar .product-list {
-  width: 90%;
+  border: 2px solid black;
+  background: white;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  border: 2px solid black;
   margin: 10px;
+  width: 90%;
 }
