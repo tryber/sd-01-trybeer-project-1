@@ -4,6 +4,8 @@ import NavBar from '../component/NavBar';
 import CardOrdersAdmin from '../component/cardOrdersAdmin';
 import '../styles/loader.css';
 import '../styles/OrderUniqueAdmin.css';
+import '../styles/OrdersAdmin.css';
+
 
 function HeaderAuthorization() {
   const token = getUser().token;
@@ -38,19 +40,18 @@ function Orders() {
     }
   }, [isFetching]);
 
-  if (isFetching) {
-    return <section className="container">
-      <NavBar />
-      <h1 className="loader"></h1>
-    </section>;
-  }
-
   return (
-    <section className="OrderUniqueAdmin">
+    <section className="Admin Orders-Admin">
       <NavBar />
-      <section className="statusOrder">
+      {
+        isFetching &&
+        <section className="container">
+          <h1 className="loader"></h1>
+        </section>
+      }
+      {!isFetching && <section className="list-orders">
         {ordersAdmin && ordersAdmin.map((result, index) => <CardOrdersAdmin orders={result} index={index} key={index} />)}
-      </section>
+      </section>}
     </section>
   );
 }

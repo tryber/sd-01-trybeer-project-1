@@ -6,7 +6,7 @@ function CardOrders({ index, orders }) {
 
   return (
     <Link to={`/admin/orders/${id_order}`}>
-      <section className="card">
+      <section className="CardOrder card">
         <p data-testid={`${index}-order-number`}> Pedido {id_order}</p>
         <p data-testid={`${index}-order-address`}>Endereço: {address}, {address_number}</p>
         <p> Data de Compra: {data}</p>

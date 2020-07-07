@@ -37,7 +37,7 @@ function OrderUniqueAdmin({ location: { pathname } }) {
   if (data.dataPurchase) status = data.dataPurchase.status;
 
   return (
-    <div className="OrderUniqueAdmin">
+    <div className="Admin OrderUniqueAdmin">
       <NavBar />
       <section className="statusOrder">
         <OrderUnique data={data} />
