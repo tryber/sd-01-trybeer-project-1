@@ -13,7 +13,7 @@
 
 .PageLogin , .PageRegister {
   align-items: center;
-  background: rgb(15, 163, 107);
+  background: rgb( 15 , 163 , 107 );
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -22,7 +22,7 @@
 }
 
 .PageLogin .noAccount , .PageRegister .noAccount {
-  background: rgb(15, 163, 107);
+  background: rgb( 15 , 163 , 107 );
   border: 3px solid white;
   border-radius: 5px;
   color: white;
@@ -101,7 +101,7 @@
 }
 
 .Forms .check:checked ~ .check-item {
-  background: rgb(15, 163, 107);
+  background: rgb( 15 , 163 , 107 );
   border: 0.5px solid white;
   border-radius: 100%;
   height: 20px;
