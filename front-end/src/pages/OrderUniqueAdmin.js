@@ -26,24 +26,26 @@ function OrderUniqueAdmin({ location: { pathname } }) {
     fetchUpdate(lastCharacter, 'GET', setData)
   }, [update])
 
-  if (!data) return <p>Loading...</p>;
-
   let status = 1;
-  if (data.dataPurchase) status = data.dataPurchase.status;
+  if (data) status = data.dataPurchase.status;
 
   return (
-    <div className="OrderUniqueAdmin">
+    <div className="Admin OrderUniqueAdmin">
       <NavBar />
-      <section className="statusOrder">
+      {!data && <section className="container">
+        <h1 className="loader"></h1>
+      </section>}
+      {data && <section className="statusOrder">
         <OrderUnique data={data} />
         <button
           data-testid="mark-as-delivered-btn"
-          className={status === 0 ? 'visible' : 'not-visible'}
+          hidden={status}
+          className="btn-delivery"
           onClick={() => setUpdate(new Date())}
         >
           Marcar como entregue
         </button>
-      </section>
+      </section>}
     </div>
   )
 }

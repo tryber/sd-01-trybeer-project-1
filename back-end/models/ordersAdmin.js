@@ -6,7 +6,8 @@ const getAllDataOrder = async () => {
   const query = 'call getAllDataOrder()';
   const data = await connectionPromise(query);
 
-  const formatedData = data.map(result => ({ ...result, data: formatDate(result.data) }));
+  const formatedData = data.map(result => ({ ...result, data: formatDate(result.data) }))
+    .sort((a, b) => a.status - b.status);
 
   return formatedData;
 };

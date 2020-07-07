@@ -13,7 +13,7 @@ async function handleSubmit(obj, setMessageRequest, setUser) {
   };
   const data = await fetchApi({
     endpoint: 'http://localhost:3001/profile',
-    method: 'POST',
+    method: 'PUT',
     body,
     headers: {
       'Content-Type': 'application/json',

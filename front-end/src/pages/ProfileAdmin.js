@@ -3,7 +3,7 @@ import { getUser } from '../service';
 import useAxios from 'axios-hooks'
 import NavBar from '../component/NavBar';
 import Profile from '../component/ProfileAdmin';
-import '../styles/ProfileAdmin.css';
+import '../styles/MyProfileAdmin.css';
 
 function ProfileAdmin() {
   const [{ data, loading, error }] = useAxios({
@@ -14,11 +14,17 @@ function ProfileAdmin() {
     }
   });
 
-  if (loading) return <p>Loading...</p>
+  if (loading) {
+    return <section className="container">
+      <NavBar />
+      <h1 className="loader"></h1>
+    </section>;
+  }
+
   if (error) return <p>Error!</p>
 
   return (
-    <div>
+    <div className="Admin admin-profile">
       <NavBar />
       <Profile index={data} />
     </div>
