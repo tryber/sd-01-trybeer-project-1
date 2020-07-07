@@ -25,13 +25,14 @@ exports.saveCar = (car) => {
   localStorage.setItem('car', itemJson);
 }
 
-exports.getCar = () => JSON.parse(localStorage.getItem('car'));
+const getCar = () => JSON.parse(localStorage.getItem('car'));
 
 exports.clearCar = () => {
   localStorage.removeItem('car');
 }
 
 exports.verifyCarBuyer = (setCarBuyer) => {
-  const car = this.getCar();
+  const car = getCar();
   if (car) return setCarBuyer(car);
+  return setCarBuyer({ list: [], total: 0, })
 }

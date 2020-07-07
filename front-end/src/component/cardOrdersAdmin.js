@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import '../styles/CardOrder.css'
+import '../styles/Card.css'
 
 function CardOrders({ index, orders }) {
   const { Total, address, address_number, data, id_order, status } = orders;
