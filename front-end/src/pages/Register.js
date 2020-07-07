@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import { fetchApi } from '../service/serviceFetch';
 import ReportComponent from '../component/ReportComponent';
 import FormRegister from '../component/FormRegister';
@@ -28,6 +28,7 @@ function Register() {
     <div className="PageRegister">
       {!messageRequest || <ReportComponent message={{ messageRequest, setMessageRequest }} callback={(value) => setShouldRedirect(value)} />}
       <FormRegister getValues={(obj) => { handleSubmit(obj, setMessageRequest) }} />
+      <Link to="/" data-testid="no-account-btn" className="noAccount">Login</Link>
     </div>
   );
 }
