@@ -2,8 +2,8 @@
   background: rgb( 15 , 163 , 107 );
   display: flex;
   flex-wrap: wrap;
-  padding-top: 120px;
   padding-left: 300px;
+  padding-top: 120px;
 }
 
 .Orders-Admin .message-orders {
@@ -13,9 +13,9 @@
 }
 
 .Orders-Admin .list-orders .card {
-  width: 300px;
   height: 450px;
   margin: 50px;
+  width: 300px;
 }
 
 .Orders-Admin .list-orders a {

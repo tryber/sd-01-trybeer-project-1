@@ -1,11 +1,11 @@
 .OrderUniqueAdmin {
-  background: rgb(15, 163, 107);
+  background: rgb( 15 , 163 , 107 );
   box-sizing: border-box;
   display: flex;
   flex-wrap: wrap;
   min-height: 100vh;
-  padding-top: 10vh;
   padding-left: 300px;
+  padding-top: 10vh;
 }
 
 .OrderUniqueAdmin .div-order {
@@ -61,7 +61,7 @@
   margin-bottom: 30px;
 }
 
-.OrderUniqueAdmin .statusOrder .detail-products li .detail {
+.OrderUniqueAdmin li .detail {
   font-size: 6mm;
   margin: 2px 4px;
 }
