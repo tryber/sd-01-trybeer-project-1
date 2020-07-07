@@ -9,14 +9,14 @@ const orderProducts = (dataProducts) => (
   <ul>
     {dataProducts.map(({ name_product, price, quantity }, index) =>
       <li key={name_product}>
-        <span data-testid={`${index}-product-qtd`}>
+        <span data-testid={`${index}-product-qtd`} className="detail">
           {quantity}
         </span>
-        <span data-testid={`${index}-product-name`}>
+        <span data-testid={`${index}-product-name`} className="detail">
           - {name_product}
         </span>
-        <span data-testid={`${index}-product-total-value`}>
-          {` R$ ${price.toFixed(2).toLocaleString('pt-BR')}`}
+        <span data-testid={`${index}-product-total-value`} className="detail">
+          {` R$ ${(price * quantity).toFixed(2).toLocaleString('pt-BR')}`}
         </span>
       </li>)
     }
@@ -27,17 +27,16 @@ const OrderUnique = (props) => {
   if (props.data.message) return 'Pedido não registrado';
 
   const { dataProducts, dataPurchase } = props.data;
-  const { id_order: idOrder, name, priceTotal, status } = dataPurchase;
+  const { id_order: idOrder, priceTotal, status } = dataPurchase;
 
   return (
-    <div>
+    <div className="div-order detail-products">
       <h1>
         <span data-testid="order-number">Pedido {idOrder}</span>
         <span data-testid="order-status"> - {statusOrder(status)}</span>
       </h1>
-      <h3>Cliente: {name}</h3>
       {orderProducts(dataProducts)}
-      <section data-testid="order-total-value">
+      <section data-testid="order-total-value" className="total-value">
         Total: R$ {priceTotal.toFixed(2).toLocaleString('pt-BR')}
       </section>
     </div>
