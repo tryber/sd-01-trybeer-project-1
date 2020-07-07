@@ -8,6 +8,8 @@ import '../styles/Card.css';
 import { Redirect } from 'react-router-dom';
 import { getUser, verifyUser } from '../service';
 
+const verifyEmptyCar = total => total === 0 || total === "0.00";
+
 function Products({ location: { pathname } }) {
   const user = getUser();
   const { carBuyer } = useContext(TrybeerContext);
@@ -28,7 +30,7 @@ function Products({ location: { pathname } }) {
         <div className="list-products">
           {data.map((product, index) => <CardProduct key={`product-${product.id_product}`} index={index} attributes={product} />)}
           <button type="button" className="btn-checkout" data-testid="checkout-bottom-btn"
-            disabled={carBuyer.total === 0 || carBuyer.total === "0.00"} onClick={() => setDone(true)}
+            disabled={verifyEmptyCar(carBuyer.total)} onClick={() => setDone(true)}
           >
             Ver carrinho<span data-testid="checkout-bottom-btn-value">{`R$ ${carBuyer.total}`}</span>
           </button>

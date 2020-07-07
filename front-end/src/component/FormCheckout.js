@@ -15,6 +15,19 @@ const submitValues = ({ address, addressNumber, setIsValid }) => {
   return setIsValid({ status: true, invalid: [] });
 }
 
+const divInput = (type, onChange) => {
+  if (type === 'number') return (
+    <div className="input-checkout">
+      <label htmlFor="house-number-input" className="lbl">Número da Casa:</label><input className="ipt" id="house-number-input" type="text" data-testid="checkout-house-number-input" onChange={e => onChange(e.target.value)} />
+    </div>
+  )
+  return (
+    <div className="input-checkout">
+      <label htmlFor="street" className="lbl">Rua:</label><input id="street" type="text" className="ipt" data-testid="checkout-street-input" onChange={e => onChange(e.target.value)} />
+    </div>
+  )
+}
+
 function FormCheckout({ getValues, valid }) {
   const [address, setAddress] = useState();
   const [addressNumber, setAddressNumber] = useState();
@@ -29,12 +42,8 @@ function FormCheckout({ getValues, valid }) {
     <div className="forms-checkout">
       <h2>Endereço</h2>
       <div className="inputs">
-        <div className="input-checkout">
-          <label htmlFor="street" className="lbl">Rua:</label><input id="street" type="text" className="ipt" data-testid="checkout-street-input" onChange={e => setAddress(e.target.value)} />
-        </div>
-        <div className="input-checkout">
-          <label htmlFor="house-number-input" className="lbl">Número da Casa:</label><input className="ipt" id="house-number-input" type="text" data-testid="checkout-house-number-input" onChange={e => setAddressNumber(e.target.value)} />
-        </div>
+        {divInput('street', setAddress)}
+        {divInput('number', setAddressNumber)}
         <input type="button" className="btn" disabled={valid || !address || !addressNumber} value="Finalizar Pedido" data-testid="checkout-finish-btn" onClick={() => submitValues({ address, addressNumber, setIsValid })} />
         {isValid.status || isValid.invalid.length === 0 || <div><h3 data-testid="invalid">{isValid.invalid.reduce((acc, field) => `${acc} ${field}`, 'Campos Inválidos:')}</h3></div>}
       </div>
