@@ -36,9 +36,9 @@
 }
 
 .ReportComponent .text-report {
-  background: white;
+  background: red;
   border-radius: 10px;
-  color: white;
+  color: black;
   font-size: 12px;
   min-width: 250px;
   padding: 5px;
@@ -47,6 +47,12 @@
 
 .ReportComponent .redirect {
   background: green;
+  color: white;
+}
+
+.ReportComponent .redirect-product {
+  background: green;
+  color: white;
 }
 
 @keyframes fadeIn {

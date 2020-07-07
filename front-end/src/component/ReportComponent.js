@@ -9,7 +9,7 @@ const verifyStatusMessage = (message) => {
     'Update Success': 'stay',
     'Atualizado com sucesso': 'stay',
     'Invalid name': 'stay',
-    'Order successfully placed': 'stay',
+    'Order successfully placed': 'redirect-product',
   }
   return obj[message];
 }
@@ -25,6 +25,7 @@ function ReportComponent({ message, callback }) {
       <div data-testid="message-report" className={`text-report ${verifyStatusMessage(messageRequest)}`}>
         <h2>{messageRequest}</h2>
         {verifyStatusMessage(messageRequest) === 'redirect' && <h3>Redirecionando para pagina de login</h3>}
+        {verifyStatusMessage(messageRequest) === 'redirect-product' && <h3>Mudando para pagina de produtos!</h3>}
       </div>
     </div>
   );
