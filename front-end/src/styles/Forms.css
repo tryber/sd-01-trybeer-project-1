@@ -92,8 +92,8 @@
 .Forms .check-item {
   align-self: center;
   background: white;
-  color: white;
   border: 0.5px solid black;
+  color: white;
   height: 15px;
   margin-right: 4px;
   transition: all 0.4s;
@@ -123,8 +123,8 @@
   display: flex;
   flex-flow: wrap row;
   justify-content: center;
-  padding: 10px;
   margin-bottom: 200px;
+  padding: 10px;
   width: 100%;
 }
 
@@ -154,6 +154,6 @@
   border: none;
   border-bottom: 2px solid black;
   font-size: 20px;
-  width: 80%;
   margin: 10px 0;
+  width: 80%;
 }
