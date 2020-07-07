@@ -20,7 +20,7 @@ function ProfileAdmin() {
       <h1 className="loader"></h1>
     </section>;
   }
-  
+
   if (error) return <p>Error!</p>
 
   return (
