@@ -1,6 +1,6 @@
 .MyProfile {
   align-items: center;
-  background: #0FA36B;
+  background: rgb(15, 163, 107);
   height: 100vh;
   display: flex;
   flex-direction: column;

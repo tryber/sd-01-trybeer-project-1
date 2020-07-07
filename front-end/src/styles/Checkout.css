@@ -1,6 +1,6 @@
 .Checkout .body-checkout {
   align-items: center;
-  background: #0FA36B;
+  background: rgb(15, 163, 107);
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -17,8 +17,8 @@
 
 
 .Checkout .ListCar .product-list {
-  border: 2px solid black;
   background: white;
+  border: 2px solid black;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
