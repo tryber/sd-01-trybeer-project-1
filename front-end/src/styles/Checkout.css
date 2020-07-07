@@ -5,14 +5,15 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  width: 100%;
   padding-top: 100px;
 }
 
 .Checkout .ListCar {
   align-items: center;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  padding: 20px;
 }
 
 
@@ -23,5 +24,10 @@
   flex-wrap: wrap;
   justify-content: space-around;
   margin: 10px;
-  width: 90%;
+  width: 80%;
+}
+
+.Checkout {
+  width: 100%;
+  box-sizing: border-box;
 }
