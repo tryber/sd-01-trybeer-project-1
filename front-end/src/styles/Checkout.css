@@ -1,3 +1,33 @@
 .Checkout .body-checkout {
+  align-items: center;
+  background: rgb( 15 , 163 , 107 );
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   padding-top: 100px;
+  width: 100%;
+}
+
+.Checkout .ListCar {
+  align-items: center;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.Checkout .ListCar .product-list {
+  background: white;
+  border: 2px solid black;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: 10px;
+  width: 80%;
+}
+
+.Checkout {
+  box-sizing: border-box;
+  width: 100%;
 }

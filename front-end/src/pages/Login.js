@@ -34,10 +34,10 @@ function Login() {
   if (getUser()) return redirectPage(getUser(), setUser);
   if (shouldRedirect) return <Redirect to="/" />;
   return (
-    <div className="elementsRegister">
+    <div className="PageLogin">
       {!messageRequest || <ReportComponent message={{ messageRequest, setMessageRequest }} callback={(value) => setShouldRedirect(value)} />}
       <FormLogin getValues={(obj) => { handleSubmit(obj, setMessageRequest, setShouldRedirect) }} />
-      <Link to="/register" data-testid="no-account-btn">Quero me cadastrar</Link>
+      <Link to="/register" data-testid="no-account-btn" className="noAccount">Quero me cadastrar</Link>
     </div>
   );
 }

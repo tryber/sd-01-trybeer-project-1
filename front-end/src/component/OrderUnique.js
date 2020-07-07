@@ -28,7 +28,6 @@ const OrderUnique = (props) => {
 
   const { dataProducts, dataPurchase } = props.data;
   const { id_order: idOrder, name, priceTotal, status } = dataPurchase;
-  console.log(dataPurchase)
 
   return (
     <div>

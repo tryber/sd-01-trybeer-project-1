@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import InvalidFields from './InvalidFields';
+import '../styles/Forms.css';
 
 const filterFieldsInvalid = (inputs) => {
   const invalidValues = Object.entries(inputs).filter((field) => field[1] === false);
@@ -30,12 +32,17 @@ function FormRegister({ getValues }) {
   }, [isValid.status])
   return (
     <div className="Forms">
-      <label htmlFor="name">Nome:</label><input id="name" type="text" data-testid="signup-name" onChange={e => setName(e.target.value)} /><br />
-      <label htmlFor="email">Email:</label><input id="email" type="email" data-testid="signup-email" onChange={e => setEmail(e.target.value)} /><br />
-      <label htmlFor="password">Senha:</label><input id="password" type="password" data-testid="signup-password" onChange={e => setPassword(e.target.value)} /><br />
-      <input type="checkbox" id="checkbox" onClick={(e) => setRole(e.target.checked)} data-testid="signup-seller" /><label htmlFor="checkbox">Quero vender</label><br />
-      <input type="button" value="Cadastrar" data-testid="signup-btn" onClick={() => submitValues({ name, email, password, setIsValid })} />
-      {isValid.status || isValid.invalid.length === 0 || <div><h3 data-testid="">{isValid.invalid.reduce((acc, field) => `${acc} ${field}`, 'Campos Inválidos:')}</h3></div>}
+      <h2>Cadastro:</h2>
+      <label className="lbl" htmlFor="name">Nome:</label><input id="name" className="ipt" type="text" data-testid="signup-name" onChange={e => setName(e.target.value)} />
+      <label className="lbl" htmlFor="email">Email:</label><input id="email" className="ipt" type="email" data-testid="signup-email" onChange={e => setEmail(e.target.value)} />
+      <label className="lbl" htmlFor="password">Senha:</label><input id="password" className="ipt" type="password" data-testid="signup-password" onChange={e => setPassword(e.target.value)} />
+      <div className="div-check">
+        <input type="checkbox" id="checkbox" onClick={(e) => setRole(e.target.checked)} data-testid="signup-seller" className="ipt check" />
+        <span class="check-item"></span>
+        <label className="lbl lbl-check" htmlFor="checkbox">Quero vender</label>
+      </div>
+      <input type="button" className="btn" value="Cadastrar" data-testid="signup-btn" onClick={() => submitValues({ name, email, password, setIsValid })} />
+      {isValid.status || isValid.invalid.length === 0 || <InvalidFields isValid={isValid}/>}
     </div>
   );
 }

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { getUser } from '../service/index';
 import NavBar from '../component/NavBar';
 import CardOrdersAdmin from '../component/cardOrdersAdmin';
-import '../styles/CardOrder.css';
 import '../styles/loader.css';
 import '../styles/OrderUniqueAdmin.css';
 
