@@ -24,7 +24,7 @@ function NavBar({ type }) {
   if (out) return <Redirect to="/" />
   if (type === 'cliente') return linksCliente(setOut);
   return (
-    <div className="NavBar admin">
+    <div className="NavBar admin top-nav-bar">
       <h2>Trybeer</h2>
       <div className="links">
         <Link to="/admin/orders" className="nav-link" data-testid="side-menu-item-orders">Pedidos</Link>

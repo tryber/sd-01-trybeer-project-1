@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { getUser } from '../service/index';
 import NavBar from '../component/NavBar';
 import CardOrdersAdmin from '../component/cardOrdersAdmin';
+import '../styles/CardOrder.css';
+import '../styles/loader.css';
+import '../styles/OrderUniqueAdmin.css';
 
 function HeaderAuthorization() {
   const token = getUser().token;
@@ -36,13 +39,20 @@ function Orders() {
     }
   }, [isFetching]);
 
-  if (isFetching) return <h1>Loading...</h1>;
+  if (isFetching) {
+    return <section className="container">
+      <NavBar />
+      <h1 className="loader"></h1>
+    </section>;
+  }
 
   return (
-    <div>
+    <section className="OrderUniqueAdmin">
       <NavBar />
-      {ordersAdmin && ordersAdmin.map((result, index) => <CardOrdersAdmin orders={result} index={index} key={index} />)}
-    </div>
+      <section className="statusOrder">
+        {ordersAdmin && ordersAdmin.map((result, index) => <CardOrdersAdmin orders={result} index={index} key={index} />)}
+      </section>
+    </section>
   );
 }
 

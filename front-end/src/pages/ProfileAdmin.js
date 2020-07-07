@@ -14,7 +14,13 @@ function ProfileAdmin() {
     }
   });
 
-  if (loading) return <p>Loading...</p>
+  if (loading) {
+    return <section className="container">
+      <NavBar />
+      <h1 className="loader"></h1>
+    </section>;
+  }
+  
   if (error) return <p>Error!</p>
 
   return (

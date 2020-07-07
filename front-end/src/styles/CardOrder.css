@@ -1,7 +1,18 @@
 .card {
-  align-items: center;
-  display: flex;
-  flex-flow: column wrap;
-  justify-content: center;
-  margin: 50px 0 0 50px;
+  margin: 0 0 50px 0;
+  border: 1px solid black;
+  padding: 5px;
+}
+
+a:link, a:visited {
+  text-decoration: none;
+  color: black;
+}
+
+a:hover {
+  text-decoration: underline; 
+}
+
+a:active {
+  text-decoration: none
 }

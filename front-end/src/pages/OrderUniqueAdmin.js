@@ -26,7 +26,12 @@ function OrderUniqueAdmin({ location: { pathname } }) {
     fetchUpdate(lastCharacter, 'GET', setData)
   }, [update])
 
-  if (!data) return <p>Loading...</p>;
+  if (!data) {
+    return <section className="container">
+      <NavBar />
+      <h1 className="loader"></h1>
+    </section>;
+  }
 
   let status = 1;
   if (data.dataPurchase) status = data.dataPurchase.status;
