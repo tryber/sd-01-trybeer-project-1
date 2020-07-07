@@ -33,7 +33,7 @@ function Checkout() {
   console.log(!carBuyer.list.length === 0)
   return (
     <div className="Checkout">
-      <Headers path="/profile" />
+      <Headers path="/checkout" />
       <div className="body-checkout">
         {!carBuyer || carBuyer.list.length === 0 || <ListCar car={carBuyer} />}
         {carBuyer && carBuyer.list.length === 0 && <h2>Carrinho vazio</h2>}
