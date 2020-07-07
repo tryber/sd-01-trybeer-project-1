@@ -26,6 +26,15 @@
   width: 50%;
 }
 
+.body-checkout .ReportComponent .stay {
+  align-self: center;
+  animation: fadeIn 3s;
+  background: green;
+  position: fixed;
+  top: 60px;
+  width: 50%;
+}
+
 .ReportComponent .text-report {
   background: white;
   border-radius: 10px;
