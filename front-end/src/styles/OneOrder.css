@@ -1,0 +1,26 @@
+.OneOrder .div-order {
+  border: 2px solid black;
+  display: flex;
+  flex-direction: column;
+  padding: 100px 50px 0;
+}
+
+.OneOrder .list-products {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.OneOrder .list-products .detail-products {
+  border: 2px solid black;
+  font-size: 14px;
+  display: flex;
+  width: 40%;
+  min-width: 240px;
+  margin: 10px;
+  padding: 20px;
+  box-sizing: border-box;
+  flex-direction: column;
+}

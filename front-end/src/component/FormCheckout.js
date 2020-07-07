@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import '../styles/Forms.css'
 
 const filterFieldsInvalid = (inputs) => {
   const invalidValues = Object.entries(inputs).filter((field) => field[1] === false);
@@ -25,12 +26,18 @@ function FormCheckout({ getValues, valid }) {
     }
   }, [isValid.status]);
   return (
-    <div className="Forms">
+    <div className="forms-checkout">
       <h2>Endereço</h2>
-      <label htmlFor="street">Rua:</label><input id="street" type="text" data-testid="checkout-street-input" onChange={e => setAddress(e.target.value)} /><br />
-      <label htmlFor="house-number-input">Número da Casa:</label><input id="house-number-input" size="10" type="text" data-testid="checkout-house-number-input" onChange={e => setAddressNumber(e.target.value)} /><br />
-      <input type="button" disabled={valid || !address || !addressNumber} value="Finalizar Pedido" data-testid="checkout-finish-btn" onClick={() => submitValues({ address, addressNumber, setIsValid })} />
-      {isValid.status || isValid.invalid.length === 0 || <div><h3 data-testid="invalid">{isValid.invalid.reduce((acc, field) => `${acc} ${field}`, 'Campos Inválidos:')}</h3></div>}
+      <div className="inputs">
+        <div className="input-checkout">
+          <label htmlFor="street" className="lbl">Rua:</label><input id="street" type="text" className="ipt" data-testid="checkout-street-input" onChange={e => setAddress(e.target.value)} />
+        </div>
+        <div className="input-checkout">
+          <label htmlFor="house-number-input" className="lbl">Número da Casa:</label><input className="ipt" id="house-number-input" type="text" data-testid="checkout-house-number-input" onChange={e => setAddressNumber(e.target.value)} />
+        </div>
+        <input type="button" className="btn" disabled={valid || !address || !addressNumber} value="Finalizar Pedido" data-testid="checkout-finish-btn" onClick={() => submitValues({ address, addressNumber, setIsValid })} />
+        {isValid.status || isValid.invalid.length === 0 || <div><h3 data-testid="invalid">{isValid.invalid.reduce((acc, field) => `${acc} ${field}`, 'Campos Inválidos:')}</h3></div>}
+      </div>
     </div>
   );
 }

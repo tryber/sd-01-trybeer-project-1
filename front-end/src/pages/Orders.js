@@ -3,6 +3,7 @@ import Headers from '../component/Header';
 import { Redirect } from 'react-router-dom';
 import CardOrder from '../component/CardOrder';
 import '../styles/Orders.css';
+import '../styles/Card.css';
 import { getUser, verifyUser } from '../service';
 
 function Orders({ location: { pathname } }) {

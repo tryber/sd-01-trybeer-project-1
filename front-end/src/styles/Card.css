@@ -1,0 +1,54 @@
+.card {
+  border: 2px solid black;
+  border-radius: 10px;
+  color: black;
+  text-decoration: none;
+  display: flex;
+  flex-flow: column wrap;
+  font-size: 20px;
+  padding: 50px;
+  margin: 20px;
+  width: 40%;
+  min-width: 320px;
+  box-sizing: border-box;
+}
+
+.card a {
+  color: black;
+  text-decoration: none;
+}
+
+.card .btn {
+  align-self: center;
+  background: black;
+  border: 2px solid black;
+  border-radius: 5px;
+  color: white;
+  font-size: 20px;
+  height: 40px;
+  margin-top: 20px;
+  transition: all 0.2s;
+  width: 150px;
+}
+
+.card .input-qtd {
+  width: 150px;
+  font-size: 20px;
+
+}
+
+.card .btn:hover {
+  background: white;
+  color: black;
+  text-decoration: none;
+}
+
+@media only screen and ( max-width : 700px ) {
+
+  .card {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+  }
+}

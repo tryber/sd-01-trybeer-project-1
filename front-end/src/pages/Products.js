@@ -4,6 +4,7 @@ import useAxios from 'axios-hooks';
 import { TrybeerContext } from '../context';
 import CardProduct from '../component/CardProduct';
 import '../styles/CardProduct.css';
+import '../styles/Card.css';
 import { Redirect } from 'react-router-dom';
 import { getUser, verifyUser } from '../service';
 
@@ -27,7 +28,7 @@ function Products({ location: { pathname } }) {
         <div className="list-products">
           {data.map((product, index) => <CardProduct key={`product-${product.id_product}`} index={index} attributes={product} />)}
           <button type="button" className="btn-checkout" data-testid="checkout-bottom-btn"
-            disabled={carBuyer.total === 0} onClick={() => setDone(true)}
+            disabled={carBuyer.total === 0 || carBuyer.total === "0.00"} onClick={() => setDone(true)}
           >
             Ver carrinho<span data-testid="checkout-bottom-btn-value">{`R$ ${carBuyer.total}`}</span>
           </button>

@@ -13,7 +13,7 @@
 
 .PageLogin , .PageRegister {
   align-items: center;
-  background: black;
+  background: #0fa36b;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -69,7 +69,7 @@
   padding: 10px 10px 1px;
 }
 
-.Forms .invalid-fields {
+.Forms .invalid-fields , .forms-checkout .inputs .invalid-fields {
   color: red;
   font-size: 20px;
 }
@@ -91,9 +91,54 @@
   margin-right: 4px;
   transition: all 0.4s;
   width: 15px;
+  font-size: 20px;
 }
 
 .Forms .check:checked ~ .check-item {
   background: black;
   border-radius: 100%;
+}
+
+.forms-checkout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+  justify-content: space-between;
+}
+
+.forms-checkout .inputs {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  width: 100%;
+  justify-content: center;
+  border: 2px solid black;
+  padding: 10px;
+  margin-bottom: 200px;
+}
+
+.forms-checkout .inputs .btn {
+  align-self: center;
+  background: black;
+  border: 2px solid black;
+  border-radius: 5px;
+  color: white;
+  font-size: 20px;
+  height: 40px;
+  transition: all 0.2s;
+  width: 180px;
+}
+
+.forms-checkout .inputs .input-checkout {
+  width: 80%;
+}
+
+.forms-checkout .inputs .ipt {
+  border: none;
+  border-bottom: 2px solid black;
+  font-size: 20px;
+  width: 80%;
+  margin: 10px 0;
 }

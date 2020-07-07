@@ -30,13 +30,14 @@ async function handleSubmit(obj, setMessageRequest, orders) {
 function Checkout() {
   const { carBuyer } = useContext(TrybeerContext);
   const [messageRequest, setMessageRequest] = useState();
+  console.log(!carBuyer.list.length === 0)
   return (
     <div className="Checkout">
       <Headers path="/profile" />
       <div className="body-checkout">
         {!carBuyer || carBuyer.list.length === 0 || <ListCar car={carBuyer} />}
-        {!carBuyer || !carBuyer.list.length === 0 || <h2>Carrinho vazio</h2>}
-        <FormCheckout getValues={(obj) => { handleSubmit(obj, setMessageRequest, carBuyer.list) }} valid={carBuyer.list.length === 0} />
+        {carBuyer && carBuyer.list.length === 0 && <h2>Carrinho vazio</h2>}
+        {!carBuyer || carBuyer.list.length === 0 || <FormCheckout getValues={(obj) => { handleSubmit(obj, setMessageRequest, carBuyer.list) }} valid={carBuyer.list.length === 0} />}
         {!messageRequest || <ReportComponent message={{ messageRequest, setMessageRequest }} />}
       </div>
     </div>
